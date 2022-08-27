@@ -7,4 +7,6 @@ namespace IncentiveFactory\Game\Player;
 interface PlayerGateway
 {
     public function register(Player $player): void;
+
+    public function hasEmail(string $email): bool;
 }

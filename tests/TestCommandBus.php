@@ -2,13 +2,18 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Shared\Command;
+namespace IncentiveFactory\Game\Tests;
 
+use IncentiveFactory\Game\Shared\Command\Command;
+use IncentiveFactory\Game\Shared\Command\CommandBus;
+use IncentiveFactory\Game\Shared\Command\CommandHandler;
 use InvalidArgumentException;
+use Psr\Container\ContainerInterface;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 use ReflectionNamedType;
+use Symfony\Component\Validator\ContainerConstraintValidatorFactory;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 use Symfony\Component\Validator\Validation;
 
@@ -18,6 +23,10 @@ final class TestCommandBus implements CommandBus
      * @var array<class-string<Command>, CommandHandler>
      */
     private array $handlers = [];
+
+    public function __construct(private ContainerInterface $container)
+    {
+    }
 
     /**
      * @throws ReflectionException
@@ -47,7 +56,10 @@ final class TestCommandBus implements CommandBus
 
     public function execute(Command $command): void
     {
+        $constraintValidatorFactory = new ContainerConstraintValidatorFactory($this->container);
+
         $validator = Validation::createValidatorBuilder()
+            ->setConstraintValidatorFactory($constraintValidatorFactory)
             ->enableAnnotationMapping()
             ->getValidator();
 
