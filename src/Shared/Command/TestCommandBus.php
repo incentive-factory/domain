@@ -47,7 +47,9 @@ final class TestCommandBus implements CommandBus
 
     public function execute(Command $command): void
     {
-        $validator = Validation::createValidator();
+        $validator = Validation::createValidatorBuilder()
+            ->enableAnnotationMapping()
+            ->getValidator();
 
         $violations = $validator->validate($command);
 

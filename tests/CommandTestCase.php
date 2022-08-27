@@ -9,6 +9,7 @@ use IncentiveFactory\Game\Shared\Command\CommandBus;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
 use IncentiveFactory\Game\Shared\Command\TestCommandBus;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 abstract class CommandTestCase extends TestCase
 {
@@ -34,6 +35,16 @@ abstract class CommandTestCase extends TestCase
     }
 
     /**
+     * @dataProvider provideInvalidCommands
+     */
+    public function testInvalidCommand(Command $command): void
+    {
+        self::expectException(ValidationFailedException::class);
+
+        $this->commandBus->execute($command);
+    }
+
+    /**
      * @return iterable<array-key, CommandHandler>
      */
     abstract protected function registerHandlers(): iterable;
@@ -42,4 +53,12 @@ abstract class CommandTestCase extends TestCase
      * @return iterable<string, array{command: Command, callback: callable}>
      */
     abstract public function provideCommands(): iterable;
+
+    /**
+     * @return iterable<string, array{command: Command}>
+     */
+    public function provideInvalidCommands(): iterable
+    {
+        return [];
+    }
 }
