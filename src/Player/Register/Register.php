@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player;
+namespace IncentiveFactory\Game\Player\Register;
 
+use IncentiveFactory\Game\Player\Player;
+use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 

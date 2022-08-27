@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player;
+namespace IncentiveFactory\Game\Player\Register;
 
 use IncentiveFactory\Game\Shared\Command\Command;
 use Symfony\Component\Validator\Constraints\Email;
