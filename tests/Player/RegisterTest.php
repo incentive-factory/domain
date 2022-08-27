@@ -34,7 +34,12 @@ final class RegisterTest extends CommandTestCase
             ->method('generate')
             ->willReturn(Ulid::fromString('01GBFAVXKAWNZJYZ6TR4XK4JHV'));
 
-        yield new Register($passwordHasher, $ulidGenerator, $this->playerGateway);
+        yield new Register(
+            $passwordHasher,
+            $ulidGenerator,
+            $this->playerGateway,
+            $this->eventBus
+        );
     }
 
     public function shouldRegisterPlayer(self $registerTest): void
@@ -42,6 +47,7 @@ final class RegisterTest extends CommandTestCase
         $player = $registerTest->playerGateway->players['01GBFAVXKAWNZJYZ6TR4XK4JHV'];
 
         self::assertSame('01GBFAVXKAWNZJYZ6TR4XK4JHV', (string) $player->id());
+        self::assertSame('d8868bcb-31f5-4e95-96ba-a9b6b7a23157', (string) $player->registrationToken());
         self::assertSame('player+2@email.com', $player->email());
         self::assertSame('player+2', $player->nickname());
         self::assertSame('hashed_password', $player->password());

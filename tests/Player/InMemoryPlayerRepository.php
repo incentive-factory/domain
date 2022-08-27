@@ -39,4 +39,9 @@ final class InMemoryPlayerRepository implements PlayerGateway
             )
         ) > 0;
     }
+
+    public function update(Player $player): void
+    {
+        $this->players[(string) $player->id()] = $player;
+    }
 }

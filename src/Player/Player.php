@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IncentiveFactory\Game\Player;
 
 use Symfony\Component\Uid\Ulid;
+use Symfony\Component\Uid\Uuid;
 
 final class Player
 {
@@ -16,13 +17,21 @@ final class Player
 
     private string $password;
 
-    public static function create(Ulid $id, string $email, string $nickname, string $password): self
-    {
+    private ?Uuid $registrationToken = null;
+
+    public static function create(
+        Ulid $id,
+        string $email,
+        string $nickname,
+        string $password,
+        ?Uuid $registrationToken = null
+    ): self {
         $player = new self();
         $player->id = $id;
         $player->email = $email;
         $player->nickname = $nickname;
         $player->password = $password;
+        $player->registrationToken = $registrationToken;
 
         return $player;
     }
@@ -45,5 +54,15 @@ final class Player
     public function password(): string
     {
         return $this->password;
+    }
+
+    public function registrationToken(): ?Uuid
+    {
+        return $this->registrationToken;
+    }
+
+    public function prepareValidationOfRegistration(?Uuid $registrationToken): void
+    {
+        $this->registrationToken = $registrationToken;
     }
 }
