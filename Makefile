@@ -20,5 +20,5 @@ tests:
 	php vendor/bin/phpunit --testdox
 
 tests-wc:
-	$(DISABLE_XDEBUG) php vendor/bin/phpunit
+	$(DISABLE_XDEBUG) php vendor/bin/phpunit --no-coverage
 
