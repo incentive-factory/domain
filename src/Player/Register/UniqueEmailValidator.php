@@ -22,7 +22,7 @@ final class UniqueEmailValidator extends ConstraintValidator
         }
 
         if (!is_string($value) || '' === $value) {
-            return;
+            return; // @codeCoverageIgnore
         }
 
         if ($this->playerGateway->hasEmail($value)) {
