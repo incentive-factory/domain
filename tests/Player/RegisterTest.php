@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests\Player;
 
-use IncentiveFactory\Game\Player\InMemoryPlayerRepository;
-use IncentiveFactory\Game\Player\Register;
-use IncentiveFactory\Game\Player\Registration;
+use IncentiveFactory\Game\Player\Register\Register;
+use IncentiveFactory\Game\Player\Register\Registration;
 use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
 use IncentiveFactory\Game\Tests\CommandTestCase;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;

@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player;
+namespace IncentiveFactory\Game\Tests\Player;
+
+use IncentiveFactory\Game\Player\Player;
+use IncentiveFactory\Game\Player\PlayerGateway;
 
 final class InMemoryPlayerRepository implements PlayerGateway
 {
