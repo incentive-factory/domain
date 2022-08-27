@@ -80,4 +80,9 @@ final class Player
         $this->registrationToken = null;
         $this->registeredAt = new DateTimeImmutable();
     }
+
+    public function newPassword(string $newPassword): void
+    {
+        $this->password = $newPassword;
+    }
 }

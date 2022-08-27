@@ -22,7 +22,7 @@ final class RegistrationTokenExistsValidator extends ConstraintValidator
         }
 
         if (!is_string($value) || '' === $value) {
-            return;
+            return; // @codeCoverageIgnore
         }
 
         if (!$this->playerGateway->hasRegistrationToken($value)) {
