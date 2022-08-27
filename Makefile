@@ -14,6 +14,8 @@ composer-valid:
 phpstan:
 	$(DISABLE_XDEBUG) php vendor/bin/phpstan analyse -c phpstan.neon
 
+qa: fix analyse
+
 analyse: composer-valid phpstan
 
 tests:
