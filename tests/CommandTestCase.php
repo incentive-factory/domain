@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests;
 
+use IncentiveFactory\Game\Player\Register\UniqueEmailValidator;
 use IncentiveFactory\Game\Shared\Command\Command;
 use IncentiveFactory\Game\Shared\Command\CommandBus;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
-use IncentiveFactory\Game\Shared\Command\TestCommandBus;
+use IncentiveFactory\Game\Tests\Player\InMemoryPlayerRepository;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 abstract class CommandTestCase extends TestCase
 {
@@ -16,7 +18,11 @@ abstract class CommandTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $this->commandBus = new TestCommandBus();
+        $container = (new Container())->register(
+            new UniqueEmailValidator(new InMemoryPlayerRepository())
+        );
+
+        $this->commandBus = new TestCommandBus($container);
 
         foreach ($this->registerHandlers() as $handler) {
             $this->commandBus->register($handler);
@@ -34,6 +40,16 @@ abstract class CommandTestCase extends TestCase
     }
 
     /**
+     * @dataProvider provideInvalidCommands
+     */
+    public function testInvalidCommand(Command $command): void
+    {
+        self::expectException(ValidationFailedException::class);
+
+        $this->commandBus->execute($command);
+    }
+
+    /**
      * @return iterable<array-key, CommandHandler>
      */
     abstract protected function registerHandlers(): iterable;
@@ -42,4 +58,12 @@ abstract class CommandTestCase extends TestCase
      * @return iterable<string, array{command: Command, callback: callable}>
      */
     abstract public function provideCommands(): iterable;
+
+    /**
+     * @return iterable<string, array{command: Command}>
+     */
+    public function provideInvalidCommands(): iterable
+    {
+        return [];
+    }
 }

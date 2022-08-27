@@ -26,13 +26,11 @@ final class RegisterTest extends CommandTestCase
     {
         $passwordHasher = self::createMock(PasswordHasherInterface::class);
         $passwordHasher
-            ->expects(self::once())
             ->method('hash')
             ->willReturn('hashed_password');
 
         $ulidGenerator = self::createMock(UlidGeneratorInterface::class);
         $ulidGenerator
-            ->expects(self::once())
             ->method('generate')
             ->willReturn(Ulid::fromString('01GBFAVXKAWNZJYZ6TR4XK4JHV'));
 
@@ -41,11 +39,11 @@ final class RegisterTest extends CommandTestCase
 
     public function shouldRegisterPlayer(self $registerTest): void
     {
-        $player = $registerTest->playerGateway->players[0];
+        $player = $registerTest->playerGateway->players['01GBFAVXKAWNZJYZ6TR4XK4JHV'];
 
         self::assertSame('01GBFAVXKAWNZJYZ6TR4XK4JHV', (string) $player->id());
-        self::assertSame('player@email.com', $player->email());
-        self::assertSame('player', $player->nickname());
+        self::assertSame('player+2@email.com', $player->email());
+        self::assertSame('player+2', $player->nickname());
         self::assertSame('hashed_password', $player->password());
     }
 
@@ -54,14 +52,35 @@ final class RegisterTest extends CommandTestCase
      */
     public function provideCommands(): iterable
     {
-        $registration = new Registration();
-        $registration->nickname = 'player';
-        $registration->email = 'player@email.com';
-        $registration->plainPassword = 'Password123!';
-
         /** @var callable $callback */
         $callback = [$this, 'shouldRegisterPlayer'];
 
-        yield 'register' => ['command' => $registration, 'callback' => $callback];
+        yield 'register' => ['command' => self::createRegistration(), 'callback' => $callback];
+    }
+
+    /**
+     * @return iterable<string, array{command: Registration}>
+     */
+    public function provideInvalidCommands(): iterable
+    {
+        yield 'blank email' => ['command' => self::createRegistration(email: '')];
+        yield 'invalid email' => ['command' => self::createRegistration(email: 'fail')];
+        yield 'non unique email' => ['command' => self::createRegistration(email: 'player+1@email.com')];
+        yield 'blank nickname' => ['command' => self::createRegistration(nickname: '')];
+        yield 'blank plainPassword' => ['command' => self::createRegistration(plainPassword: '')];
+        yield 'invalid plainPassword' => ['command' => self::createRegistration(plainPassword: 'fail')];
+    }
+
+    private static function createRegistration(
+        string $email = 'player+2@email.com',
+        string $nickname = 'player+2',
+        string $plainPassword = 'Password123!'
+    ): Registration {
+        $registration = new Registration();
+        $registration->nickname = $nickname;
+        $registration->email = $email;
+        $registration->plainPassword = $plainPassword;
+
+        return $registration;
     }
 }

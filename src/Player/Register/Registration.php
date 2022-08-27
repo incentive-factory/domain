@@ -13,6 +13,7 @@ final class Registration implements Command
 {
     #[Email]
     #[NotBlank]
+    #[UniqueEmail]
     public string $email;
 
     #[NotBlank]
