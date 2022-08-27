@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests;
 
-use IncentiveFactory\Game\Player\Register\UniqueEmailValidator;
 use IncentiveFactory\Game\Shared\Command\Command;
 use IncentiveFactory\Game\Shared\Command\CommandBus;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
 use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Tests\Player\InMemoryPlayerRepository;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 abstract class CommandTestCase extends TestCase
@@ -19,15 +18,18 @@ abstract class CommandTestCase extends TestCase
 
     protected EventBus $eventBus;
 
+    protected function getContainer(): ContainerInterface
+    {
+        global $container;
+
+        return $container;
+    }
+
     protected function setUp(): void
     {
-        $container = (new Container())->register(
-            new UniqueEmailValidator(new InMemoryPlayerRepository())
-        );
-
         $this->eventBus = new TestEventBus();
 
-        $this->commandBus = new TestCommandBus($container);
+        $this->commandBus = new TestCommandBus();
 
         foreach ($this->registerHandlers() as $handler) {
             $this->commandBus->register($handler);

@@ -17,7 +17,8 @@ final class RegisterTest extends CommandTestCase
 
     protected function setUp(): void
     {
-        $this->playerGateway = new InMemoryPlayerRepository();
+        /* @phpstan-ignore-next-line */
+        $this->playerGateway = $this->getContainer()->get(InMemoryPlayerRepository::class);
 
         parent::setUp();
     }

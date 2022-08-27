@@ -22,6 +22,10 @@ final class TestEventBus implements EventBus
 
     public function __construct()
     {
+        global $container;
+
+        $playerGateway = $container->get(InMemoryPlayerRepository::class);
+
         $this->eventListeners[NewRegistration::class] = new CreateRegistrationToken(
             new class() implements UuidGeneratorInterface {
                 public function generate(): Uuid
@@ -29,7 +33,7 @@ final class TestEventBus implements EventBus
                     return Uuid::fromString('d8868bcb-31f5-4e95-96ba-a9b6b7a23157');
                 }
             },
-            new InMemoryPlayerRepository()
+            $playerGateway
         );
     }
 

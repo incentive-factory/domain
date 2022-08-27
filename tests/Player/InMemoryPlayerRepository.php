@@ -44,4 +44,20 @@ final class InMemoryPlayerRepository implements PlayerGateway
     {
         $this->players[(string) $player->id()] = $player;
     }
+
+    public function hasRegistrationToken(string $registrationToken): bool
+    {
+        return null !== $this->findOneByRegistrationToken($registrationToken);
+    }
+
+    public function findOneByRegistrationToken(string $registrationToken): ?Player
+    {
+        foreach ($this->players as $player) {
+            if ((string) $player->registrationToken() === $registrationToken) {
+                return $player;
+            }
+        }
+
+        return null;
+    }
 }
