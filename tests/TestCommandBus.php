@@ -8,7 +8,6 @@ use IncentiveFactory\Game\Shared\Command\Command;
 use IncentiveFactory\Game\Shared\Command\CommandBus;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
 use InvalidArgumentException;
-use Psr\Container\ContainerInterface;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
@@ -23,10 +22,6 @@ final class TestCommandBus implements CommandBus
      * @var array<class-string<Command>, CommandHandler>
      */
     private array $handlers = [];
-
-    public function __construct(private ContainerInterface $container)
-    {
-    }
 
     /**
      * @throws ReflectionException
@@ -56,7 +51,9 @@ final class TestCommandBus implements CommandBus
 
     public function execute(Command $command): void
     {
-        $constraintValidatorFactory = new ContainerConstraintValidatorFactory($this->container);
+        global $container;
+
+        $constraintValidatorFactory = new ContainerConstraintValidatorFactory($container);
 
         $validator = Validation::createValidatorBuilder()
             ->setConstraintValidatorFactory($constraintValidatorFactory)
