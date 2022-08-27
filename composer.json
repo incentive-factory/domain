@@ -1,0 +1,41 @@
+{
+    "name": "incentive-factory/game",
+    "description": "",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "TBoileau",
+            "email": "t-boileau@email.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.10",
+        "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "IncentiveFactory\\Game\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IncentiveFactory\\Game\\Tests\\": "tests/"
+        }
+    }
+}
