@@ -29,4 +29,7 @@
     <logging>
         <junit outputFile="var/coverage/junit.xml"/>
     </logging>
+    <extensions>
+        <extension class="IncentiveFactory\Game\Tests\PHPUnitExtension" />
+    </extensions>
 </phpunit>
