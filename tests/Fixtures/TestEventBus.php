@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests;
+namespace IncentiveFactory\Game\Tests\Fixtures;
 
 use IncentiveFactory\Game\Player\CreateRegistrationToken\CreateRegistrationToken;
 use IncentiveFactory\Game\Player\Register\NewRegistration;
@@ -10,7 +10,6 @@ use IncentiveFactory\Game\Shared\Event\Event;
 use IncentiveFactory\Game\Shared\Event\EventBus;
 use IncentiveFactory\Game\Shared\Event\EventListener;
 use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
-use IncentiveFactory\Game\Tests\Player\InMemoryPlayerRepository;
 use Symfony\Component\Uid\Uuid;
 
 final class TestEventBus implements EventBus

@@ -7,6 +7,7 @@ namespace IncentiveFactory\Game\Tests\Player;
 use IncentiveFactory\Game\Player\UpdateProfile\Profile;
 use IncentiveFactory\Game\Player\UpdateProfile\UpdateProfile;
 use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
 
 final class UpdateProfileTest extends CommandTestCase
 {
@@ -29,8 +30,8 @@ final class UpdateProfileTest extends CommandTestCase
     {
         $player = $registerTest->playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY'];
 
-        self::assertSame('player@email.com', $player->email());
-        self::assertSame('player', $player->nickname());
+        self::assertSame('player+2@email.com', $player->email());
+        self::assertSame('player+2', $player->nickname());
         self::assertSame('avatar.png', $player->avatar());
     }
 
@@ -57,8 +58,8 @@ final class UpdateProfileTest extends CommandTestCase
     }
 
     private static function createProfile(
-        string $email = 'player@email.com',
-        string $nickname = 'player',
+        string $email = 'player+2@email.com',
+        string $nickname = 'player+2',
         string $avatar = 'avatar.png'
     ): Profile {
         /** @var InMemoryPlayerRepository $playerGateway */

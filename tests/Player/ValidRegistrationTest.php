@@ -7,6 +7,7 @@ namespace IncentiveFactory\Game\Tests\Player;
 use IncentiveFactory\Game\Player\ValidRegistration\ValidationOfRegistration;
 use IncentiveFactory\Game\Player\ValidRegistration\ValidRegistration;
 use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
 use Symfony\Component\Uid\Uuid;
 
 class ValidRegistrationTest extends CommandTestCase

@@ -7,6 +7,7 @@ namespace IncentiveFactory\Game\Tests\Player;
 use IncentiveFactory\Game\Player\UpdatePassword\NewPassword;
 use IncentiveFactory\Game\Player\UpdatePassword\UpdatePassword;
 use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 final class UpdatePasswordTest extends CommandTestCase

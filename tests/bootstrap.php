@@ -7,7 +7,7 @@ use IncentiveFactory\Game\Player\Register\UniqueEmailValidator;
 use IncentiveFactory\Game\Player\UpdatePassword\CurrentPasswordValidator;
 use IncentiveFactory\Game\Player\UpdateProfile\UniqueEmailValidator as UpdateProfileUniqueEmailValidator;
 use IncentiveFactory\Game\Player\ValidRegistration\RegistrationTokenExistsValidator;
-use IncentiveFactory\Game\Tests\Player\InMemoryPlayerRepository;
+use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
 

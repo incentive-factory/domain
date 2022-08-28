@@ -8,6 +8,8 @@ use IncentiveFactory\Game\Shared\Command\Command;
 use IncentiveFactory\Game\Shared\Command\CommandBus;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
 use IncentiveFactory\Game\Shared\Event\EventBus;
+use IncentiveFactory\Game\Tests\Fixtures\TestCommandBus;
+use IncentiveFactory\Game\Tests\Fixtures\TestEventBus;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
