@@ -12,6 +12,8 @@ interface PlayerGateway
 
     public function hasRegistrationToken(string $registrationToken): bool;
 
+    public function findOneByEmail(string $email): ?Player;
+
     public function findOneByRegistrationToken(string $registrationToken): ?Player;
 
     public function update(Player $player): void;

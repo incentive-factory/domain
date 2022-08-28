@@ -73,4 +73,15 @@ final class InMemoryPlayerRepository implements PlayerGateway
 
         return null;
     }
+
+    public function findOneByEmail(string $email): ?Player
+    {
+        foreach ($this->players as $player) {
+            if ($player->email() === $email) {
+                return $player;
+            }
+        }
+
+        return null;
+    }
 }

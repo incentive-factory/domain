@@ -23,6 +23,10 @@ final class Player
 
     private ?Uuid $registrationToken = null;
 
+    private ?Uuid $forgottenPasswordToken = null;
+
+    private ?DateTimeInterface $forgottenPasswordRequestedAt = null;
+
     private ?DateTimeInterface $registeredAt = null;
 
     public static function create(
@@ -79,6 +83,16 @@ final class Player
         return $this->registeredAt;
     }
 
+    public function forgottenPasswordToken(): ?Uuid
+    {
+        return $this->forgottenPasswordToken;
+    }
+
+    public function forgottenPasswordRequestedAt(): ?DateTimeInterface
+    {
+        return $this->forgottenPasswordRequestedAt;
+    }
+
     public function update(string $email, string $nickname, ?string $avatar = null): void
     {
         $this->email = $email;
@@ -100,5 +114,11 @@ final class Player
     public function newPassword(string $newPassword): void
     {
         $this->password = $newPassword;
+    }
+
+    public function forgotPassword(Uuid $forgottenPasswordToken): void
+    {
+        $this->forgottenPasswordToken = $forgottenPasswordToken;
+        $this->forgottenPasswordRequestedAt = new DateTimeImmutable();
     }
 }
