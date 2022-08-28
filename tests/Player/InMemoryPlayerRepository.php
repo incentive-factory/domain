@@ -17,6 +17,12 @@ final class InMemoryPlayerRepository implements PlayerGateway
 
     public function __construct()
     {
+        $this->players['01GBJK7XV3YXQ51EHN9G5DAMYN'] = Player::create(
+            Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'),
+            'player+0@email.com',
+            'player+0',
+            'hashed_password'
+        );
         $this->players['01GBFF6QBSBH7RRTK6N0770BSY'] = Player::create(
             Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'),
             'player+1@email.com',
@@ -30,12 +36,12 @@ final class InMemoryPlayerRepository implements PlayerGateway
         $this->players[(string) $player->id()] = $player;
     }
 
-    public function hasEmail(string $email): bool
+    public function hasEmail(string $email, ?Player $player = null): bool
     {
         return count(
             array_filter(
                 $this->players,
-                static fn (Player $player) => $player->email() === $email
+                static fn (Player $p) => $p->email() === $email && (null === $player || $p->id() !== $player->id()),
             )
         ) > 0;
     }

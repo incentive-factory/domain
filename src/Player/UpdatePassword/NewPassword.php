@@ -9,7 +9,7 @@ use IncentiveFactory\Game\Shared\Command\Command;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 
-#[CurrentPassword(property: 'oldPassword', target: 'player', targetProperty: 'password')]
+#[CurrentPassword]
 final class NewPassword implements Command
 {
     #[NotBlank]
