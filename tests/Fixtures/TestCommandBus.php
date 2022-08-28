@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests;
+namespace IncentiveFactory\Game\Tests\Fixtures;
 
 use IncentiveFactory\Game\Shared\Command\Command;
 use IncentiveFactory\Game\Shared\Command\CommandBus;

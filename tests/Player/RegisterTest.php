@@ -8,6 +8,7 @@ use IncentiveFactory\Game\Player\Register\Register;
 use IncentiveFactory\Game\Player\Register\Registration;
 use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
 use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Uid\Ulid;
 
