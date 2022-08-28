@@ -19,6 +19,8 @@ final class Player
 
     private string $password;
 
+    private ?string $avatar = null;
+
     private ?Uuid $registrationToken = null;
 
     private ?DateTimeInterface $registeredAt = null;
@@ -28,6 +30,7 @@ final class Player
         string $email,
         string $nickname,
         string $password,
+        ?string $avatar = null,
         ?Uuid $registrationToken = null
     ): self {
         $player = new self();
@@ -35,6 +38,7 @@ final class Player
         $player->email = $email;
         $player->nickname = $nickname;
         $player->password = $password;
+        $player->avatar = $avatar;
         $player->registrationToken = $registrationToken;
 
         return $player;
@@ -60,6 +64,11 @@ final class Player
         return $this->password;
     }
 
+    public function avatar(): ?string
+    {
+        return $this->avatar;
+    }
+
     public function registrationToken(): ?Uuid
     {
         return $this->registrationToken;
@@ -68,6 +77,13 @@ final class Player
     public function registeredAt(): ?DateTimeInterface
     {
         return $this->registeredAt;
+    }
+
+    public function update(string $email, string $nickname, ?string $avatar = null): void
+    {
+        $this->email = $email;
+        $this->nickname = $nickname;
+        $this->avatar = $avatar;
     }
 
     public function prepareValidationOfRegistration(?Uuid $registrationToken): void

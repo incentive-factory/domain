@@ -8,7 +8,7 @@ interface PlayerGateway
 {
     public function register(Player $player): void;
 
-    public function hasEmail(string $email): bool;
+    public function hasEmail(string $email, ?Player $player = null): bool;
 
     public function hasRegistrationToken(string $registrationToken): bool;
 

@@ -18,7 +18,7 @@ abstract class CommandTestCase extends TestCase
 
     protected EventBus $eventBus;
 
-    protected function getContainer(): ContainerInterface
+    protected static function getContainer(): ContainerInterface
     {
         global $container;
 

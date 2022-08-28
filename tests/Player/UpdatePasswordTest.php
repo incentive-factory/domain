@@ -45,7 +45,7 @@ final class UpdatePasswordTest extends CommandTestCase
         /** @var callable $callback */
         $callback = [$this, 'shouldUpdatePassword'];
 
-        yield 'register' => [
+        yield 'update password' => [
             'command' => self::createNewPassword(),
             'callback' => $callback,
         ];
