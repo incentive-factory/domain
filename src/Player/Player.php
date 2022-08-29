@@ -93,6 +93,11 @@ final class Player
         return $this->forgottenPasswordRequestedAt;
     }
 
+    public function hasForgottenPasswordTokenExpired(): bool
+    {
+        return null !== $this->forgottenPasswordRequestedAt() && $this->forgottenPasswordRequestedAt() < new DateTimeImmutable();
+    }
+
     public function update(string $email, string $nickname, ?string $avatar = null): void
     {
         $this->email = $email;
@@ -119,6 +124,6 @@ final class Player
     public function forgotPassword(Uuid $forgottenPasswordToken): void
     {
         $this->forgottenPasswordToken = $forgottenPasswordToken;
-        $this->forgottenPasswordRequestedAt = new DateTimeImmutable();
+        $this->forgottenPasswordRequestedAt = new DateTimeImmutable('24 hours');
     }
 }

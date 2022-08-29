@@ -6,5 +6,5 @@ namespace IncentiveFactory\Game\Shared\Query;
 
 interface QueryBus
 {
-    public function fetch(Query $query): void;
+    public function fetch(Query $query): mixed;
 }

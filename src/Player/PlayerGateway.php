@@ -16,5 +16,7 @@ interface PlayerGateway
 
     public function findOneByRegistrationToken(string $registrationToken): ?Player;
 
+    public function findOneByForgottenPasswordToken(string $forgottenPasswordToken): ?Player;
+
     public function update(Player $player): void;
 }
