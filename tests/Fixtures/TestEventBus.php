@@ -38,6 +38,10 @@ final class TestEventBus implements EventBus
 
     public function dispatch(Event $event): void
     {
+        if (!isset($this->eventListeners[$event::class])) {
+            return;
+        }
+
         $eventListener = $this->eventListeners[$event::class];
         $eventListener->__invoke($event);
     }

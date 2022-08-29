@@ -12,7 +12,11 @@ interface PlayerGateway
 
     public function hasRegistrationToken(string $registrationToken): bool;
 
+    public function findOneByEmail(string $email): ?Player;
+
     public function findOneByRegistrationToken(string $registrationToken): ?Player;
+
+    public function findOneByForgottenPasswordToken(string $forgottenPasswordToken): ?Player;
 
     public function update(Player $player): void;
 }

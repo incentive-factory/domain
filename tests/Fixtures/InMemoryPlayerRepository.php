@@ -73,4 +73,26 @@ final class InMemoryPlayerRepository implements PlayerGateway
 
         return null;
     }
+
+    public function findOneByForgottenPasswordToken(string $forgottenPasswordToken): ?Player
+    {
+        foreach ($this->players as $player) {
+            if ((string) $player->forgottenPasswordToken() === $forgottenPasswordToken) {
+                return $player;
+            }
+        }
+
+        return null;
+    }
+
+    public function findOneByEmail(string $email): ?Player
+    {
+        foreach ($this->players as $player) {
+            if ($player->email() === $email) {
+                return $player;
+            }
+        }
+
+        return null;
+    }
 }
