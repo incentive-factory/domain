@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests\Player;
 
-use IncentiveFactory\Game\Player\UpdatePassword\NewPassword;
-use IncentiveFactory\Game\Player\UpdatePassword\UpdatePassword;
+use IncentiveFactory\Game\Player\ResetPassword\NewPassword;
+use IncentiveFactory\Game\Player\ResetPassword\ResetPassword;
 use IncentiveFactory\Game\Tests\CommandTestCase;
 use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
-final class UpdatePasswordTest extends CommandTestCase
+final class ResetPasswordTest extends CommandTestCase
 {
     private InMemoryPlayerRepository $playerGateway;
 
@@ -27,15 +27,15 @@ final class UpdatePasswordTest extends CommandTestCase
         $passwordHasher = self::createMock(PasswordHasherInterface::class);
         $passwordHasher
             ->method('hash')
-            ->willReturn('hashed_password');
+            ->willReturn('new_hashed_password');
 
-        yield new UpdatePassword($passwordHasher, $this->playerGateway);
+        yield new ResetPassword($passwordHasher, $this->playerGateway);
     }
 
-    public function shouldUpdatePassword(self $registerTest): void
+    public function shouldResetPassword(self $registerTest): void
     {
         $player = $registerTest->playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY'];
-        self::assertSame('hashed_password', $player->password());
+        self::assertSame('new_hashed_password', $player->password());
     }
 
     /**
@@ -44,9 +44,9 @@ final class UpdatePasswordTest extends CommandTestCase
     public function provideCommands(): iterable
     {
         /** @var callable $callback */
-        $callback = [$this, 'shouldUpdatePassword'];
+        $callback = [$this, 'shouldResetPassword'];
 
-        yield 'update password' => [
+        yield 'reset password' => [
             'command' => self::createNewPassword(),
             'callback' => $callback,
         ];
@@ -59,17 +59,13 @@ final class UpdatePasswordTest extends CommandTestCase
     {
         yield 'blank plainPassword' => ['command' => self::createNewPassword(plainPassword: '')];
         yield 'invalid plainPassword' => ['command' => self::createNewPassword(plainPassword: 'fail')];
-        yield 'wrong oldPassword' => ['command' => self::createNewPassword(oldPassword: 'fail')];
     }
 
-    private static function createNewPassword(
-        string $oldPassword = 'new_hashed_password',
-        string $plainPassword = 'Password123!'
-    ): NewPassword {
+    private static function createNewPassword(string $plainPassword = 'Password123!'): NewPassword
+    {
         global $container;
         $playerGateway = $container->get(InMemoryPlayerRepository::class);
         $newPassword = new NewPassword($playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY']);
-        $newPassword->oldPassword = $oldPassword;
         $newPassword->plainPassword = $plainPassword;
 
         return $newPassword;
