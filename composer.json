@@ -1,6 +1,6 @@
 {
-    "name": "incentive-factory/game",
-    "description": "",
+    "name": "incentive-factory/domain",
+    "description": "Domaine du projet Il était une fois un dev",
     "type": "library",
     "license": "GPL-3.0-or-later",
     "minimum-stability": "stable",
