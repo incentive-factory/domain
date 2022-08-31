@@ -4,75 +4,34 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests;
 
-use IncentiveFactory\Game\Shared\Command\Command;
+use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Shared\Command\CommandBus;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
 use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Tests\Fixtures\TestCommandBus;
-use IncentiveFactory\Game\Tests\Fixtures\TestEventBus;
-use PHPUnit\Framework\TestCase;
-use Psr\Container\ContainerInterface;
-use Symfony\Component\Validator\Exception\ValidationFailedException;
+use IncentiveFactory\Game\Tests\Application\Container\Container;
+use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
 
-abstract class CommandTestCase extends TestCase
+abstract class CommandTestCase extends ContainerTestCase
 {
-    private CommandBus $commandBus;
+    protected CommandBus $commandBus;
 
-    protected EventBus $eventBus;
+    protected TestEventBus $eventBus;
 
-    protected static function getContainer(): ContainerInterface
+    protected Container $container;
+
+    public function setUp(): void
     {
-        global $container;
-
-        return $container;
+        $this->container = self::createContainer();
+        $this->commandBus = $this->container->get(CommandBus::class);
+        $this->eventBus = $this->container->get(EventBus::class);
     }
 
-    protected function setUp(): void
+    protected function tearDown(): void
     {
-        $this->eventBus = new TestEventBus();
+        /** @var InMemoryPlayerRepository $playerRepository */
+        $playerRepository = $this->container->get(PlayerGateway::class);
+        $playerRepository->init();
 
-        $this->commandBus = new TestCommandBus();
-
-        foreach ($this->registerHandlers() as $handler) {
-            $this->commandBus->register($handler);
-        }
-    }
-
-    /**
-     * @dataProvider provideCommands
-     */
-    public function testCommand(Command $command, callable $callback): void
-    {
-        $this->commandBus->execute($command);
-
-        $callback($this);
-    }
-
-    /**
-     * @dataProvider provideInvalidCommands
-     */
-    public function testInvalidCommand(Command $command): void
-    {
-        self::expectException(ValidationFailedException::class);
-
-        $this->commandBus->execute($command);
-    }
-
-    /**
-     * @return iterable<array-key, CommandHandler>
-     */
-    abstract protected function registerHandlers(): iterable;
-
-    /**
-     * @return iterable<string, array{command: Command, callback: callable}>
-     */
-    abstract public function provideCommands(): iterable;
-
-    /**
-     * @return iterable<string, array{command: Command}>
-     */
-    public function provideInvalidCommands(): iterable
-    {
-        return [];
+        $this->eventBus->reset();
     }
 }

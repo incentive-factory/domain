@@ -4,65 +4,41 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests\Player;
 
+use IncentiveFactory\Game\Player\Player;
+use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Player\ValidRegistration\ValidationOfRegistration;
-use IncentiveFactory\Game\Player\ValidRegistration\ValidRegistration;
+use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
 use IncentiveFactory\Game\Tests\CommandTestCase;
-use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
-class ValidRegistrationTest extends CommandTestCase
+final class ValidRegistrationTest extends CommandTestCase
 {
-    private InMemoryPlayerRepository $playerGateway;
-
-    protected function setUp(): void
+    public function testShouldValidRegistrationOfAPlayer(): void
     {
-        /* @phpstan-ignore-next-line */
-        $this->playerGateway = $this->getContainer()->get(InMemoryPlayerRepository::class);
+        /** @var PlayerGateway $playerGateway */
+        $playerGateway = $this->container->get(PlayerGateway::class);
 
-        /* @phpstan-ignore-next-line */
-        $this->playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY']->prepareValidationOfRegistration(
-            Uuid::fromString('8fea5b35-22a9-44c7-a25c-52b105656a28')
-        );
+        /** @var UuidGeneratorInterface $uuidGenerator */
+        $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
 
-        parent::setUp();
-    }
+        /** @var Player $player */
+        $player = $playerGateway->findOneByEmail('player+0@email.com');
+        $player->prepareValidationOfRegistration($uuidGenerator->generate());
+        $playerGateway->update($player);
 
-    protected function registerHandlers(): iterable
-    {
-        yield new ValidRegistration($this->playerGateway);
-    }
-
-    public function shouldValidRegistrationPlayer(self $registerTest): void
-    {
-        $player = $registerTest->playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY'];
+        $this->commandBus->execute(new ValidationOfRegistration((string) $player->registrationToken()));
 
         self::assertNull($player->registrationToken());
+        self::assertNotNull($player->registeredAt());
     }
 
-    /**
-     * @return iterable<string, array{command: ValidationOfRegistration, callback: callable}>
-     */
-    public function provideCommands(): iterable
+    public function testShouldFailedDueToUnexistingRegistrationToken(): void
     {
-        /** @var callable $callback */
-        $callback = [$this, 'shouldValidRegistrationPlayer'];
+        /** @var UuidGeneratorInterface $uuidGenerator */
+        $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
 
-        yield 'valid registration' => ['command' => self::createValidationOfRegistration(), 'callback' => $callback];
-    }
+        self::expectException(ValidationFailedException::class);
 
-    /**
-     * @return iterable<string, array{command: ValidationOfRegistration}>
-     */
-    public function provideInvalidCommands(): iterable
-    {
-        yield 'blank registrationToken' => ['command' => self::createValidationOfRegistration('')];
-        yield 'invalid registrationToken' => ['command' => self::createValidationOfRegistration('fail')];
-        yield 'non existing registrationToken' => ['command' => self::createValidationOfRegistration('bdb02f18-246c-4ca6-85b8-d72f7dd7034d')];
-    }
-
-    private static function createValidationOfRegistration(
-        string $registrationToken = '8fea5b35-22a9-44c7-a25c-52b105656a28'
-    ): ValidationOfRegistration {
-        return new ValidationOfRegistration($registrationToken);
+        $this->commandBus->execute(new ValidationOfRegistration((string) $uuidGenerator->generate()));
     }
 }

@@ -4,75 +4,67 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests\Player;
 
+use DateTimeImmutable;
+use Generator;
 use IncentiveFactory\Game\Player\Player;
+use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Player\RequestForgottenPassword\ForgottenPasswordRequest;
-use IncentiveFactory\Game\Player\RequestForgottenPassword\RequestForgottenPassword;
+use IncentiveFactory\Game\Player\RequestForgottenPassword\ForgottenPasswordRequested;
 use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
 use IncentiveFactory\Game\Tests\CommandTestCase;
-use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
-class RequestForgottenPasswordTest extends CommandTestCase
+final class RequestForgottenPasswordTest extends CommandTestCase
 {
-    private InMemoryPlayerRepository $playerGateway;
-
-    protected function setUp(): void
+    public function testShouldCreateForgottenPasswordRequest(): void
     {
-        /* @phpstan-ignore-next-line */
-        $this->playerGateway = $this->getContainer()->get(InMemoryPlayerRepository::class);
+        /** @var PlayerGateway $playerGateway */
+        $playerGateway = $this->container->get(PlayerGateway::class);
 
-        parent::setUp();
+        /** @var UuidGeneratorInterface $uuidGenerator */
+        $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
+
+        /** @var Player $player */
+        $player = $playerGateway->findOneByEmail('player+0@email.com');
+        $player->forgotPassword($uuidGenerator->generate());
+        $playerGateway->update($player);
+
+        $this->commandBus->execute(self::createForgottenPasswordRequest());
+
+        /** @var Player $player */
+        $player = $playerGateway->findOneByEmail('player+0@email.com');
+
+        self::assertNotNull($player->forgottenPasswordExpiredAt());
+        self::assertNotNull($player->forgottenPasswordToken());
+        self::assertGreaterThan(new DateTimeImmutable(), $player->forgottenPasswordExpiredAt());
+        self::assertTrue($this->eventBus->hasDispatched(ForgottenPasswordRequested::class));
     }
 
-    protected function registerHandlers(): iterable
+    public function testShouldNotCreateForgottenPasswordRequest(): void
     {
-        $uuidGenerator = self::createMock(UuidGeneratorInterface::class);
-        $uuidGenerator
-            ->method('generate')
-            ->willReturn(Uuid::fromString('d6f31e80-d4ff-467a-8b47-409715466dae'));
-
-        yield new RequestForgottenPassword(
-            $uuidGenerator,
-            $this->playerGateway,
-            $this->eventBus
-        );
-    }
-
-    /**
-     * @return iterable<string, array{command: ForgottenPasswordRequest, callback: callable}>
-     */
-    public function provideCommands(): iterable
-    {
-        /** @var InMemoryPlayerRepository $playerGateway */
-        $playerGateway = static::getContainer()->get(InMemoryPlayerRepository::class);
-
-        yield 'request forgotten password' => ['command' => self::createForgottenPasswordRequest(), 'callback' => function () use ($playerGateway) {
-            $player = $playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY'];
-
-            self::assertNotNull($player->forgottenPasswordToken());
-            self::assertNotNull($player->forgottenPasswordRequestedAt());
-        }];
-        yield 'fake request forgotten password' => ['command' => self::createForgottenPasswordRequest('player@email.com'), 'callback' => function () use ($playerGateway) {
-            self::assertCount(
-                0,
-                array_filter(
-                    $playerGateway->players,
-                    static fn (Player $player): bool => null !== $player->forgottenPasswordToken()
-                )
-            );
-        }];
+        $this->commandBus->execute(self::createForgottenPasswordRequest('fail@email.com'));
+        self::assertFalse($this->eventBus->hasDispatched(ForgottenPasswordRequested::class));
     }
 
     /**
-     * @return iterable<string, array{command: ForgottenPasswordRequest}>
+     * @dataProvider provideForgottenPasswordRequests
      */
-    public function provideInvalidCommands(): iterable
+    public function testShouldFailedDueInvalidForgottenPasswordRequest(ForgottenPasswordRequest $forgottenPasswordRequest): void
     {
-        yield 'blank email' => ['command' => self::createForgottenPasswordRequest('')];
-        yield 'invalid email' => ['command' => self::createForgottenPasswordRequest('fail')];
+        self::expectException(ValidationFailedException::class);
+        $this->commandBus->execute($forgottenPasswordRequest);
     }
 
-    private static function createForgottenPasswordRequest(string $email = 'player+1@email.com'): ForgottenPasswordRequest
+    /**
+     * @return Generator<string, array<array-key, ForgottenPasswordRequest>>
+     */
+    public function provideForgottenPasswordRequests(): Generator
+    {
+        yield 'blank email' => [self::createForgottenPasswordRequest('')];
+        yield 'invalid email' => [self::createForgottenPasswordRequest('fail')];
+    }
+
+    private static function createForgottenPasswordRequest(string $email = 'player+0@email.com'): ForgottenPasswordRequest
     {
         $forgottenPasswordRequest = new ForgottenPasswordRequest();
         $forgottenPasswordRequest->email = $email;

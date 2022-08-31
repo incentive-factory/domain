@@ -14,12 +14,12 @@ final class GetPlayerByForgottenPasswordToken implements QueryHandler
     {
     }
 
-    public function __invoke(ForgottenPasswordToken $query): Player
+    public function __invoke(ForgottenPasswordToken $query): ?Player
     {
         $player = $this->playerGateway->findOneByForgottenPasswordToken($query->token);
 
         if (null === $player) {
-            throw new ForgottenPasswordTokenNotFoundException();
+            return null;
         }
 
         if ($player->hasForgottenPasswordTokenExpired()) {

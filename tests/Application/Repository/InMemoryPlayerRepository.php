@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Fixtures;
+namespace IncentiveFactory\Game\Tests\Application\Repository;
 
 use IncentiveFactory\Game\Player\Player;
 use IncentiveFactory\Game\Player\PlayerGateway;

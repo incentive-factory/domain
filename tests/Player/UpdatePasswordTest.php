@@ -4,74 +4,68 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests\Player;
 
+use Closure;
+use Generator;
+use IncentiveFactory\Game\Player\Player;
+use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Player\UpdatePassword\NewPassword;
-use IncentiveFactory\Game\Player\UpdatePassword\UpdatePassword;
 use IncentiveFactory\Game\Tests\CommandTestCase;
-use IncentiveFactory\Game\Tests\Fixtures\InMemoryPlayerRepository;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
+use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 final class UpdatePasswordTest extends CommandTestCase
 {
-    private InMemoryPlayerRepository $playerGateway;
-
-    protected function setUp(): void
+    public function testShouldUpdatePasswordOfAPlayer(): void
     {
-        /* @phpstan-ignore-next-line */
-        $this->playerGateway = $this->getContainer()->get(InMemoryPlayerRepository::class);
+        /** @var PlayerGateway $playerGateway */
+        $playerGateway = $this->container->get(PlayerGateway::class);
 
-        parent::setUp();
-    }
+        /** @var Player $player */
+        $player = $playerGateway->findOneByEmail('player+0@email.com');
 
-    protected function registerHandlers(): iterable
-    {
-        $passwordHasher = self::createMock(PasswordHasherInterface::class);
-        $passwordHasher
-            ->method('hash')
-            ->willReturn('hashed_password');
+        $this->commandBus->execute(self::createNewPassword()($player));
 
-        yield new UpdatePassword($passwordHasher, $this->playerGateway);
-    }
+        /** @var Player $player */
+        $player = $playerGateway->findOneByEmail('player+0@email.com');
 
-    public function shouldUpdatePassword(self $registerTest): void
-    {
-        $player = $registerTest->playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY'];
-        self::assertSame('hashed_password', $player->password());
+        self::assertSame('NewPassword123!', $player->password());
     }
 
     /**
-     * @return iterable<string, array{command: NewPassword, callback: callable}>
+     * @dataProvider provideInvalidNewPasswords
      */
-    public function provideCommands(): iterable
+    public function testShouldFailedDueToInvalidNewPasswordData(Closure $newPassword): void
     {
-        /** @var callable $callback */
-        $callback = [$this, 'shouldUpdatePassword'];
+        /** @var PlayerGateway $playerGateway */
+        $playerGateway = $this->container->get(PlayerGateway::class);
 
-        yield 'update password' => [
-            'command' => self::createNewPassword(),
-            'callback' => $callback,
-        ];
+        /** @var Player $player */
+        $player = $playerGateway->findOneByEmail('player+0@email.com');
+
+        self::expectException(ValidationFailedException::class);
+        $this->commandBus->execute($newPassword($player));
     }
 
     /**
-     * @return iterable<string, array{command: NewPassword}>
+     * @return Generator<string, array<array-key, Closure>>
      */
-    public function provideInvalidCommands(): iterable
+    public function provideInvalidNewPasswords(): Generator
     {
-        yield 'blank plainPassword' => ['command' => self::createNewPassword(plainPassword: '')];
-        yield 'invalid plainPassword' => ['command' => self::createNewPassword(plainPassword: 'fail')];
-        yield 'wrong oldPassword' => ['command' => self::createNewPassword(oldPassword: 'fail')];
+        yield 'blank plainPassword' => [self::createNewPassword(plainPassword: '')];
+        yield 'invalid plainPassword' => [self::createNewPassword(plainPassword: 'fail')];
+        yield 'blank oldPassword' => [self::createNewPassword(oldPassword: '')];
+        yield 'invalid oldPassword' => [self::createNewPassword(plainPassword: 'fail')];
     }
 
     private static function createNewPassword(
-        string $oldPassword = 'new_hashed_password',
-        string $plainPassword = 'Password123!'
-    ): NewPassword {
-        global $container;
-        $playerGateway = $container->get(InMemoryPlayerRepository::class);
-        $newPassword = new NewPassword($playerGateway->players['01GBFF6QBSBH7RRTK6N0770BSY']);
-        $newPassword->oldPassword = $oldPassword;
-        $newPassword->plainPassword = $plainPassword;
+        string $oldPassword = 'hashed_password',
+        string $plainPassword = 'NewPassword123!'
+    ): Closure {
+        return function (Player $player) use ($oldPassword, $plainPassword): NewPassword {
+            $newPassword = new NewPassword($player);
+            $newPassword->oldPassword = $oldPassword;
+            $newPassword->plainPassword = $plainPassword;
 
-        return $newPassword;
+            return $newPassword;
+        };
     }
 }
