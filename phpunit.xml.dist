@@ -2,12 +2,11 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          colors="true"
-         bootstrap="tests/bootstrap.php"
+         bootstrap="vendor/autoload.php"
 >
     <php>
         <ini name="display_errors" value="1" />
         <ini name="error_reporting" value="-1" />
-        <server name="SHELL_VERBOSITY" value="-1" />
     </php>
     <testsuites>
         <testsuite name="Project Test Suite">
@@ -18,9 +17,6 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
-        <exclude>
-            <file>src/Shared/Command/TestCommandBus.php</file>
-        </exclude>
         <report>
             <clover outputFile="var/coverage/clover.xml"/>
             <html outputDirectory="var/coverage/html" lowUpperBound="35" highLowerBound="70"/>
@@ -29,7 +25,4 @@
     <logging>
         <junit outputFile="var/coverage/junit.xml"/>
     </logging>
-    <extensions>
-        <extension class="IncentiveFactory\Game\Tests\PHPUnitExtension" />
-    </extensions>
 </phpunit>
