@@ -43,5 +43,11 @@
         "psr-4": {
             "IncentiveFactory\\Game\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "6.1"
+        }
     }
 }
