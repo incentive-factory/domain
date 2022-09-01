@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-use IncentiveFactory\Game\Path\GetPathBySlug\GetPathBySlug;
-use IncentiveFactory\Game\Path\GetPathBySlug\PathSlug;
-use IncentiveFactory\Game\Path\GetPaths\GetPaths;
-use IncentiveFactory\Game\Path\GetPaths\ListOfPaths;
+use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
+use IncentiveFactory\Game\Path\BeginPath\BeginPath;
+use IncentiveFactory\Game\Path\GetTrainingBySlug\GetTrainingBySlug;
+use IncentiveFactory\Game\Path\GetTrainingBySlug\TrainingSlug;
+use IncentiveFactory\Game\Path\GetTranings\GetTrainings;
+use IncentiveFactory\Game\Path\GetTranings\ListOfTrainings;
 use IncentiveFactory\Game\Path\PathGateway;
+use IncentiveFactory\Game\Path\TrainingGateway;
 use IncentiveFactory\Game\Player\CreateRegistrationToken\CreateRegistrationToken;
 use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordToken;
 use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\GetPlayerByForgottenPasswordToken;
@@ -39,6 +42,7 @@ use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestQueryBus;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryTrainingRepository;
 use IncentiveFactory\Game\Tests\Application\Uid\UlidGenerator;
 use IncentiveFactory\Game\Tests\Application\Uid\UuidGenerator;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
@@ -47,15 +51,22 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 return function (Container $container): void {
     $container
         ->set(
-            GetPathBySlug::class,
-            static fn (Container $container): GetPathBySlug => new GetPathBySlug(
-                $container->get(PathGateway::class)
+            BeginPath::class,
+            static fn (Container $container): BeginPath => new BeginPath(
+                $container->get(PathGateway::class),
+                $container->get(UlidGeneratorInterface::class),
             )
         )
         ->set(
-            GetPaths::class,
-            static fn (Container $container): GetPaths => new GetPaths(
-                $container->get(PathGateway::class)
+            GetTrainingBySlug::class,
+            static fn (Container $container): GetTrainingBySlug => new GetTrainingBySlug(
+                $container->get(TrainingGateway::class)
+            )
+        )
+        ->set(
+            GetTrainings::class,
+            static fn (Container $container): GetTrainings => new GetTrainings(
+                $container->get(TrainingGateway::class)
             )
         )
         ->set(
@@ -116,6 +127,10 @@ return function (Container $container): void {
             static fn (Container $container): PathGateway => new InMemoryPathRepository()
         )
         ->set(
+            TrainingGateway::class,
+            static fn (Container $container): TrainingGateway => new InMemoryTrainingRepository()
+        )
+        ->set(
             UuidGeneratorInterface::class,
             static fn (Container $container): UuidGeneratorInterface => new UuidGenerator()
         )
@@ -169,8 +184,8 @@ return function (Container $container): void {
             QueryBus::class,
             static fn (Container $container): QueryBus => new TestQueryBus($container, [
                 ForgottenPasswordToken::class => GetPlayerByForgottenPasswordToken::class,
-                ListOfPaths::class => GetPaths::class,
-                PathSlug::class => GetPathBySlug::class,
+                ListOfTrainings::class => GetTrainings::class,
+                TrainingSlug::class => GetTrainingBySlug::class,
             ])
         )
         ->set(
@@ -182,6 +197,7 @@ return function (Container $container): void {
                 ResetPasswordNewPassword::class => ResetPassword::class,
                 Profile::class => UpdateProfile::class,
                 UpdatePasswordNewPassword::class => UpdatePassword::class,
+                BeginningOfPath::class => BeginPath::class,
             ])
         )
     ;

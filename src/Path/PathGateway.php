@@ -11,10 +11,7 @@ use IncentiveFactory\Game\Shared\Gateway;
  */
 interface PathGateway extends Gateway
 {
-    /**
-     * @return array<array-key, Path>
-     */
-    public function findAll(): array;
+    public function begin(Path $path): void;
 
-    public function findOneBySlug(string $slug): ?Path;
+    public function hasAlreadyBegan(Player $player, Training $training): bool;
 }

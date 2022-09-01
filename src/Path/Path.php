@@ -11,45 +11,21 @@ final class Path
 {
     private Ulid $id;
 
-    private DateTimeInterface $publishedAt;
+    private Player $player;
 
-    private string $name;
+    private Training $path;
 
-    private string $slug;
+    private DateTimeInterface $beganAt;
 
-    private string $description;
+    public static function create(Ulid $id, Player $player, Training $path, DateTimeInterface $beganAt): self
+    {
+        $registration = new self();
+        $registration->id = $id;
+        $registration->player = $player;
+        $registration->path = $path;
+        $registration->beganAt = $beganAt;
 
-    private Level $level;
-
-    private string $prerequisites;
-
-    private string $skills;
-
-    private string $image;
-
-    public static function create(
-        Ulid $id,
-        DateTimeInterface $publishedAt,
-        string $slug,
-        string $name,
-        string $description,
-        Level $level,
-        string $prerequisites,
-        string $skills,
-        string $image
-    ): self {
-        $path = new self();
-        $path->id = $id;
-        $path->publishedAt = $publishedAt;
-        $path->slug = $slug;
-        $path->name = $name;
-        $path->description = $description;
-        $path->level = $level;
-        $path->prerequisites = $prerequisites;
-        $path->skills = $skills;
-        $path->image = $image;
-
-        return $path;
+        return $registration;
     }
 
     public function id(): Ulid
@@ -57,43 +33,18 @@ final class Path
         return $this->id;
     }
 
-    public function publishedAt(): DateTimeInterface
+    public function player(): Player
     {
-        return $this->publishedAt;
+        return $this->player;
     }
 
-    public function slug(): string
+    public function path(): Training
     {
-        return $this->slug;
+        return $this->path;
     }
 
-    public function name(): string
+    public function beganAt(): DateTimeInterface
     {
-        return $this->name;
-    }
-
-    public function description(): string
-    {
-        return $this->description;
-    }
-
-    public function level(): Level
-    {
-        return $this->level;
-    }
-
-    public function prerequisites(): string
-    {
-        return $this->prerequisites;
-    }
-
-    public function skills(): string
-    {
-        return $this->skills;
-    }
-
-    public function image(): string
-    {
-        return $this->image;
+        return $this->beganAt;
     }
 }
