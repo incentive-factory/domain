@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Validation;
 final class TestQueryBus implements QueryBus
 {
     /**
-     * @param array<class-string<Query>, QueryHandler> $handlers
+     * @param array<class-string<Query>, class-string<QueryHandler>> $handlers
      */
     public function __construct(private ContainerInterface $container, private array $handlers)
     {

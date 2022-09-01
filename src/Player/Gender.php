@@ -6,8 +6,8 @@ namespace IncentiveFactory\Game\Player;
 
 enum Gender: string
 {
-    case JOUEUSE = 'Joueuse';
-    case JOUEUR = 'Joueur';
+    case Female = 'Joueuse';
+    case Male = 'Joueur';
 
     /**
      * @return array<array-key, string>
@@ -15,8 +15,8 @@ enum Gender: string
     public static function all(): array
     {
         return [
-            self::JOUEUSE->value,
-            self::JOUEUR->value,
+            self::Female->value,
+            self::Male->value,
         ];
     }
 }

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use IncentiveFactory\Game\Path\GetPaths\GetPaths;
+use IncentiveFactory\Game\Path\GetPaths\ListOfPaths;
+use IncentiveFactory\Game\Path\PathGateway;
 use IncentiveFactory\Game\Player\CreateRegistrationToken\CreateRegistrationToken;
 use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordToken;
 use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\GetPlayerByForgottenPasswordToken;
@@ -32,6 +35,7 @@ use IncentiveFactory\Game\Tests\Application\Container\Container;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestCommandBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestQueryBus;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
 use IncentiveFactory\Game\Tests\Application\Uid\UlidGenerator;
 use IncentiveFactory\Game\Tests\Application\Uid\UuidGenerator;
@@ -40,6 +44,12 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 return function (Container $container): void {
     $container
+        ->set(
+            GetPaths::class,
+            static fn (Container $container): GetPaths => new GetPaths(
+                $container->get(PathGateway::class)
+            )
+        )
         ->set(
             GetPlayerByForgottenPasswordToken::class,
             static fn (Container $container): GetPlayerByForgottenPasswordToken => new GetPlayerByForgottenPasswordToken(
@@ -92,6 +102,10 @@ return function (Container $container): void {
         ->set(
             PlayerGateway::class,
             static fn (Container $container): PlayerGateway => new InMemoryPlayerRepository()
+        )
+        ->set(
+            PathGateway::class,
+            static fn (Container $container): PathGateway => new InMemoryPathRepository()
         )
         ->set(
             UuidGeneratorInterface::class,
@@ -147,6 +161,7 @@ return function (Container $container): void {
             QueryBus::class,
             static fn (Container $container): QueryBus => new TestQueryBus($container, [
                 ForgottenPasswordToken::class => GetPlayerByForgottenPasswordToken::class,
+                ListOfPaths::class => GetPaths::class,
             ])
         )
         ->set(

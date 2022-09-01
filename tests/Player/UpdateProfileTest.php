@@ -32,7 +32,7 @@ final class UpdateProfileTest extends CommandTestCase
         self::assertSame('player@email.com', $player->email());
         self::assertSame('player', $player->nickname());
         self::assertSame('avatar.png', $player->avatar());
-        self::assertSame(Gender::JOUEUSE, $player->gender());
+        self::assertSame(Gender::Female, $player->gender());
     }
 
     /**
