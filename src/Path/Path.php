@@ -15,6 +15,8 @@ final class Path
 
     private string $name;
 
+    private string $slug;
+
     private string $description;
 
     private Level $level;
@@ -28,6 +30,7 @@ final class Path
     public static function create(
         Ulid $id,
         DateTimeInterface $publishedAt,
+        string $slug,
         string $name,
         string $description,
         Level $level,
@@ -38,6 +41,7 @@ final class Path
         $path = new self();
         $path->id = $id;
         $path->publishedAt = $publishedAt;
+        $path->slug = $slug;
         $path->name = $name;
         $path->description = $description;
         $path->level = $level;
@@ -56,6 +60,11 @@ final class Path
     public function publishedAt(): DateTimeInterface
     {
         return $this->publishedAt;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
     }
 
     public function name(): string

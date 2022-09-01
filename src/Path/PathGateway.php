@@ -15,4 +15,6 @@ interface PathGateway extends Gateway
      * @return array<array-key, Path>
      */
     public function findAll(): array;
+
+    public function findOneBySlug(string $slug): ?Path;
 }

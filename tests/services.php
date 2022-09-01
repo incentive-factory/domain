@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use IncentiveFactory\Game\Path\GetPathBySlug\GetPathBySlug;
+use IncentiveFactory\Game\Path\GetPathBySlug\PathSlug;
 use IncentiveFactory\Game\Path\GetPaths\GetPaths;
 use IncentiveFactory\Game\Path\GetPaths\ListOfPaths;
 use IncentiveFactory\Game\Path\PathGateway;
@@ -44,6 +46,12 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 return function (Container $container): void {
     $container
+        ->set(
+            GetPathBySlug::class,
+            static fn (Container $container): GetPathBySlug => new GetPathBySlug(
+                $container->get(PathGateway::class)
+            )
+        )
         ->set(
             GetPaths::class,
             static fn (Container $container): GetPaths => new GetPaths(
@@ -162,6 +170,7 @@ return function (Container $container): void {
             static fn (Container $container): QueryBus => new TestQueryBus($container, [
                 ForgottenPasswordToken::class => GetPlayerByForgottenPasswordToken::class,
                 ListOfPaths::class => GetPaths::class,
+                PathSlug::class => GetPathBySlug::class,
             ])
         )
         ->set(
