@@ -21,7 +21,7 @@ final class GetTrainingBySlugTest extends QueryTestCase
 
         self::assertInstanceOf(Training::class, $training);
         self::assertSame('training-1', $training->slug());
-        self::assertSame('Path 1', $training->name());
+        self::assertSame('Training 1', $training->name());
         self::assertSame('Description 1', $training->description());
         self::assertSame(Level::Easy, $training->level());
         self::assertSame('Prerequisites 1', $training->prerequisites());

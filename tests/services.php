@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
+use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
+use IncentiveFactory\Game\Path\BeginPath\BeginPath;
 use IncentiveFactory\Game\Path\GetTrainingBySlug\GetTrainingBySlug;
 use IncentiveFactory\Game\Path\GetTrainingBySlug\TrainingSlug;
 use IncentiveFactory\Game\Path\GetTranings\GetTrainings;
 use IncentiveFactory\Game\Path\GetTranings\ListOfTrainings;
+use IncentiveFactory\Game\Path\PathGateway;
 use IncentiveFactory\Game\Path\TrainingGateway;
 use IncentiveFactory\Game\Player\CreateRegistrationToken\CreateRegistrationToken;
 use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordToken;
@@ -37,8 +40,9 @@ use IncentiveFactory\Game\Tests\Application\Container\Container;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestCommandBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestQueryBus;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryTrainingRepository;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryTrainingRepository;
 use IncentiveFactory\Game\Tests\Application\Uid\UlidGenerator;
 use IncentiveFactory\Game\Tests\Application\Uid\UuidGenerator;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
@@ -46,6 +50,13 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 return function (Container $container): void {
     $container
+        ->set(
+            BeginPath::class,
+            static fn (Container $container): BeginPath => new BeginPath(
+                $container->get(PathGateway::class),
+                $container->get(UlidGeneratorInterface::class),
+            )
+        )
         ->set(
             GetTrainingBySlug::class,
             static fn (Container $container): GetTrainingBySlug => new GetTrainingBySlug(
@@ -110,6 +121,10 @@ return function (Container $container): void {
         ->set(
             PlayerGateway::class,
             static fn (Container $container): PlayerGateway => new InMemoryPlayerRepository()
+        )
+        ->set(
+            PathGateway::class,
+            static fn (Container $container): PathGateway => new InMemoryPathRepository()
         )
         ->set(
             TrainingGateway::class,
@@ -182,6 +197,7 @@ return function (Container $container): void {
                 ResetPasswordNewPassword::class => ResetPassword::class,
                 Profile::class => UpdateProfile::class,
                 UpdatePasswordNewPassword::class => UpdatePassword::class,
+                BeginningOfPath::class => BeginPath::class,
             ])
         )
     ;
