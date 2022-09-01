@@ -6,7 +6,7 @@ namespace IncentiveFactory\Game\Path;
 
 enum Level: int
 {
-    case EASY = 1;
-    case MEDIUM = 2;
-    case HARD = 3;
+    case Easy = 1;
+    case Medium = 2;
+    case Hard = 3;
 }
