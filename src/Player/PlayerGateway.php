@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Player;
 
-interface PlayerGateway
+use IncentiveFactory\Game\Shared\Gateway;
+
+/**
+ * @template-extends Gateway<Player>
+ */
+interface PlayerGateway extends Gateway
 {
     public function register(Player $player): void;
 
