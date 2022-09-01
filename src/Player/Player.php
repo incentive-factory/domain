@@ -13,6 +13,8 @@ final class Player
 {
     private Ulid $id;
 
+    private Gender $gender;
+
     private string $email;
 
     private string $nickname;
@@ -32,6 +34,7 @@ final class Player
     public static function create(
         Ulid $id,
         string $email,
+        Gender $gender,
         string $nickname,
         string $password,
         ?string $avatar = null,
@@ -39,6 +42,7 @@ final class Player
     ): self {
         $player = new self();
         $player->id = $id;
+        $player->gender = $gender;
         $player->email = $email;
         $player->nickname = $nickname;
         $player->password = $password;
@@ -51,6 +55,11 @@ final class Player
     public function id(): Ulid
     {
         return $this->id;
+    }
+
+    public function gender(): Gender
+    {
+        return $this->gender;
     }
 
     public function email(): string
@@ -98,11 +107,12 @@ final class Player
         return null !== $this->forgottenPasswordExpiredAt && $this->forgottenPasswordExpiredAt < new DateTimeImmutable();
     }
 
-    public function update(string $email, string $nickname, ?string $avatar = null): void
+    public function update(string $email, Gender $gender, string $nickname, ?string $avatar = null): void
     {
         $this->email = $email;
         $this->nickname = $nickname;
         $this->avatar = $avatar;
+        $this->gender = $gender;
     }
 
     public function prepareValidationOfRegistration(?Uuid $registrationToken): void
