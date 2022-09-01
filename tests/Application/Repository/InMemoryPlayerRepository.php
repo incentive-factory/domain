@@ -27,14 +27,14 @@ final class InMemoryPlayerRepository implements PlayerGateway
             '01GBJK7XV3YXQ51EHN9G5DAMYN' => Player::create(
                 id: Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'),
                 email: 'player+0@email.com',
-                gender: Gender::JOUEUSE,
+                gender: Gender::Female,
                 nickname: 'player+0',
                 password: 'hashed_password'
             ),
             '01GBFF6QBSBH7RRTK6N0770BSY' => Player::create(
                 id: Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'),
                 email: 'player+1@email.com',
-                gender: Gender::JOUEUR,
+                gender: Gender::Male,
                 nickname: 'player+1',
                 password: 'hashed_password'
             ),
