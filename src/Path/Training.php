@@ -7,7 +7,7 @@ namespace IncentiveFactory\Game\Path;
 use DateTimeInterface;
 use Symfony\Component\Uid\Ulid;
 
-final class Path
+final class Training
 {
     private Ulid $id;
 
@@ -38,18 +38,18 @@ final class Path
         string $skills,
         string $image
     ): self {
-        $path = new self();
-        $path->id = $id;
-        $path->publishedAt = $publishedAt;
-        $path->slug = $slug;
-        $path->name = $name;
-        $path->description = $description;
-        $path->level = $level;
-        $path->prerequisites = $prerequisites;
-        $path->skills = $skills;
-        $path->image = $image;
+        $training = new self();
+        $training->id = $id;
+        $training->publishedAt = $publishedAt;
+        $training->slug = $slug;
+        $training->name = $name;
+        $training->description = $description;
+        $training->level = $level;
+        $training->prerequisites = $prerequisites;
+        $training->skills = $skills;
+        $training->image = $image;
 
-        return $path;
+        return $training;
     }
 
     public function id(): Ulid

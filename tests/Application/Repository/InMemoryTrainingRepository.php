@@ -6,16 +6,16 @@ namespace IncentiveFactory\Game\Tests\Application\Repository;
 
 use DateTimeImmutable;
 use IncentiveFactory\Game\Path\Level;
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Path\PathGateway;
+use IncentiveFactory\Game\Path\Training;
+use IncentiveFactory\Game\Path\TrainingGateway;
 use Symfony\Component\Uid\Ulid;
 
-final class InMemoryPathRepository implements PathGateway
+final class InMemoryTrainingRepository implements TrainingGateway
 {
     /**
-     * @var array<string, Path>
+     * @var array<string, Training>
      */
-    public array $paths = [];
+    public array $trainings = [];
 
     public function __construct()
     {
@@ -24,11 +24,11 @@ final class InMemoryPathRepository implements PathGateway
 
     public function init(): void
     {
-        $this->paths = [
-            '01GBWW5FJJ0G3YK3RJM6VWBZBG' => Path::create(
+        $this->trainings = [
+            '01GBWW5FJJ0G3YK3RJM6VWBZBG' => Training::create(
                 id: Ulid::fromString('01GBWW5FJJ0G3YK3RJM6VWBZBG'),
                 publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
-                slug: 'path-1',
+                slug: 'training-1',
                 name: 'Path 1',
                 description: 'Description 1',
                 level: Level::Easy,
@@ -36,10 +36,10 @@ final class InMemoryPathRepository implements PathGateway
                 skills: 'Skills 1',
                 image: 'image.png'
             ),
-            '01GBWW5JHNPEXD8S0J5HPT97S2' => Path::create(
+            '01GBWW5JHNPEXD8S0J5HPT97S2' => Training::create(
                 id: Ulid::fromString('01GBWW5JHNPEXD8S0J5HPT97S2'),
                 publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
-                slug: 'path-2',
+                slug: 'training-2',
                 name: 'Path 2',
                 description: 'Description 2',
                 level: Level::Medium,
@@ -47,10 +47,10 @@ final class InMemoryPathRepository implements PathGateway
                 skills: 'Skills 2',
                 image: 'image.png'
             ),
-            '01GBWW96THK59QHW3XESM56RJH' => Path::create(
+            '01GBWW96THK59QHW3XESM56RJH' => Training::create(
                 id: Ulid::fromString('01GBWW96THK59QHW3XESM56RJH'),
                 publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
-                slug: 'path-3',
+                slug: 'training-3',
                 name: 'Path 3',
                 description: 'Description 3',
                 level: Level::Hard,
@@ -63,14 +63,14 @@ final class InMemoryPathRepository implements PathGateway
 
     public function findAll(): array
     {
-        return array_values($this->paths);
+        return array_values($this->trainings);
     }
 
-    public function findOneBySlug(string $slug): ?Path
+    public function findOneBySlug(string $slug): ?Training
     {
-        foreach ($this->paths as $path) {
-            if ($path->slug() === $slug) {
-                return $path;
+        foreach ($this->trainings as $training) {
+            if ($training->slug() === $slug) {
+                return $training;
             }
         }
 
