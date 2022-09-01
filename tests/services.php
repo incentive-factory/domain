@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
 use IncentiveFactory\Game\Path\BeginPath\BeginPath;
+use IncentiveFactory\Game\Path\GetPathsByPlayer\GetPathsByPlayer;
+use IncentiveFactory\Game\Path\GetPathsByPlayer\PlayerPaths;
 use IncentiveFactory\Game\Path\GetTrainingBySlug\GetTrainingBySlug;
 use IncentiveFactory\Game\Path\GetTrainingBySlug\TrainingSlug;
 use IncentiveFactory\Game\Path\GetTranings\GetTrainings;
@@ -50,6 +52,12 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 return function (Container $container): void {
     $container
+        ->set(
+            GetPathsByPlayer::class,
+            static fn (Container $container): GetPathsByPlayer => new GetPathsByPlayer(
+                $container->get(PathGateway::class)
+            )
+        )
         ->set(
             BeginPath::class,
             static fn (Container $container): BeginPath => new BeginPath(
@@ -124,7 +132,9 @@ return function (Container $container): void {
         )
         ->set(
             PathGateway::class,
-            static fn (Container $container): PathGateway => new InMemoryPathRepository()
+            static fn (Container $container): PathGateway => new InMemoryPathRepository(
+                $container->get(TrainingGateway::class)
+            )
         )
         ->set(
             TrainingGateway::class,
@@ -186,6 +196,7 @@ return function (Container $container): void {
                 ForgottenPasswordToken::class => GetPlayerByForgottenPasswordToken::class,
                 ListOfTrainings::class => GetTrainings::class,
                 TrainingSlug::class => GetTrainingBySlug::class,
+                PlayerPaths::class => GetPathsByPlayer::class,
             ])
         )
         ->set(

@@ -6,10 +6,11 @@ namespace IncentiveFactory\Game\Player;
 
 use DateTimeImmutable;
 use DateTimeInterface;
+use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 use Symfony\Component\Uid\Uuid;
 
-final class Player
+final class Player implements PlayerInterface
 {
     private Ulid $id;
 

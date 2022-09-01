@@ -13,16 +13,16 @@ final class Path
 
     private Player $player;
 
-    private Training $path;
+    private Training $training;
 
     private DateTimeInterface $beganAt;
 
-    public static function create(Ulid $id, Player $player, Training $path, DateTimeInterface $beganAt): self
+    public static function create(Ulid $id, Player $player, Training $training, DateTimeInterface $beganAt): self
     {
         $registration = new self();
         $registration->id = $id;
         $registration->player = $player;
-        $registration->path = $path;
+        $registration->training = $training;
         $registration->beganAt = $beganAt;
 
         return $registration;
@@ -38,9 +38,9 @@ final class Path
         return $this->player;
     }
 
-    public function path(): Training
+    public function training(): Training
     {
-        return $this->path;
+        return $this->training;
     }
 
     public function beganAt(): DateTimeInterface

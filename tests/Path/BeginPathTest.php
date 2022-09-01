@@ -26,7 +26,7 @@ final class BeginPathTest extends CommandTestCase
         /** @var Training $training */
         $training = $trainingGateway->findOneBySlug('training-1');
 
-        $player = Player::create(Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'));
+        $player = Player::create(Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'));
 
         $this->commandBus->execute(new BeginningOfPath($player, $training));
 
@@ -39,7 +39,7 @@ final class BeginPathTest extends CommandTestCase
         $paths = array_values(
             array_filter(
                 $pathGateway->paths,
-                static fn (Path $path) => $path->player()->id()->equals($player->id()) && $path->path()->id()->equals($training->id()),
+                static fn (Path $path) => $path->player()->id()->equals($player->id()) && $path->training()->id()->equals($training->id()),
             )
         );
 
@@ -48,7 +48,7 @@ final class BeginPathTest extends CommandTestCase
         $path = $paths[0];
 
         self::assertEquals($player, $path->player());
-        self::assertEquals($training, $path->path());
+        self::assertEquals($training, $path->training());
         self::assertLessThan(new DateTimeImmutable(), $path->beganAt());
     }
 
@@ -61,8 +61,6 @@ final class BeginPathTest extends CommandTestCase
         $training = $trainingGateway->findOneBySlug('training-1');
 
         $player = Player::create(Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'));
-
-        $this->commandBus->execute(new BeginningOfPath($player, $training));
 
         self::expectException(PathAlreadyBeganException::class);
 

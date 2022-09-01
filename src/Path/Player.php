@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Path;
 
+use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
-final class Player
+final class Player implements PlayerInterface
 {
     private Ulid $id;
 
