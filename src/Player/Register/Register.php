@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Player\Register;
 
+use IncentiveFactory\Game\Player\Gender;
 use IncentiveFactory\Game\Player\Player;
 use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
@@ -24,10 +25,11 @@ final class Register implements CommandHandler
     public function __invoke(Registration $registration): void
     {
         $player = Player::create(
-            $this->ulidGenerator->generate(),
-            $registration->email,
-            $registration->nickname,
-            $this->passwordHasher->hash($registration->plainPassword)
+            id: $this->ulidGenerator->generate(),
+            email: $registration->email,
+            gender: Gender::from($registration->gender),
+            nickname: $registration->nickname,
+            password: $this->passwordHasher->hash($registration->plainPassword)
         );
 
         $this->playerGateway->register($player);

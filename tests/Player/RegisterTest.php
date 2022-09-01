@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace IncentiveFactory\Game\Tests\Player;
 
 use Generator;
+use IncentiveFactory\Game\Player\Gender;
 use IncentiveFactory\Game\Player\Player;
 use IncentiveFactory\Game\Player\PlayerGateway;
 use IncentiveFactory\Game\Player\Register\NewRegistration;
@@ -26,6 +27,7 @@ final class RegisterTest extends CommandTestCase
         self::assertSame('player@email.com', $player->email());
         self::assertSame('player', $player->nickname());
         self::assertSame('Password123!', $player->password());
+        self::assertSame(Gender::JOUEUSE, $player->gender());
         self::assertNotNull($player->registrationToken());
         self::assertTrue($this->eventBus->hasDispatched(NewRegistration::class));
     }
@@ -50,15 +52,18 @@ final class RegisterTest extends CommandTestCase
         yield 'blank nickname' => [self::createRegistration(nickname: '')];
         yield 'blank plainPassword' => [self::createRegistration(plainPassword: '')];
         yield 'invalid plainPassword' => [self::createRegistration(plainPassword: 'fail')];
+        yield 'invalid gender' => [self::createRegistration(gender: 'fail')];
     }
 
     private static function createRegistration(
         string $email = 'player@email.com',
+        string $gender = 'Joueuse',
         string $nickname = 'player',
         string $plainPassword = 'Password123!'
     ): Registration {
         $registration = new Registration();
         $registration->email = $email;
+        $registration->gender = $gender;
         $registration->nickname = $nickname;
         $registration->plainPassword = $plainPassword;
 

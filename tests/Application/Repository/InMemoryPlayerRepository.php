@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Tests\Application\Repository;
 
+use IncentiveFactory\Game\Player\Gender;
 use IncentiveFactory\Game\Player\Player;
 use IncentiveFactory\Game\Player\PlayerGateway;
 use Symfony\Component\Uid\Ulid;
@@ -24,16 +25,18 @@ final class InMemoryPlayerRepository implements PlayerGateway
     {
         $this->players = [
             '01GBJK7XV3YXQ51EHN9G5DAMYN' => Player::create(
-                Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'),
-                'player+0@email.com',
-                'player+0',
-                'hashed_password'
+                id: Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'),
+                email: 'player+0@email.com',
+                gender: Gender::JOUEUSE,
+                nickname: 'player+0',
+                password: 'hashed_password'
             ),
             '01GBFF6QBSBH7RRTK6N0770BSY' => Player::create(
-                Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'),
-                'player+1@email.com',
-                'player+1',
-                'hashed_password'
+                id: Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'),
+                email: 'player+1@email.com',
+                gender: Gender::JOUEUR,
+                nickname: 'player+1',
+                password: 'hashed_password'
             ),
         ];
     }
