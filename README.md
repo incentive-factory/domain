@@ -1,6 +1,6 @@
 # Il était une fois un dev - Domaine métier
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/incentive-factory/domain/Continuous%20Integration/develop?style=for-the-badge)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/incentive-factory/domain/Continuous%20integration/develop?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/incentive-factory/domain?style=for-the-badge)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/incentive-factory/domain?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues-raw/incentive-factory/domain?style=for-the-badge)
