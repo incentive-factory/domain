@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace IncentiveFactory\Game\Tests\Path;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
-use IncentiveFactory\Game\Path\BeginPath\PathAlreadyBeganException;
+use IncentiveFactory\Game\Path\BeginTraining\BeginningOfTraining;
+use IncentiveFactory\Game\Path\BeginTraining\TrainingAlreadyBeganException;
 use IncentiveFactory\Game\Path\Path;
 use IncentiveFactory\Game\Path\PathGateway;
 use IncentiveFactory\Game\Path\Training;
@@ -15,9 +15,9 @@ use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
 use IncentiveFactory\Game\Tests\CommandTestCase;
 
-final class BeginPathTest extends CommandTestCase
+final class BeginTrainingTest extends CommandTestCase
 {
-    public function testShouldBeginPath(): void
+    public function testShouldBeginTraining(): void
     {
         /** @var TrainingGateway $trainingGateway */
         $trainingGateway = $this->container->get(TrainingGateway::class);
@@ -27,7 +27,7 @@ final class BeginPathTest extends CommandTestCase
 
         $player = InMemoryPlayerRepository::createPlayer(1, '01GBJK7XV3YXQ51EHN9G5DAMYN');
 
-        $this->commandBus->execute(new BeginningOfPath($player, $training));
+        $this->commandBus->execute(new BeginningOfTraining($player, $training));
 
         /** @var InMemoryPathRepository $pathGateway */
         $pathGateway = $this->container->get(PathGateway::class);
@@ -61,8 +61,8 @@ final class BeginPathTest extends CommandTestCase
 
         $player = InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY');
 
-        self::expectException(PathAlreadyBeganException::class);
+        self::expectException(TrainingAlreadyBeganException::class);
 
-        $this->commandBus->execute(new BeginningOfPath($player, $training));
+        $this->commandBus->execute(new BeginningOfTraining($player, $training));
     }
 }
