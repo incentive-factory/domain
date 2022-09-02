@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use IncentiveFactory\Game\Course\BeginCourse\BeginCourse;
+use IncentiveFactory\Game\Course\BeginCourse\BeginningOfCourse;
 use IncentiveFactory\Game\Course\CourseGateway;
+use IncentiveFactory\Game\Course\CourseLogGateway;
 use IncentiveFactory\Game\Course\GetCourseBySlug\CourseSlug;
 use IncentiveFactory\Game\Course\GetCourseBySlug\GetCourseBySlug;
 use IncentiveFactory\Game\Path\BeginTraining\BeginningOfTraining;
@@ -45,6 +48,7 @@ use IncentiveFactory\Game\Tests\Application\Container\Container;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestCommandBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestQueryBus;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryCourseLogRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryCourseRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
@@ -57,6 +61,13 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 return function (Container $container): void {
     $container
         ->set(
+            BeginCourse::class,
+            static fn (Container $container): BeginCourse => new BeginCourse(
+                $container->get(CourseLogGateway::class),
+                $container->get(UlidGeneratorInterface::class)
+            )
+        )
+        ->set(
             GetPathsByPlayer::class,
             static fn (Container $container): GetPathsByPlayer => new GetPathsByPlayer(
                 $container->get(PathGateway::class)
@@ -66,7 +77,7 @@ return function (Container $container): void {
             BeginTraining::class,
             static fn (Container $container): BeginTraining => new BeginTraining(
                 $container->get(PathGateway::class),
-                $container->get(UlidGeneratorInterface::class),
+                $container->get(UlidGeneratorInterface::class)
             )
         )
         ->set(
@@ -135,6 +146,10 @@ return function (Container $container): void {
             static fn (Container $container): ValidRegistration => new ValidRegistration(
                 $container->get(PlayerGateway::class)
             )
+        )
+        ->set(
+            CourseLogGateway::class,
+            static fn (Container $container): CourseLogGateway => new InMemoryCourseLogRepository()
         )
         ->set(
             CourseGateway::class,
@@ -222,6 +237,7 @@ return function (Container $container): void {
                 Profile::class => UpdateProfile::class,
                 UpdatePasswordNewPassword::class => UpdatePassword::class,
                 BeginningOfTraining::class => BeginTraining::class,
+                BeginningOfCourse::class => BeginCourse::class,
             ])
         )
     ;
