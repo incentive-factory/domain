@@ -21,7 +21,7 @@ final class UpdateProfileTest extends CommandTestCase
         $playerGateway = $this->container->get(PlayerGateway::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+0@email.com');
+        $player = $playerGateway->findOneByEmail('player+1@email.com');
 
         $this->commandBus->execute(self::createProfile()($player));
 
@@ -44,7 +44,7 @@ final class UpdateProfileTest extends CommandTestCase
         $playerGateway = $this->container->get(PlayerGateway::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+0@email.com');
+        $player = $playerGateway->findOneByEmail('player+1@email.com');
 
         self::expectException(ValidationFailedException::class);
         $this->commandBus->execute($newProfile($player));
@@ -58,7 +58,7 @@ final class UpdateProfileTest extends CommandTestCase
         yield 'blank email' => [self::createProfile(email: '')];
         yield 'invalid email' => [self::createProfile(email: 'fail')];
         yield 'invalid gender' => [self::createProfile(gender: 'fail')];
-        yield 'used email' => [self::createProfile(email: 'player+1@email.com')];
+        yield 'used email' => [self::createProfile(email: 'player+2@email.com')];
         yield 'blank nickname' => [self::createProfile(nickname: '')];
     }
 

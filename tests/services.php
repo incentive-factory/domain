@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use IncentiveFactory\Game\Course\CourseGateway;
+use IncentiveFactory\Game\Course\GetCourseBySlug\CourseSlug;
+use IncentiveFactory\Game\Course\GetCourseBySlug\GetCourseBySlug;
 use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
 use IncentiveFactory\Game\Path\BeginPath\BeginPath;
 use IncentiveFactory\Game\Path\GetPathsByPlayer\GetPathsByPlayer;
@@ -42,6 +45,7 @@ use IncentiveFactory\Game\Tests\Application\Container\Container;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestCommandBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
 use IncentiveFactory\Game\Tests\Application\CQRS\TestQueryBus;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryCourseRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryTrainingRepository;
@@ -63,6 +67,12 @@ return function (Container $container): void {
             static fn (Container $container): BeginPath => new BeginPath(
                 $container->get(PathGateway::class),
                 $container->get(UlidGeneratorInterface::class),
+            )
+        )
+        ->set(
+            GetCourseBySlug::class,
+            static fn (Container $container): GetCourseBySlug => new GetCourseBySlug(
+                $container->get(CourseGateway::class)
             )
         )
         ->set(
@@ -127,14 +137,16 @@ return function (Container $container): void {
             )
         )
         ->set(
+            CourseGateway::class,
+            static fn (Container $container): CourseGateway => new InMemoryCourseRepository()
+        )
+        ->set(
             PlayerGateway::class,
             static fn (Container $container): PlayerGateway => new InMemoryPlayerRepository()
         )
         ->set(
             PathGateway::class,
-            static fn (Container $container): PathGateway => new InMemoryPathRepository(
-                $container->get(TrainingGateway::class)
-            )
+            static fn (Container $container): PathGateway => new InMemoryPathRepository()
         )
         ->set(
             TrainingGateway::class,
@@ -197,6 +209,7 @@ return function (Container $container): void {
                 ListOfTrainings::class => GetTrainings::class,
                 TrainingSlug::class => GetTrainingBySlug::class,
                 PlayerPaths::class => GetPathsByPlayer::class,
+                CourseSlug::class => GetCourseBySlug::class,
             ])
         )
         ->set(

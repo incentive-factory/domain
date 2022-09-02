@@ -22,10 +22,10 @@ final class GetTrainingBySlugTest extends QueryTestCase
         self::assertInstanceOf(Training::class, $training);
         self::assertSame('training-1', $training->slug());
         self::assertSame('Training 1', $training->name());
-        self::assertSame('Description 1', $training->description());
+        self::assertSame('Description', $training->description());
         self::assertSame(Level::Easy, $training->level());
-        self::assertSame('Prerequisites 1', $training->prerequisites());
-        self::assertSame('Skills 1', $training->skills());
+        self::assertSame('Prerequisite', $training->prerequisites());
+        self::assertSame('Skill', $training->skills());
         self::assertSame('image.png', $training->image());
         self::assertEquals(new DateTimeImmutable('2021-01-01 00:00:00'), $training->publishedAt());
         self::assertSame('01GBWW5FJJ0G3YK3RJM6VWBZBG', (string) $training->id());

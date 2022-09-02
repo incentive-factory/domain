@@ -22,42 +22,27 @@ final class InMemoryTrainingRepository implements TrainingGateway
         $this->init();
     }
 
+    public static function createTraining(int $index, string $ulid): Training
+    {
+        return Training::create(
+            id: Ulid::fromString($ulid),
+            publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
+            slug: sprintf('training-%d', $index),
+            name: sprintf('Training %d', $index),
+            description: 'Description',
+            level: Level::Easy,
+            prerequisites: 'Prerequisite',
+            skills: 'Skill',
+            image: 'image.png'
+        );
+    }
+
     public function init(): void
     {
         $this->trainings = [
-            '01GBWW5FJJ0G3YK3RJM6VWBZBG' => Training::create(
-                id: Ulid::fromString('01GBWW5FJJ0G3YK3RJM6VWBZBG'),
-                publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
-                slug: 'training-1',
-                name: 'Training 1',
-                description: 'Description 1',
-                level: Level::Easy,
-                prerequisites: 'Prerequisites 1',
-                skills: 'Skills 1',
-                image: 'image.png'
-            ),
-            '01GBWW5JHNPEXD8S0J5HPT97S2' => Training::create(
-                id: Ulid::fromString('01GBWW5JHNPEXD8S0J5HPT97S2'),
-                publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
-                slug: 'training-2',
-                name: 'Training 2',
-                description: 'Description 2',
-                level: Level::Medium,
-                prerequisites: 'Prerequisites 2',
-                skills: 'Skills 2',
-                image: 'image.png'
-            ),
-            '01GBWW96THK59QHW3XESM56RJH' => Training::create(
-                id: Ulid::fromString('01GBWW96THK59QHW3XESM56RJH'),
-                publishedAt: new DateTimeImmutable('2021-01-01 00:00:00'),
-                slug: 'training-3',
-                name: 'Training 3',
-                description: 'Description 3',
-                level: Level::Hard,
-                prerequisites: 'Prerequisites 3',
-                skills: 'Skills 3',
-                image: 'image.png'
-            ),
+            '01GBWW5FJJ0G3YK3RJM6VWBZBG' => self::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG'),
+            '01GBWW5JHNPEXD8S0J5HPT97S2' => self::createTraining(2, '01GBWW5JHNPEXD8S0J5HPT97S2'),
+            '01GBWW96THK59QHW3XESM56RJH' => self::createTraining(3, '01GBWW96THK59QHW3XESM56RJH'),
         ];
     }
 
