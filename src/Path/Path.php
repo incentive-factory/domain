@@ -6,7 +6,6 @@ namespace IncentiveFactory\Game\Path;
 
 use DateTimeInterface;
 use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
-use IncentiveFactory\Game\Shared\Entity\TrainingInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class Path
@@ -15,7 +14,7 @@ final class Path
 
     private PlayerInterface $player;
 
-    private TrainingInterface $training;
+    private Training $training;
 
     private DateTimeInterface $beganAt;
 
@@ -40,7 +39,7 @@ final class Path
         return $this->player;
     }
 
-    public function training(): TrainingInterface
+    public function training(): Training
     {
         return $this->training;
     }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 use IncentiveFactory\Game\Course\CourseGateway;
 use IncentiveFactory\Game\Course\GetCourseBySlug\CourseSlug;
 use IncentiveFactory\Game\Course\GetCourseBySlug\GetCourseBySlug;
-use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
-use IncentiveFactory\Game\Path\BeginPath\BeginPath;
+use IncentiveFactory\Game\Path\BeginTraining\BeginningOfTraining;
+use IncentiveFactory\Game\Path\BeginTraining\BeginTraining;
 use IncentiveFactory\Game\Path\GetPathsByPlayer\GetPathsByPlayer;
 use IncentiveFactory\Game\Path\GetPathsByPlayer\PlayerPaths;
 use IncentiveFactory\Game\Path\GetTrainingBySlug\GetTrainingBySlug;
@@ -63,8 +63,8 @@ return function (Container $container): void {
             )
         )
         ->set(
-            BeginPath::class,
-            static fn (Container $container): BeginPath => new BeginPath(
+            BeginTraining::class,
+            static fn (Container $container): BeginTraining => new BeginTraining(
                 $container->get(PathGateway::class),
                 $container->get(UlidGeneratorInterface::class),
             )
@@ -221,7 +221,7 @@ return function (Container $container): void {
                 ResetPasswordNewPassword::class => ResetPassword::class,
                 Profile::class => UpdateProfile::class,
                 UpdatePasswordNewPassword::class => UpdatePassword::class,
-                BeginningOfPath::class => BeginPath::class,
+                BeginningOfTraining::class => BeginTraining::class,
             ])
         )
     ;
