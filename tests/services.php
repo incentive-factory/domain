@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use IncentiveFactory\Game\Course\BeginCourse\BeginCourse;
 use IncentiveFactory\Game\Course\BeginCourse\BeginningOfCourse;
+use IncentiveFactory\Game\Course\CompleteCourse\CompleteCourse;
+use IncentiveFactory\Game\Course\CompleteCourse\CompletingOfCourse;
 use IncentiveFactory\Game\Course\CourseGateway;
 use IncentiveFactory\Game\Course\CourseLogGateway;
 use IncentiveFactory\Game\Course\GetCourseBySlug\CourseSlug;
@@ -61,23 +63,32 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 return function (Container $container): void {
     $container
         ->set(
+            BeginTraining::class,
+            static fn (Container $container): BeginTraining => new BeginTraining(
+                $container->get(PathGateway::class),
+                $container->get(UlidGeneratorInterface::class),
+                $container->get(EventBus::class),
+            )
+        )
+        ->set(
+            CompleteCourse::class,
+            static fn (Container $container): CompleteCourse => new CompleteCourse(
+                $container->get(CourseLogGateway::class),
+                $container->get(EventBus::class),
+            )
+        )
+        ->set(
             BeginCourse::class,
             static fn (Container $container): BeginCourse => new BeginCourse(
                 $container->get(CourseLogGateway::class),
-                $container->get(UlidGeneratorInterface::class)
+                $container->get(UlidGeneratorInterface::class),
+                $container->get(EventBus::class),
             )
         )
         ->set(
             GetPathsByPlayer::class,
             static fn (Container $container): GetPathsByPlayer => new GetPathsByPlayer(
                 $container->get(PathGateway::class)
-            )
-        )
-        ->set(
-            BeginTraining::class,
-            static fn (Container $container): BeginTraining => new BeginTraining(
-                $container->get(PathGateway::class),
-                $container->get(UlidGeneratorInterface::class)
             )
         )
         ->set(
@@ -238,6 +249,7 @@ return function (Container $container): void {
                 UpdatePasswordNewPassword::class => UpdatePassword::class,
                 BeginningOfTraining::class => BeginTraining::class,
                 BeginningOfCourse::class => BeginCourse::class,
+                CompletingOfCourse::class => CompleteCourse::class,
             ])
         )
     ;

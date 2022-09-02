@@ -30,13 +30,15 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
                 id: Ulid::fromString('01GBYPDXW2T78ZAKSANH3G810V'),
                 player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
                 course: InMemoryCourseRepository::createCourse(1, '01GBYMQQK3TY08FEVA0GTJ4QZM', InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')),
-                beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
+                beganAt: new DateTimeImmutable('2021-01-01 00:00:00'),
+                completedAt: new DateTimeImmutable('2021-01-02 00:00:00')
             ),
             '01GBYPE4FW8J8TN21CA3AFSXQH' => CourseLog::create(
                 id: Ulid::fromString('01GBYPE4FW8J8TN21CA3AFSXQH'),
                 player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
                 course: InMemoryCourseRepository::createCourse(2, '01GBYN0SWAMB7N272PW7G1VDF0', InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')),
-                beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
+                beganAt: new DateTimeImmutable('2021-01-01 00:00:00'),
+                completedAt: new DateTimeImmutable('2021-01-02 00:00:00')
             ),
             '01GBYPE9N8HTJQ4A2G1Y96FATW' => CourseLog::create(
                 id: Ulid::fromString('01GBYPE9N8HTJQ4A2G1Y96FATW'),
@@ -48,6 +50,11 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
     }
 
     public function begin(CourseLog $courseLog): void
+    {
+        $this->courseLogs[(string) $courseLog->id()] = $courseLog;
+    }
+
+    public function complete(CourseLog $courseLog): void
     {
         $this->courseLogs[(string) $courseLog->id()] = $courseLog;
     }

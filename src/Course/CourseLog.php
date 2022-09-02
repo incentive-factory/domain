@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Game\Course;
 
+use DateTimeImmutable;
 use DateTimeInterface;
 use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
@@ -18,13 +19,16 @@ final class CourseLog
 
     private DateTimeInterface $beganAt;
 
-    public static function create(Ulid $id, PlayerInterface $player, Course $course, DateTimeInterface $beganAt): self
+    private ?DateTimeInterface $completedAt = null;
+
+    public static function create(Ulid $id, PlayerInterface $player, Course $course, DateTimeInterface $beganAt, ?DateTimeInterface $completedAt = null): self
     {
         $registration = new self();
         $registration->id = $id;
         $registration->player = $player;
         $registration->course = $course;
         $registration->beganAt = $beganAt;
+        $registration->completedAt = $completedAt;
 
         return $registration;
     }
@@ -47,5 +51,20 @@ final class CourseLog
     public function beganAt(): DateTimeInterface
     {
         return $this->beganAt;
+    }
+
+    public function completedAt(): ?DateTimeInterface
+    {
+        return $this->completedAt;
+    }
+
+    public function hasCompleted(): bool
+    {
+        return null !== $this->completedAt;
+    }
+
+    public function complete(): void
+    {
+        $this->completedAt = new DateTimeImmutable();
     }
 }

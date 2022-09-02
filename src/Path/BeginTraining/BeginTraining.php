@@ -8,12 +8,16 @@ use DateTimeImmutable;
 use IncentiveFactory\Game\Path\Path;
 use IncentiveFactory\Game\Path\PathGateway;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
+use IncentiveFactory\Game\Shared\Event\EventBus;
 use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
 
 final class BeginTraining implements CommandHandler
 {
-    public function __construct(private PathGateway $pathGateway, private UlidGeneratorInterface $ulidGenerator)
-    {
+    public function __construct(
+        private PathGateway $pathGateway,
+        private UlidGeneratorInterface $ulidGenerator,
+        private EventBus $eventBus
+    ) {
     }
 
     public function __invoke(BeginningOfTraining $beginningOfPath): void
@@ -30,5 +34,7 @@ final class BeginTraining implements CommandHandler
         );
 
         $this->pathGateway->begin($path);
+
+        $this->eventBus->dispatch(new TrainingBegan($path));
     }
 }

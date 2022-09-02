@@ -8,12 +8,16 @@ use DateTimeImmutable;
 use IncentiveFactory\Game\Course\CourseLog;
 use IncentiveFactory\Game\Course\CourseLogGateway;
 use IncentiveFactory\Game\Shared\Command\CommandHandler;
+use IncentiveFactory\Game\Shared\Event\EventBus;
 use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
 
 final class BeginCourse implements CommandHandler
 {
-    public function __construct(private CourseLogGateway $courseLogGateway, private UlidGeneratorInterface $ulidGenerator)
-    {
+    public function __construct(
+        private CourseLogGateway $courseLogGateway,
+        private UlidGeneratorInterface $ulidGenerator,
+        private EventBus $eventBus
+    ) {
     }
 
     public function __invoke(BeginningOfCourse $beginningOfCourse): void
@@ -22,13 +26,15 @@ final class BeginCourse implements CommandHandler
             throw new CourseAlreadyBeganException('Course already began');
         }
 
-        $course = CourseLog::create(
+        $courseLog = CourseLog::create(
             $this->ulidGenerator->generate(),
             $beginningOfCourse->player,
             $beginningOfCourse->course,
             new DateTimeImmutable()
         );
 
-        $this->courseLogGateway->begin($course);
+        $this->courseLogGateway->begin($courseLog);
+
+        $this->eventBus->dispatch(new CourseBegan($courseLog));
     }
 }

@@ -14,5 +14,7 @@ interface CourseLogGateway extends Gateway
 {
     public function begin(CourseLog $courseLog): void;
 
+    public function complete(CourseLog $courseLog): void;
+
     public function hasAlreadyBegan(PlayerInterface $player, Course $course): bool;
 }

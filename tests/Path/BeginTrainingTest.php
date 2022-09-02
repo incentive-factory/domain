@@ -7,6 +7,7 @@ namespace IncentiveFactory\Game\Tests\Path;
 use DateTimeImmutable;
 use IncentiveFactory\Game\Path\BeginTraining\BeginningOfTraining;
 use IncentiveFactory\Game\Path\BeginTraining\TrainingAlreadyBeganException;
+use IncentiveFactory\Game\Path\BeginTraining\TrainingBegan;
 use IncentiveFactory\Game\Path\Path;
 use IncentiveFactory\Game\Path\PathGateway;
 use IncentiveFactory\Game\Path\Training;
@@ -49,6 +50,7 @@ final class BeginTrainingTest extends CommandTestCase
         self::assertEquals($player, $path->player());
         self::assertEquals($training, $path->training());
         self::assertLessThan(new DateTimeImmutable(), $path->beganAt());
+        self::assertTrue($this->eventBus->hasDispatched(TrainingBegan::class));
     }
 
     public function testShouldRaiseAnExceptionDueToAPathAlreadyBegan(): void

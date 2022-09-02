@@ -7,6 +7,7 @@ namespace IncentiveFactory\Game\Tests\Course;
 use DateTimeImmutable;
 use IncentiveFactory\Game\Course\BeginCourse\BeginningOfCourse;
 use IncentiveFactory\Game\Course\BeginCourse\CourseAlreadyBeganException;
+use IncentiveFactory\Game\Course\BeginCourse\CourseBegan;
 use IncentiveFactory\Game\Course\Course;
 use IncentiveFactory\Game\Course\CourseGateway;
 use IncentiveFactory\Game\Course\CourseLog;
@@ -48,7 +49,10 @@ final class BeginCourseTest extends CommandTestCase
 
         self::assertEquals($player, $courseLog->player());
         self::assertEquals($course, $courseLog->course());
+        self::assertNull($courseLog->completedAt());
+        self::assertFalse($courseLog->hasCompleted());
         self::assertLessThan(new DateTimeImmutable(), $courseLog->beganAt());
+        self::assertTrue($this->eventBus->hasDispatched(CourseBegan::class));
     }
 
     public function testShouldRaiseAnExceptionDueToACourseLogAlreadyBegan(): void
