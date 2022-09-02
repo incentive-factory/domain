@@ -7,9 +7,7 @@ namespace IncentiveFactory\Game\Tests\Application\Repository;
 use DateTimeImmutable;
 use IncentiveFactory\Game\Path\Path;
 use IncentiveFactory\Game\Path\PathGateway;
-use IncentiveFactory\Game\Path\Player;
 use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Path\TrainingGateway;
 use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
@@ -20,7 +18,7 @@ final class InMemoryPathRepository implements PathGateway
      */
     public array $paths = [];
 
-    public function __construct(private TrainingGateway $trainingGateway)
+    public function __construct()
     {
         $this->init();
     }
@@ -30,14 +28,14 @@ final class InMemoryPathRepository implements PathGateway
         $this->paths = [
             '01GBXF8ATAE03HY5ZC3ES90122' => Path::create(
                 id: Ulid::fromString('01GBXF8ATAE03HY5ZC3ES90122'),
-                player: Player::create(Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN')),
-                training: $this->trainingGateway->trainings['01GBWW5FJJ0G3YK3RJM6VWBZBG'],
+                player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
+                training: InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG'),
                 beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
             ),
             '01GBXF8EPC06PV81J70Z0ACKCC' => Path::create(
                 id: Ulid::fromString('01GBXF8EPC06PV81J70Z0ACKCC'),
-                player: Player::create(Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN')),
-                training: $this->trainingGateway->trainings['01GBWW5JHNPEXD8S0J5HPT97S2'],
+                player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
+                training: InMemoryTrainingRepository::createTraining(2, '01GBWW5JHNPEXD8S0J5HPT97S2'),
                 beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
             ),
         ];

@@ -22,7 +22,7 @@ final class ValidRegistrationTest extends CommandTestCase
         $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+0@email.com');
+        $player = $playerGateway->findOneByEmail('player+1@email.com');
         $player->prepareValidationOfRegistration($uuidGenerator->generate());
         $playerGateway->update($player);
 

@@ -9,12 +9,11 @@ use IncentiveFactory\Game\Path\BeginPath\BeginningOfPath;
 use IncentiveFactory\Game\Path\BeginPath\PathAlreadyBeganException;
 use IncentiveFactory\Game\Path\Path;
 use IncentiveFactory\Game\Path\PathGateway;
-use IncentiveFactory\Game\Path\Player;
 use IncentiveFactory\Game\Path\Training;
 use IncentiveFactory\Game\Path\TrainingGateway;
 use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
+use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
 use IncentiveFactory\Game\Tests\CommandTestCase;
-use Symfony\Component\Uid\Ulid;
 
 final class BeginPathTest extends CommandTestCase
 {
@@ -26,7 +25,7 @@ final class BeginPathTest extends CommandTestCase
         /** @var Training $training */
         $training = $trainingGateway->findOneBySlug('training-1');
 
-        $player = Player::create(Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'));
+        $player = InMemoryPlayerRepository::createPlayer(1, '01GBJK7XV3YXQ51EHN9G5DAMYN');
 
         $this->commandBus->execute(new BeginningOfPath($player, $training));
 
@@ -60,7 +59,7 @@ final class BeginPathTest extends CommandTestCase
         /** @var Training $training */
         $training = $trainingGateway->findOneBySlug('training-1');
 
-        $player = Player::create(Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'));
+        $player = InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY');
 
         self::expectException(PathAlreadyBeganException::class);
 

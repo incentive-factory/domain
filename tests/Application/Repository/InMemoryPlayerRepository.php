@@ -21,23 +21,22 @@ final class InMemoryPlayerRepository implements PlayerGateway
         $this->init();
     }
 
+    public static function createPlayer(int $index, string $ulid): Player
+    {
+        return Player::create(
+            id: Ulid::fromString($ulid),
+            email: sprintf('player+%d@email.com', $index),
+            gender: Gender::Female,
+            nickname: sprintf('player+%d', $index),
+            password: 'hashed_password'
+        );
+    }
+
     public function init(): void
     {
         $this->players = [
-            '01GBJK7XV3YXQ51EHN9G5DAMYN' => Player::create(
-                id: Ulid::fromString('01GBJK7XV3YXQ51EHN9G5DAMYN'),
-                email: 'player+0@email.com',
-                gender: Gender::Female,
-                nickname: 'player+0',
-                password: 'hashed_password'
-            ),
-            '01GBFF6QBSBH7RRTK6N0770BSY' => Player::create(
-                id: Ulid::fromString('01GBFF6QBSBH7RRTK6N0770BSY'),
-                email: 'player+1@email.com',
-                gender: Gender::Male,
-                nickname: 'player+1',
-                password: 'hashed_password'
-            ),
+            '01GBJK7XV3YXQ51EHN9G5DAMYN' => self::createPlayer(1, '01GBJK7XV3YXQ51EHN9G5DAMYN'),
+            '01GBFF6QBSBH7RRTK6N0770BSY' => self::createPlayer(2, '01GBFF6QBSBH7RRTK6N0770BSY'),
         ];
     }
 

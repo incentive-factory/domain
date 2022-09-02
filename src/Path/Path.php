@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace IncentiveFactory\Game\Path;
 
 use DateTimeInterface;
+use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Game\Shared\Entity\TrainingInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class Path
 {
     private Ulid $id;
 
-    private Player $player;
+    private PlayerInterface $player;
 
-    private Training $training;
+    private TrainingInterface $training;
 
     private DateTimeInterface $beganAt;
 
-    public static function create(Ulid $id, Player $player, Training $training, DateTimeInterface $beganAt): self
+    public static function create(Ulid $id, PlayerInterface $player, Training $training, DateTimeInterface $beganAt): self
     {
         $registration = new self();
         $registration->id = $id;
@@ -33,12 +35,12 @@ final class Path
         return $this->id;
     }
 
-    public function player(): Player
+    public function player(): PlayerInterface
     {
         return $this->player;
     }
 
-    public function training(): Training
+    public function training(): TrainingInterface
     {
         return $this->training;
     }
