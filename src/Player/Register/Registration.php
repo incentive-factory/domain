@@ -6,7 +6,6 @@ namespace IncentiveFactory\Domain\Player\Register;
 
 use IncentiveFactory\Domain\Player\Gender;
 use IncentiveFactory\Domain\Shared\Command\Command;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
@@ -18,8 +17,7 @@ final class Registration implements Command
     #[UniqueEmail]
     public string $email;
 
-    #[Choice(callback: [Gender::class, 'all'])]
-    public string $gender;
+    public Gender $gender;
 
     #[NotBlank]
     public string $nickname;
