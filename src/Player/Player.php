@@ -39,7 +39,10 @@ final class Player implements PlayerInterface
         string $nickname,
         string $password,
         ?string $avatar = null,
-        ?Uuid $registrationToken = null
+        ?Uuid $registrationToken = null,
+        ?DateTimeInterface $registeredAt = null,
+        ?Uuid $forgottenPasswordToken = null,
+        ?DateTimeInterface $forgottenPasswordExpiredAt = null
     ): self {
         $player = new self();
         $player->id = $id;
@@ -49,6 +52,9 @@ final class Player implements PlayerInterface
         $player->password = $password;
         $player->avatar = $avatar;
         $player->registrationToken = $registrationToken;
+        $player->registeredAt = $registeredAt;
+        $player->forgottenPasswordToken = $forgottenPasswordToken;
+        $player->forgottenPasswordExpiredAt = $forgottenPasswordExpiredAt;
 
         return $player;
     }
