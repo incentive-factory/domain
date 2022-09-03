@@ -29,6 +29,7 @@ final class RegisterTest extends CommandTestCase
         self::assertSame('Password123!', $player->password());
         self::assertSame(Gender::Female, $player->gender());
         self::assertNotNull($player->registrationToken());
+        self::assertFalse($player->hasValidRegistration());
         self::assertTrue($this->eventBus->hasDispatched(NewRegistration::class));
     }
 
