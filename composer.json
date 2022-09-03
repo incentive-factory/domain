@@ -1,0 +1,54 @@
+{
+    "name": "incentive-factory/domain",
+    "description": "Domaine du projet Il était une fois un dev",
+    "type": "library",
+    "version": "0.1.0",
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "TBoileau",
+            "email": "t-boileau@email.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1.0",
+        "symfony/password-hasher": "^6.1",
+        "symfony/uid": "^6.1",
+        "symfony/validator": "^6.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.10",
+        "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "phpstan/phpstan-strict-rules": "^1.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/messenger": "^6.1",
+        "symfony/var-dumper": "^6.1"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "IncentiveFactory\\Game\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IncentiveFactory\\Game\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "6.1"
+        }
+    }
+}
