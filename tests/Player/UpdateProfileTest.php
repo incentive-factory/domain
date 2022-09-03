@@ -57,13 +57,12 @@ final class UpdateProfileTest extends CommandTestCase
     {
         yield 'blank email' => [self::createProfile(email: '')];
         yield 'invalid email' => [self::createProfile(email: 'fail')];
-        yield 'invalid gender' => [self::createProfile(gender: 'fail')];
         yield 'used email' => [self::createProfile(email: 'player+2@email.com')];
         yield 'blank nickname' => [self::createProfile(nickname: '')];
     }
 
     private static function createProfile(
-        string $gender = 'Joueuse',
+        Gender $gender = Gender::Female,
         string $email = 'player@email.com',
         string $nickname = 'player',
         string $avatar = 'avatar.png'

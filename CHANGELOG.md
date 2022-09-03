@@ -4,6 +4,9 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
+## [2022-09-03] 0.1.3
+* Revoir les commandes Registration et UpdateProfile [#68](https://github.com/incentive-factory/domain/issues/68)
+
 ## [2022-09-03] 0.1.2
 * Mise à jour de la factory method de Player [#66](https://github.com/incentive-factory/domain/issues/66)
 

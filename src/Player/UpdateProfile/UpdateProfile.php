@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Domain\Player\UpdateProfile;
 
-use IncentiveFactory\Domain\Player\Gender;
 use IncentiveFactory\Domain\Player\PlayerGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 
@@ -19,7 +18,7 @@ final class UpdateProfile implements CommandHandler
         $player = $profile->player;
         $player->update(
             email: $profile->email,
-            gender: Gender::from($profile->gender),
+            gender: $profile->gender,
             nickname: $profile->nickname,
             avatar: $profile->avatar
         );

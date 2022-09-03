@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Domain\Player\Register;
 
-use IncentiveFactory\Domain\Player\Gender;
 use IncentiveFactory\Domain\Player\Player;
 use IncentiveFactory\Domain\Player\PlayerGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
@@ -27,7 +26,7 @@ final class Register implements CommandHandler
         $player = Player::create(
             id: $this->ulidGenerator->generate(),
             email: $registration->email,
-            gender: Gender::from($registration->gender),
+            gender: $registration->gender,
             nickname: $registration->nickname,
             password: $this->passwordHasher->hash($registration->plainPassword)
         );
