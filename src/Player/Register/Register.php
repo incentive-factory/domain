@@ -9,6 +9,7 @@ use IncentiveFactory\Domain\Player\PlayerGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 use IncentiveFactory\Domain\Shared\Event\EventBus;
 use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
+use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 final class Register implements CommandHandler
@@ -16,6 +17,7 @@ final class Register implements CommandHandler
     public function __construct(
         private PasswordHasherInterface $passwordHasher,
         private UlidGeneratorInterface $ulidGenerator,
+        private UuidGeneratorInterface $uuidGenerator,
         private PlayerGateway $playerGateway,
         private EventBus $eventBus
     ) {
@@ -30,6 +32,8 @@ final class Register implements CommandHandler
             nickname: $registration->nickname,
             password: $this->passwordHasher->hash($registration->plainPassword)
         );
+
+        $player->prepareValidationOfRegistration($this->uuidGenerator->generate());
 
         $this->playerGateway->register($player);
 

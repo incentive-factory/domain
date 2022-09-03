@@ -20,11 +20,9 @@ use IncentiveFactory\Domain\Path\GetTranings\GetTrainings;
 use IncentiveFactory\Domain\Path\GetTranings\ListOfTrainings;
 use IncentiveFactory\Domain\Path\PathGateway;
 use IncentiveFactory\Domain\Path\TrainingGateway;
-use IncentiveFactory\Domain\Player\CreateRegistrationToken\CreateRegistrationToken;
 use IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordToken;
 use IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken\GetPlayerByForgottenPasswordToken;
 use IncentiveFactory\Domain\Player\PlayerGateway;
-use IncentiveFactory\Domain\Player\Register\NewRegistration;
 use IncentiveFactory\Domain\Player\Register\Register;
 use IncentiveFactory\Domain\Player\Register\Registration;
 use IncentiveFactory\Domain\Player\Register\UniqueEmailValidator as RegisterUniqueEmailValidator;
@@ -120,6 +118,7 @@ return function (Container $container): void {
             static fn (Container $container): Register => new Register(
                 $container->get(PasswordHasherInterface::class),
                 $container->get(UlidGeneratorInterface::class),
+                $container->get(UuidGeneratorInterface::class),
                 $container->get(PlayerGateway::class),
                 $container->get(EventBus::class)
             )
@@ -216,17 +215,8 @@ return function (Container $container): void {
                 ->getPasswordHasher('common')
         )
         ->set(
-            CreateRegistrationToken::class,
-            static fn (Container $container): CreateRegistrationToken => new CreateRegistrationToken(
-                $container->get(UuidGeneratorInterface::class),
-                $container->get(PlayerGateway::class)
-            )
-        )
-        ->set(
             EventBus::class,
-            static fn (Container $container): EventBus => new TestEventBus([
-                NewRegistration::class => $container->get(CreateRegistrationToken::class),
-            ])
+            static fn (Container $container): EventBus => new TestEventBus()
         )
         ->set(
             QueryBus::class,
