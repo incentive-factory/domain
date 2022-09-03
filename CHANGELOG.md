@@ -4,6 +4,9 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
+## [2022-09-03] 0.1.5
+* Modifier la gestion des événements [#72](https://github.com/incentive-factory/domain/issues/72)
+
 ## [2022-09-03] 0.1.4
 * Vérifier si un joueur-euse à valider son inscription [#70](https://github.com/incentive-factory/domain/issues/70)
 
