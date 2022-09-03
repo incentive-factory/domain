@@ -4,6 +4,9 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
+## [2022-09-03] 0.1.1
+* Renommer le prefix de l'autoload [#64](https://github.com/incentive-factory/domain/issues/64)
+
 ## [2022-09-03] 0.1.0
 * Inscription [#5](https://github.com/incentive-factory/domain/issues/5)
 * Modifier le profil d'un joueur [#7](https://github.com/incentive-factory/domain/issues/7)
