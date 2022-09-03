@@ -52,12 +52,11 @@ final class RegisterTest extends CommandTestCase
         yield 'blank nickname' => [self::createRegistration(nickname: '')];
         yield 'blank plainPassword' => [self::createRegistration(plainPassword: '')];
         yield 'invalid plainPassword' => [self::createRegistration(plainPassword: 'fail')];
-        yield 'invalid gender' => [self::createRegistration(gender: 'fail')];
     }
 
     private static function createRegistration(
         string $email = 'player@email.com',
-        string $gender = 'Joueuse',
+        Gender $gender = Gender::Female,
         string $nickname = 'player',
         string $plainPassword = 'Password123!'
     ): Registration {
