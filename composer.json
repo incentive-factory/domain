@@ -2,6 +2,7 @@
     "name": "incentive-factory/domain",
     "description": "Domaine du projet Il était une fois un dev",
     "type": "library",
+    "version": "0.1.0",
     "license": "GPL-3.0-or-later",
     "minimum-stability": "stable",
     "prefer-stable": true,
