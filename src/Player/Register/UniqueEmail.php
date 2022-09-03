@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\Register;
+namespace IncentiveFactory\Domain\Player\Register;
 
 use Attribute;
 use Symfony\Component\Validator\Constraint;

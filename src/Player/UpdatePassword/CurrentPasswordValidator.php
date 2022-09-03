@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\UpdatePassword;
+namespace IncentiveFactory\Domain\Player\UpdatePassword;
 
 use InvalidArgumentException;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;

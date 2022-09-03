@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Course;
+namespace IncentiveFactory\Domain\Tests\Course;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Course\BeginCourse\BeginningOfCourse;
-use IncentiveFactory\Game\Course\BeginCourse\CourseAlreadyBeganException;
-use IncentiveFactory\Game\Course\BeginCourse\CourseBegan;
-use IncentiveFactory\Game\Course\Course;
-use IncentiveFactory\Game\Course\CourseGateway;
-use IncentiveFactory\Game\Course\CourseLog;
-use IncentiveFactory\Game\Course\CourseLogGateway;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryCourseLogRepository;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
-use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Domain\Course\BeginCourse\BeginningOfCourse;
+use IncentiveFactory\Domain\Course\BeginCourse\CourseAlreadyBeganException;
+use IncentiveFactory\Domain\Course\BeginCourse\CourseBegan;
+use IncentiveFactory\Domain\Course\Course;
+use IncentiveFactory\Domain\Course\CourseGateway;
+use IncentiveFactory\Domain\Course\CourseLog;
+use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryCourseLogRepository;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPlayerRepository;
+use IncentiveFactory\Domain\Tests\CommandTestCase;
 
 final class BeginCourseTest extends CommandTestCase
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\RequestForgottenPassword;
+namespace IncentiveFactory\Domain\Player\RequestForgottenPassword;
 
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Shared\Event\Event;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Shared\Event\Event;
 
 final class ForgottenPasswordRequested implements Event
 {

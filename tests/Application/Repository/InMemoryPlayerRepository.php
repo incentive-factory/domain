@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\Repository;
+namespace IncentiveFactory\Domain\Tests\Application\Repository;
 
-use IncentiveFactory\Game\Player\Gender;
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
+use IncentiveFactory\Domain\Player\Gender;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryPlayerRepository implements PlayerGateway

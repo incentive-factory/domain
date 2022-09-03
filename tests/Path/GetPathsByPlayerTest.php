@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Path;
+namespace IncentiveFactory\Domain\Tests\Path;
 
-use IncentiveFactory\Game\Path\GetPathsByPlayer\PlayerPaths;
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
-use IncentiveFactory\Game\Tests\QueryTestCase;
+use IncentiveFactory\Domain\Path\GetPathsByPlayer\PlayerPaths;
+use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPlayerRepository;
+use IncentiveFactory\Domain\Tests\QueryTestCase;
 
 final class GetPathsByPlayerTest extends QueryTestCase
 {

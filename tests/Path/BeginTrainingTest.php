@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Path;
+namespace IncentiveFactory\Domain\Tests\Path;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Path\BeginTraining\BeginningOfTraining;
-use IncentiveFactory\Game\Path\BeginTraining\TrainingAlreadyBeganException;
-use IncentiveFactory\Game\Path\BeginTraining\TrainingBegan;
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Path\PathGateway;
-use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Path\TrainingGateway;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPathRepository;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
-use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Domain\Path\BeginTraining\BeginningOfTraining;
+use IncentiveFactory\Domain\Path\BeginTraining\TrainingAlreadyBeganException;
+use IncentiveFactory\Domain\Path\BeginTraining\TrainingBegan;
+use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Path\PathGateway;
+use IncentiveFactory\Domain\Path\Training;
+use IncentiveFactory\Domain\Path\TrainingGateway;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPathRepository;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPlayerRepository;
+use IncentiveFactory\Domain\Tests\CommandTestCase;
 
 final class BeginTrainingTest extends CommandTestCase
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\CQRS;
+namespace IncentiveFactory\Domain\Tests\Application\CQRS;
 
-use IncentiveFactory\Game\Shared\Event\Event;
-use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Shared\Event\EventListener;
+use IncentiveFactory\Domain\Shared\Event\Event;
+use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\Event\EventListener;
 
 final class TestEventBus implements EventBus
 {

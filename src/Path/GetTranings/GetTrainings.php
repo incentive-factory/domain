@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Path\GetTranings;
+namespace IncentiveFactory\Domain\Path\GetTranings;
 
-use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Path\TrainingGateway;
-use IncentiveFactory\Game\Shared\Query\QueryHandler;
+use IncentiveFactory\Domain\Path\Training;
+use IncentiveFactory\Domain\Path\TrainingGateway;
+use IncentiveFactory\Domain\Shared\Query\QueryHandler;
 
 final class GetTrainings implements QueryHandler
 {

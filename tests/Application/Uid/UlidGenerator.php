@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\Uid;
+namespace IncentiveFactory\Domain\Tests\Application\Uid;
 
-use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
+use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class UlidGenerator implements UlidGeneratorInterface

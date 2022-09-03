@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\RequestForgottenPassword;
+namespace IncentiveFactory\Domain\Player\RequestForgottenPassword;
 
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
-use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
 
 final class RequestForgottenPassword implements CommandHandler
 {

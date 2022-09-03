@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\UpdateProfile;
+namespace IncentiveFactory\Domain\Player\UpdateProfile;
 
-use IncentiveFactory\Game\Player\Gender;
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Shared\Command\Command;
+use IncentiveFactory\Domain\Player\Gender;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Shared\Command\Command;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;

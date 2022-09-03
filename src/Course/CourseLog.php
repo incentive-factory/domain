@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course;
+namespace IncentiveFactory\Domain\Course;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class CourseLog

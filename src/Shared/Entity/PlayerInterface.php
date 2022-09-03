@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Shared\Entity;
+namespace IncentiveFactory\Domain\Shared\Entity;
 
 use Symfony\Component\Uid\Ulid;
 

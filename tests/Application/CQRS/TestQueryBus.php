@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\CQRS;
+namespace IncentiveFactory\Domain\Tests\Application\CQRS;
 
-use IncentiveFactory\Game\Shared\Query\Query;
-use IncentiveFactory\Game\Shared\Query\QueryBus;
-use IncentiveFactory\Game\Shared\Query\QueryHandler;
+use IncentiveFactory\Domain\Shared\Query\Query;
+use IncentiveFactory\Domain\Shared\Query\QueryBus;
+use IncentiveFactory\Domain\Shared\Query\QueryHandler;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 use Symfony\Component\Validator\ContainerConstraintValidatorFactory;

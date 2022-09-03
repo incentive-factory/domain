@@ -37,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "IncentiveFactory\\Game\\": "src/"
+            "IncentiveFactory\\Domain\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "IncentiveFactory\\Game\\Tests\\": "tests/"
+            "IncentiveFactory\\Domain\\Tests\\": "tests/"
         }
     },
     "extra": {

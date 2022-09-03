@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Player;
+namespace IncentiveFactory\Domain\Tests\Player;
 
 use Closure;
 use Generator;
-use IncentiveFactory\Game\Player\Gender;
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Player\UpdateProfile\Profile;
-use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Domain\Player\Gender;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Player\UpdateProfile\Profile;
+use IncentiveFactory\Domain\Tests\CommandTestCase;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 final class UpdateProfileTest extends CommandTestCase

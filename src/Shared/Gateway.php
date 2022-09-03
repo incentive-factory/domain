@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Shared;
+namespace IncentiveFactory\Domain\Shared;
 
 /**
  * @template T

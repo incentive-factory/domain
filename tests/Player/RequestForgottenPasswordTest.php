@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Player;
+namespace IncentiveFactory\Domain\Tests\Player;
 
 use DateTimeImmutable;
 use Generator;
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Player\RequestForgottenPassword\ForgottenPasswordRequest;
-use IncentiveFactory\Game\Player\RequestForgottenPassword\ForgottenPasswordRequested;
-use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
-use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Player\RequestForgottenPassword\ForgottenPasswordRequest;
+use IncentiveFactory\Domain\Player\RequestForgottenPassword\ForgottenPasswordRequested;
+use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
+use IncentiveFactory\Domain\Tests\CommandTestCase;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 final class RequestForgottenPasswordTest extends CommandTestCase

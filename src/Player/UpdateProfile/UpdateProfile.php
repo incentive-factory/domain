@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\UpdateProfile;
+namespace IncentiveFactory\Domain\Player\UpdateProfile;
 
-use IncentiveFactory\Game\Player\Gender;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Player\Gender;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 
 final class UpdateProfile implements CommandHandler
 {

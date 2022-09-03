@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Shared\Query;
+namespace IncentiveFactory\Domain\Shared\Query;
 
 /**
  * @method mixed __invoke(Query $query)

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\ValidRegistration;
+namespace IncentiveFactory\Domain\Player\ValidRegistration;
 
-use IncentiveFactory\Game\Player\PlayerGateway;
+use IncentiveFactory\Domain\Player\PlayerGateway;
 use InvalidArgumentException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

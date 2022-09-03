@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Path;
+namespace IncentiveFactory\Domain\Tests\Path;
 
 use DateTimeImmutable;
 use Generator;
-use IncentiveFactory\Game\Path\GetTrainingBySlug\TrainingSlug;
-use IncentiveFactory\Game\Path\Level;
-use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Tests\QueryTestCase;
+use IncentiveFactory\Domain\Path\GetTrainingBySlug\TrainingSlug;
+use IncentiveFactory\Domain\Path\Level;
+use IncentiveFactory\Domain\Path\Training;
+use IncentiveFactory\Domain\Tests\QueryTestCase;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 final class GetTrainingBySlugTest extends QueryTestCase
