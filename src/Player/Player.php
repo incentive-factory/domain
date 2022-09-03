@@ -143,4 +143,9 @@ final class Player implements PlayerInterface
         $this->forgottenPasswordToken = $forgottenPasswordToken;
         $this->forgottenPasswordExpiredAt = new DateTimeImmutable('24 hours');
     }
+
+    public function hasValidRegistration(): bool
+    {
+        return null !== $this->registeredAt && null === $this->registrationToken;
+    }
 }

@@ -30,6 +30,7 @@ final class ValidRegistrationTest extends CommandTestCase
 
         self::assertNull($player->registrationToken());
         self::assertNotNull($player->registeredAt());
+        self::assertTrue($player->hasValidRegistration());
     }
 
     public function testShouldFailedDueToUnexistingRegistrationToken(): void
