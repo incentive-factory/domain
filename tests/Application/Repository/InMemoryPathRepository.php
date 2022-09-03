@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\Repository;
+namespace IncentiveFactory\Domain\Tests\Application\Repository;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Path\PathGateway;
-use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Path\PathGateway;
+use IncentiveFactory\Domain\Path\Training;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryPathRepository implements PathGateway

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\Container;
+namespace IncentiveFactory\Domain\Tests\Application\Container;
 
 use Closure;
 use Psr\Container\ContainerInterface;

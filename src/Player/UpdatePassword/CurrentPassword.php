@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\UpdatePassword;
+namespace IncentiveFactory\Domain\Player\UpdatePassword;
 
 use Attribute;
 use Symfony\Component\Validator\Constraint;

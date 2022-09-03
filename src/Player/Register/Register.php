@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\Register;
+namespace IncentiveFactory\Domain\Player\Register;
 
-use IncentiveFactory\Game\Player\Gender;
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
-use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
+use IncentiveFactory\Domain\Player\Gender;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 final class Register implements CommandHandler

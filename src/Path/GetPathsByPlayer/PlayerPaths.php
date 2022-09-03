@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Path\GetPathsByPlayer;
+namespace IncentiveFactory\Domain\Path\GetPathsByPlayer;
 
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
-use IncentiveFactory\Game\Shared\Query\Query;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Query\Query;
 
 final class PlayerPaths implements Query
 {

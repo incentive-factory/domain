@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Course;
+namespace IncentiveFactory\Domain\Tests\Course;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Course\CompleteCourse\CompletingOfCourse;
-use IncentiveFactory\Game\Course\CompleteCourse\CourseAlreadyCompletedException;
-use IncentiveFactory\Game\Course\CompleteCourse\CourseCompleted;
-use IncentiveFactory\Game\Course\CourseLogGateway;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryCourseLogRepository;
-use IncentiveFactory\Game\Tests\CommandTestCase;
+use IncentiveFactory\Domain\Course\CompleteCourse\CompletingOfCourse;
+use IncentiveFactory\Domain\Course\CompleteCourse\CourseAlreadyCompletedException;
+use IncentiveFactory\Domain\Course\CompleteCourse\CourseCompleted;
+use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryCourseLogRepository;
+use IncentiveFactory\Domain\Tests\CommandTestCase;
 
 final class CompleteCourseTest extends CommandTestCase
 {

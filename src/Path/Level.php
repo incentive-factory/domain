@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Path;
+namespace IncentiveFactory\Domain\Path;
 
 enum Level: int
 {

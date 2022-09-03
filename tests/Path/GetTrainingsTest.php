@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Path;
+namespace IncentiveFactory\Domain\Tests\Path;
 
-use IncentiveFactory\Game\Path\GetTranings\ListOfTrainings;
-use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Tests\QueryTestCase;
+use IncentiveFactory\Domain\Path\GetTranings\ListOfTrainings;
+use IncentiveFactory\Domain\Path\Training;
+use IncentiveFactory\Domain\Tests\QueryTestCase;
 
 final class GetTrainingsTest extends QueryTestCase
 {

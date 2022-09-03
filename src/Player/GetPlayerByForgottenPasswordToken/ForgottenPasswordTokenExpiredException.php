@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken;
+namespace IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken;
 
 use InvalidArgumentException;
 

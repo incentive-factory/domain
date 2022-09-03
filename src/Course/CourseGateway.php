@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course;
+namespace IncentiveFactory\Domain\Course;
 
-use IncentiveFactory\Game\Shared\Gateway;
+use IncentiveFactory\Domain\Shared\Gateway;
 
 /**
  * @template-extends Gateway<Course>

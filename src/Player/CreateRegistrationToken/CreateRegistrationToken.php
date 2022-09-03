@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\CreateRegistrationToken;
+namespace IncentiveFactory\Domain\Player\CreateRegistrationToken;
 
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Player\Register\NewRegistration;
-use IncentiveFactory\Game\Shared\Event\EventListener;
-use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Player\Register\NewRegistration;
+use IncentiveFactory\Domain\Shared\Event\EventListener;
+use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
 
 final class CreateRegistrationToken implements EventListener
 {

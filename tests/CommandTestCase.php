@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests;
+namespace IncentiveFactory\Domain\Tests;
 
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Command\CommandBus;
-use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Tests\Application\Container\Container;
-use IncentiveFactory\Game\Tests\Application\CQRS\TestEventBus;
-use IncentiveFactory\Game\Tests\Application\Repository\InMemoryPlayerRepository;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandBus;
+use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Tests\Application\Container\Container;
+use IncentiveFactory\Domain\Tests\Application\CQRS\TestEventBus;
+use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPlayerRepository;
 
 abstract class CommandTestCase extends ContainerTestCase
 {

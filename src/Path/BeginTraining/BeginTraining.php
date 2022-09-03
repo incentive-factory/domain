@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Path\BeginTraining;
+namespace IncentiveFactory\Domain\Path\BeginTraining;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Path\PathGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
-use IncentiveFactory\Game\Shared\Event\EventBus;
-use IncentiveFactory\Game\Shared\Uid\UlidGeneratorInterface;
+use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Path\PathGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 
 final class BeginTraining implements CommandHandler
 {

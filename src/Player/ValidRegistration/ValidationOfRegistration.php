@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\ValidRegistration;
+namespace IncentiveFactory\Domain\Player\ValidRegistration;
 
-use IncentiveFactory\Game\Shared\Command\Command;
+use IncentiveFactory\Domain\Shared\Command\Command;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Uuid;
 

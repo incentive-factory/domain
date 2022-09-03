@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\ValidRegistration;
+namespace IncentiveFactory\Domain\Player\ValidRegistration;
 
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 
 final class ValidRegistration implements CommandHandler
 {

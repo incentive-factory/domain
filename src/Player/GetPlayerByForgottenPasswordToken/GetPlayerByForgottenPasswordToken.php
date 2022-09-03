@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken;
+namespace IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken;
 
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Query\QueryHandler;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Query\QueryHandler;
 
 final class GetPlayerByForgottenPasswordToken implements QueryHandler
 {

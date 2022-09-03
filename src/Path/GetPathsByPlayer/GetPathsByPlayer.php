@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Path\GetPathsByPlayer;
+namespace IncentiveFactory\Domain\Path\GetPathsByPlayer;
 
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Path\PathGateway;
-use IncentiveFactory\Game\Shared\Query\QueryHandler;
+use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Path\PathGateway;
+use IncentiveFactory\Domain\Shared\Query\QueryHandler;
 
 final class GetPathsByPlayer implements QueryHandler
 {
