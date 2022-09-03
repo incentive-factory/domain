@@ -4,4 +4,25 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2022-09-03] 0.1.0
+* Inscription [#5](https://github.com/incentive-factory/domain/issues/5)
+* Modifier le profil d'un joueur [#7](https://github.com/incentive-factory/domain/issues/7)
+* Validation d'une inscription [#11](https://github.com/incentive-factory/domain/issues/11)
+* Modifier le mot de passe [#12](https://github.com/incentive-factory/domain/issues/12)
+* Demande d'oubli de mot de passe [#13](https://github.com/incentive-factory/domain/issues/13)
+* Réinitialiser le mot de passe [#24](https://github.com/incentive-factory/domain/issues/24)
+* Choix joueur/joueuse [#25](https://github.com/incentive-factory/domain/issues/25)
+* Récupérer un utilisateur en fonction de token de mot de passe oublié [#26](https://github.com/incentive-factory/domain/issues/26)
+* Documenter le README.md [#32](https://github.com/incentive-factory/domain/issues/32)
+* Rédiger le CONTRIBUTING.md [#33](https://github.com/incentive-factory/domain/issues/33)
+* Rédiger le CODE_OF_CONDUCT.md [#34](https://github.com/incentive-factory/domain/issues/34)
+* Ajouter la licence GPL-3.0 [#35](https://github.com/incentive-factory/domain/issues/35)
+* Rédiger un CHANGELOG.md [#38](https://github.com/incentive-factory/domain/issues/38)
+* Documentation [#39](https://github.com/incentive-factory/domain/issues/39)
+* Lister les formations [#42](https://github.com/incentive-factory/domain/issues/42)
+* Récupérer une formation [#43](https://github.com/incentive-factory/domain/issues/43)
+* Commencer un parcours [#44](https://github.com/incentive-factory/domain/issues/44)
+* Récupérer un cours [#46](https://github.com/incentive-factory/domain/issues/46)
+* Commencer un cours [#47](https://github.com/incentive-factory/domain/issues/47)
+* Terminer un cours [#48](https://github.com/incentive-factory/domain/issues/48)
+* Lister les parcours d'un joueur [#55](https://github.com/incentive-factory/domain/issues/55)
