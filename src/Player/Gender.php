@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player;
+namespace IncentiveFactory\Domain\Player;
 
 enum Gender: string
 {

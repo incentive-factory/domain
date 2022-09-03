@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\ResetPassword;
+namespace IncentiveFactory\Domain\Player\ResetPassword;
 
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 final class ResetPassword implements CommandHandler

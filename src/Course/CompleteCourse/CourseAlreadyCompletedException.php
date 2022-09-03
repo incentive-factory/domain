@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course\CompleteCourse;
+namespace IncentiveFactory\Domain\Course\CompleteCourse;
 
 use InvalidArgumentException;
 

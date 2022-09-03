@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Player;
+namespace IncentiveFactory\Domain\Tests\Player;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordToken;
-use IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordTokenExpiredException;
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Player\PlayerGateway;
-use IncentiveFactory\Game\Shared\Uid\UuidGeneratorInterface;
-use IncentiveFactory\Game\Tests\QueryTestCase;
+use IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordToken;
+use IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken\ForgottenPasswordTokenExpiredException;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Player\PlayerGateway;
+use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
+use IncentiveFactory\Domain\Tests\QueryTestCase;
 use ReflectionProperty;
 
 final class GetPlayerByForgottenPasswordTokenTest extends QueryTestCase

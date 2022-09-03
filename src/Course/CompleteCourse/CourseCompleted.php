@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course\CompleteCourse;
+namespace IncentiveFactory\Domain\Course\CompleteCourse;
 
-use IncentiveFactory\Game\Course\CourseLog;
-use IncentiveFactory\Game\Shared\Event\Event;
+use IncentiveFactory\Domain\Course\CourseLog;
+use IncentiveFactory\Domain\Shared\Event\Event;
 
 final class CourseCompleted implements Event
 {

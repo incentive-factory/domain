@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player;
+namespace IncentiveFactory\Domain\Player;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 use Symfony\Component\Uid\Uuid;
 

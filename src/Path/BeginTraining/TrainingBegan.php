@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Path\BeginTraining;
+namespace IncentiveFactory\Domain\Path\BeginTraining;
 
-use IncentiveFactory\Game\Path\Path;
-use IncentiveFactory\Game\Shared\Event\Event;
+use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Shared\Event\Event;
 
 final class TrainingBegan implements Event
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course;
+namespace IncentiveFactory\Domain\Course;
 
 use DateTimeInterface;
-use IncentiveFactory\Game\Shared\Entity\TrainingInterface;
+use IncentiveFactory\Domain\Shared\Entity\TrainingInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class Course

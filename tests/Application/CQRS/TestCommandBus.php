@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\CQRS;
+namespace IncentiveFactory\Domain\Tests\Application\CQRS;
 
-use IncentiveFactory\Game\Shared\Command\Command;
-use IncentiveFactory\Game\Shared\Command\CommandBus;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Shared\Command\Command;
+use IncentiveFactory\Domain\Shared\Command\CommandBus;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 use Symfony\Component\Validator\ContainerConstraintValidatorFactory;

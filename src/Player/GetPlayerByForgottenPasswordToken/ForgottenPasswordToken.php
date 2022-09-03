@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\GetPlayerByForgottenPasswordToken;
+namespace IncentiveFactory\Domain\Player\GetPlayerByForgottenPasswordToken;
 
-use IncentiveFactory\Game\Shared\Query\Query;
+use IncentiveFactory\Domain\Shared\Query\Query;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Uuid;
 

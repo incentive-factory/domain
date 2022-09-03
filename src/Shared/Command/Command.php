@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Shared\Command;
+namespace IncentiveFactory\Domain\Shared\Command;
 
 interface Command
 {

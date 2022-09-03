@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\Register;
+namespace IncentiveFactory\Domain\Player\Register;
 
-use IncentiveFactory\Game\Player\Gender;
-use IncentiveFactory\Game\Shared\Command\Command;
+use IncentiveFactory\Domain\Player\Gender;
+use IncentiveFactory\Domain\Shared\Command\Command;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;

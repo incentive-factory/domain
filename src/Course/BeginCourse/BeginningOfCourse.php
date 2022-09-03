@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course\BeginCourse;
+namespace IncentiveFactory\Domain\Course\BeginCourse;
 
-use IncentiveFactory\Game\Course\Course;
-use IncentiveFactory\Game\Shared\Command\Command;
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Course\Course;
+use IncentiveFactory\Domain\Shared\Command\Command;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 
 final class BeginningOfCourse implements Command
 {

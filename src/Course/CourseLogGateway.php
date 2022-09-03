@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course;
+namespace IncentiveFactory\Domain\Course;
 
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
-use IncentiveFactory\Game\Shared\Gateway;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Gateway;
 
 /**
  * @template-extends Gateway<CourseLog>

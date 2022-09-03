@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Course;
+namespace IncentiveFactory\Domain\Tests\Course;
 
 use DateTimeImmutable;
 use Generator;
-use IncentiveFactory\Game\Course\Course;
-use IncentiveFactory\Game\Course\GetCourseBySlug\CourseSlug;
-use IncentiveFactory\Game\Course\Level;
-use IncentiveFactory\Game\Tests\QueryTestCase;
+use IncentiveFactory\Domain\Course\Course;
+use IncentiveFactory\Domain\Course\GetCourseBySlug\CourseSlug;
+use IncentiveFactory\Domain\Course\Level;
+use IncentiveFactory\Domain\Tests\QueryTestCase;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 final class GetCourseBySlugTest extends QueryTestCase

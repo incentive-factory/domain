@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests;
+namespace IncentiveFactory\Domain\Tests;
 
-use IncentiveFactory\Game\Shared\Query\QueryBus;
-use IncentiveFactory\Game\Tests\Application\Container\Container;
+use IncentiveFactory\Domain\Shared\Query\QueryBus;
+use IncentiveFactory\Domain\Tests\Application\Container\Container;
 
 abstract class QueryTestCase extends ContainerTestCase
 {

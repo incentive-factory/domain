@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course\CompleteCourse;
+namespace IncentiveFactory\Domain\Course\CompleteCourse;
 
-use IncentiveFactory\Game\Course\CourseLogGateway;
-use IncentiveFactory\Game\Shared\Command\CommandHandler;
-use IncentiveFactory\Game\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Shared\Command\CommandHandler;
+use IncentiveFactory\Domain\Shared\Event\EventBus;
 
 final class CompleteCourse implements CommandHandler
 {

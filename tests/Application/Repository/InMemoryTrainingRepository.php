@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\Repository;
+namespace IncentiveFactory\Domain\Tests\Application\Repository;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Path\Level;
-use IncentiveFactory\Game\Path\Training;
-use IncentiveFactory\Game\Path\TrainingGateway;
+use IncentiveFactory\Domain\Path\Level;
+use IncentiveFactory\Domain\Path\Training;
+use IncentiveFactory\Domain\Path\TrainingGateway;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryTrainingRepository implements TrainingGateway

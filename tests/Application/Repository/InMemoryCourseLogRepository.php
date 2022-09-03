@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests\Application\Repository;
+namespace IncentiveFactory\Domain\Tests\Application\Repository;
 
 use DateTimeImmutable;
-use IncentiveFactory\Game\Course\Course;
-use IncentiveFactory\Game\Course\CourseLog;
-use IncentiveFactory\Game\Course\CourseLogGateway;
-use IncentiveFactory\Game\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Course\Course;
+use IncentiveFactory\Domain\Course\CourseLog;
+use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryCourseLogRepository implements CourseLogGateway

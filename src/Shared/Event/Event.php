@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Shared\Event;
+namespace IncentiveFactory\Domain\Shared\Event;
 
 interface Event
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Tests;
+namespace IncentiveFactory\Domain\Tests;
 
-use IncentiveFactory\Game\Tests\Application\Container\Container;
+use IncentiveFactory\Domain\Tests\Application\Container\Container;
 use PHPUnit\Framework\TestCase;
 
 abstract class ContainerTestCase extends TestCase

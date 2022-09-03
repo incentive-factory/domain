@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Player\ResetPassword;
+namespace IncentiveFactory\Domain\Player\ResetPassword;
 
-use IncentiveFactory\Game\Player\Player;
-use IncentiveFactory\Game\Shared\Command\Command;
+use IncentiveFactory\Domain\Player\Player;
+use IncentiveFactory\Domain\Shared\Command\Command;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Regex;
 

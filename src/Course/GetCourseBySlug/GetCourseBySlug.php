@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Game\Course\GetCourseBySlug;
+namespace IncentiveFactory\Domain\Course\GetCourseBySlug;
 
-use IncentiveFactory\Game\Course\Course;
-use IncentiveFactory\Game\Course\CourseGateway;
-use IncentiveFactory\Game\Shared\Query\QueryHandler;
+use IncentiveFactory\Domain\Course\Course;
+use IncentiveFactory\Domain\Course\CourseGateway;
+use IncentiveFactory\Domain\Shared\Query\QueryHandler;
 
 final class GetCourseBySlug implements QueryHandler
 {
