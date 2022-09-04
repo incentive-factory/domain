@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Domain\Course;
 
-use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Entity\PathInterface;
 use IncentiveFactory\Domain\Shared\Gateway;
 
 /**
@@ -16,5 +16,5 @@ interface CourseLogGateway extends Gateway
 
     public function complete(CourseLog $courseLog): void;
 
-    public function hasAlreadyBegan(PlayerInterface $player, Course $course): bool;
+    public function hasAlreadyBegan(PathInterface $path, Course $course): bool;
 }

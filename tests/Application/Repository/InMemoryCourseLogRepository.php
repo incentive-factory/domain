@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use IncentiveFactory\Domain\Course\Course;
 use IncentiveFactory\Domain\Course\CourseLog;
 use IncentiveFactory\Domain\Course\CourseLogGateway;
-use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Entity\PathInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryCourseLogRepository implements CourseLogGateway
@@ -28,22 +28,46 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
         $this->courseLogs = [
             '01GBYPDXW2T78ZAKSANH3G810V' => CourseLog::create(
                 id: Ulid::fromString('01GBYPDXW2T78ZAKSANH3G810V'),
-                player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
-                course: InMemoryCourseRepository::createCourse(1, '01GBYMQQK3TY08FEVA0GTJ4QZM', InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')),
+                path: InMemoryPathRepository::createPath(
+                    id: '01GBXF8ATAE03HY5ZC3ES90122',
+                    player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
+                    training: InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')
+                ),
+                course: InMemoryCourseRepository::createCourse(
+                    1,
+                    '01GBYMQQK3TY08FEVA0GTJ4QZM',
+                    InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')
+                ),
                 beganAt: new DateTimeImmutable('2021-01-01 00:00:00'),
                 completedAt: new DateTimeImmutable('2021-01-02 00:00:00')
             ),
             '01GBYPE4FW8J8TN21CA3AFSXQH' => CourseLog::create(
                 id: Ulid::fromString('01GBYPE4FW8J8TN21CA3AFSXQH'),
-                player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
-                course: InMemoryCourseRepository::createCourse(2, '01GBYN0SWAMB7N272PW7G1VDF0', InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')),
+                path: InMemoryPathRepository::createPath(
+                    id: '01GBXF8ATAE03HY5ZC3ES90122',
+                    player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
+                    training: InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')
+                ),
+                course: InMemoryCourseRepository::createCourse(
+                    2,
+                    '01GBYN0SWAMB7N272PW7G1VDF0',
+                    InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')
+                ),
                 beganAt: new DateTimeImmutable('2021-01-01 00:00:00'),
                 completedAt: new DateTimeImmutable('2021-01-02 00:00:00')
             ),
             '01GBYPE9N8HTJQ4A2G1Y96FATW' => CourseLog::create(
                 id: Ulid::fromString('01GBYPE9N8HTJQ4A2G1Y96FATW'),
-                player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
-                course: InMemoryCourseRepository::createCourse(3, '01GBYN0XFWE0HSS8TT5YNXVH6W', InMemoryTrainingRepository::createTraining(1, '01GBWW5JHNPEXD8S0J5HPT97S2')),
+                path: InMemoryPathRepository::createPath(
+                    id: '01GBXF8EPC06PV81J70Z0ACKCC',
+                    player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
+                    training: InMemoryTrainingRepository::createTraining(2, '01GBWW5JHNPEXD8S0J5HPT97S2')
+                ),
+                course: InMemoryCourseRepository::createCourse(
+                    3,
+                    '01GBYN0XFWE0HSS8TT5YNXVH6W',
+                    InMemoryTrainingRepository::createTraining(1, '01GBWW5JHNPEXD8S0J5HPT97S2')
+                ),
                 beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
             ),
         ];
@@ -59,10 +83,10 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
         $this->courseLogs[(string) $courseLog->id()] = $courseLog;
     }
 
-    public function hasAlreadyBegan(PlayerInterface $player, Course $course): bool
+    public function hasAlreadyBegan(PathInterface $path, Course $course): bool
     {
         foreach ($this->courseLogs as $courseLog) {
-            if ($courseLog->player()->id()->equals($player->id()) && $courseLog->course()->id()->equals($course->id())) {
+            if ($courseLog->path()->id()->equals($path->id()) && $courseLog->course()->id()->equals($course->id())) {
                 return true;
             }
         }

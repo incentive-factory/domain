@@ -6,14 +6,14 @@ namespace IncentiveFactory\Domain\Course;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
+use IncentiveFactory\Domain\Shared\Entity\PathInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class CourseLog
 {
     private Ulid $id;
 
-    private PlayerInterface $player;
+    private PathInterface $path;
 
     private Course $course;
 
@@ -21,11 +21,11 @@ final class CourseLog
 
     private ?DateTimeInterface $completedAt = null;
 
-    public static function create(Ulid $id, PlayerInterface $player, Course $course, DateTimeInterface $beganAt, ?DateTimeInterface $completedAt = null): self
+    public static function create(Ulid $id, PathInterface $path, Course $course, DateTimeInterface $beganAt, ?DateTimeInterface $completedAt = null): self
     {
         $registration = new self();
         $registration->id = $id;
-        $registration->player = $player;
+        $registration->path = $path;
         $registration->course = $course;
         $registration->beganAt = $beganAt;
         $registration->completedAt = $completedAt;
@@ -38,9 +38,9 @@ final class CourseLog
         return $this->id;
     }
 
-    public function player(): PlayerInterface
+    public function path(): PathInterface
     {
-        return $this->player;
+        return $this->path;
     }
 
     public function course(): Course

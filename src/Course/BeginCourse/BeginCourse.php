@@ -22,13 +22,13 @@ final class BeginCourse implements CommandHandler
 
     public function __invoke(BeginningOfCourse $beginningOfCourse): void
     {
-        if ($this->courseLogGateway->hasAlreadyBegan($beginningOfCourse->player, $beginningOfCourse->course)) {
+        if ($this->courseLogGateway->hasAlreadyBegan($beginningOfCourse->path, $beginningOfCourse->course)) {
             throw new CourseAlreadyBeganException('Course already began');
         }
 
         $courseLog = CourseLog::create(
             $this->ulidGenerator->generate(),
-            $beginningOfCourse->player,
+            $beginningOfCourse->path,
             $beginningOfCourse->course,
             new DateTimeImmutable()
         );
