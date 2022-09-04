@@ -65,7 +65,12 @@ final class InMemoryCourseRepository implements CourseGateway
 
     public function countCoursesByTraining(Training $training): int
     {
-        return count(
+        return count($this->getCoursesByTraining($training));
+    }
+
+    public function getCoursesByTraining(Training $training): array
+    {
+        return array_values(
             array_filter(
                 $this->courses,
                 fn (Course $course) => (string) $course->training()->id() === (string) $training->id()
