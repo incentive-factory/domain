@@ -4,7 +4,7 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
-## [2022-09-04] 0.2.3
+## [2022-09-04] 0.2.4
 * Récupérer l'avancement d'un cours en fonction de son id [#94](https://github.com/incentive-factory/domain/issues/94)
 
 ## [2022-09-04] 0.2.3
