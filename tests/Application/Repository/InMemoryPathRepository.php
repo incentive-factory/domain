@@ -46,7 +46,7 @@ final class InMemoryPathRepository implements PathGateway
         $this->paths[(string) $path->id()] = $path;
     }
 
-    public function hasAlreadyBegan(PlayerInterface $player, Training $training): bool
+    public function hasAlreadyBegun(PlayerInterface $player, Training $training): bool
     {
         foreach ($this->paths as $path) {
             if ($path->player()->id()->equals($player->id()) && $path->training()->id()->equals($training->id())) {

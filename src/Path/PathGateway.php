@@ -14,7 +14,7 @@ interface PathGateway extends Gateway
 {
     public function begin(Path $path): void;
 
-    public function hasAlreadyBegan(PlayerInterface $player, Training $training): bool;
+    public function hasAlreadyBegun(PlayerInterface $player, Training $training): bool;
 
     /**
      * @return array<array-key, Path>
