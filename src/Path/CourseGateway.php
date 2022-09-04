@@ -14,4 +14,9 @@ interface CourseGateway extends Gateway
     public function getCourseBySlug(string $slug): ?Course;
 
     public function countCoursesByTraining(Training $training): int;
+
+    /**
+     * @return array<array-key, Course>
+     */
+    public function getCoursesByTraining(Training $training): array;
 }
