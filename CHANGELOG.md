@@ -11,6 +11,7 @@ Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommanda
 * Refactoring de CourseLog [#85](https://github.com/incentive-factory/domain/issues/85)
 * Déplacer tout le contenu du domaine Course dans Path [#86](https://github.com/incentive-factory/domain/issues/86)
 * Vérifier si un cours a déjà été commencé [#84](https://github.com/incentive-factory/domain/issues/84)
+* Compléter un parcours [#78](https://github.com/incentive-factory/domain/issues/78)
 
 ## [2022-09-04] 0.1.7
 * Renommer les méthodes des gateways [#76](https://github.com/incentive-factory/domain/issues/76)
