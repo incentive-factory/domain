@@ -68,4 +68,9 @@ final class InMemoryPathRepository implements PathGateway
 
         return $paths;
     }
+
+    public function getPathById(string $id): ?Path
+    {
+        return $this->paths[$id] ?? null;
+    }
 }

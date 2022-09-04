@@ -10,7 +10,7 @@ use IncentiveFactory\Domain\Tests\QueryTestCase;
 
 final class GetTrainingsTest extends QueryTestCase
 {
-    public function testShouldReturnListOfPath(): void
+    public function testShouldReturnListOfTrainings(): void
     {
         /** @var array<array-key, Training> $trainings */
         $trainings = $this->queryBus->fetch(new ListOfTrainings());
