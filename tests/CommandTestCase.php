@@ -15,7 +15,7 @@ abstract class CommandTestCase extends ContainerTestCase
 {
     protected CommandBus $commandBus;
 
-    protected TestEventDispatcher $eventBus;
+    protected TestEventDispatcher $eventDispatcher;
 
     protected Container $container;
 
@@ -23,7 +23,7 @@ abstract class CommandTestCase extends ContainerTestCase
     {
         $this->container = self::createContainer();
         $this->commandBus = $this->container->get(CommandBus::class);
-        $this->eventBus = $this->container->get(EventDispatcher::class);
+        $this->eventDispatcher = $this->container->get(EventDispatcher::class);
     }
 
     protected function tearDown(): void
@@ -32,6 +32,6 @@ abstract class CommandTestCase extends ContainerTestCase
         $playerRepository = $this->container->get(PlayerGateway::class);
         $playerRepository->init();
 
-        $this->eventBus->reset();
+        $this->eventDispatcher->reset();
     }
 }

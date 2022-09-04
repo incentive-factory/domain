@@ -56,7 +56,7 @@ final class BeginCourseTest extends CommandTestCase
         self::assertNull($courseLog->completedAt());
         self::assertFalse($courseLog->hasCompleted());
         self::assertLessThan(new DateTimeImmutable(), $courseLog->beganAt());
-        self::assertTrue($this->eventBus->hasDispatched(CourseBegan::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(CourseBegan::class));
     }
 
     public function testShouldRaiseAnExceptionDueToACourseLogAlreadyBegan(): void

@@ -25,7 +25,7 @@ final class CompleteCourseTest extends CommandTestCase
 
         self::assertTrue($courseLog->hasCompleted());
         self::assertLessThan(new DateTimeImmutable(), $courseLog->completedAt());
-        self::assertTrue($this->eventBus->hasDispatched(CourseCompleted::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(CourseCompleted::class));
     }
 
     public function testShouldRaiseAnExceptionDueToACourseLogAlreadyCompleted(): void

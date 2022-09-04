@@ -37,13 +37,13 @@ final class RequestForgottenPasswordTest extends CommandTestCase
         self::assertNotNull($player->forgottenPasswordExpiredAt());
         self::assertNotNull($player->forgottenPasswordToken());
         self::assertGreaterThan(new DateTimeImmutable(), $player->forgottenPasswordExpiredAt());
-        self::assertTrue($this->eventBus->hasDispatched(ForgottenPasswordRequested::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(ForgottenPasswordRequested::class));
     }
 
     public function testShouldNotCreateForgottenPasswordRequest(): void
     {
         $this->commandBus->execute(self::createForgottenPasswordRequest('fail@email.com'));
-        self::assertFalse($this->eventBus->hasDispatched(ForgottenPasswordRequested::class));
+        self::assertFalse($this->eventDispatcher->hasDispatched(ForgottenPasswordRequested::class));
     }
 
     /**

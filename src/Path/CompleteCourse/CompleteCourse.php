@@ -12,7 +12,7 @@ final class CompleteCourse implements CommandHandler
 {
     public function __construct(
         private CourseLogGateway $courseLogGateway,
-        private EventDispatcher $eventBus
+        private EventDispatcher $eventDispatcher
     ) {
     }
 
@@ -26,6 +26,6 @@ final class CompleteCourse implements CommandHandler
 
         $this->courseLogGateway->complete($completingOfCourse->courseLog);
 
-        $this->eventBus->dispatch(new CourseCompleted($completingOfCourse->courseLog));
+        $this->eventDispatcher->dispatch(new CourseCompleted($completingOfCourse->courseLog));
     }
 }
