@@ -26,5 +26,9 @@ final class Profile implements Command
 
     public function __construct(public Player $player)
     {
+        $this->email = $player->email();
+        $this->nickname = $player->nickname();
+        $this->gender = $player->gender();
+        $this->avatar = $player->avatar();
     }
 }
