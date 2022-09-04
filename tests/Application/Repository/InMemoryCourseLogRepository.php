@@ -93,4 +93,14 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
 
         return false;
     }
+
+    public function countCoursesCompletedByPath(Path $path): int
+    {
+        return count(
+            array_filter(
+                $this->courseLogs,
+                fn (CourseLog $courseLog) => (string) $courseLog->path()->id() === (string) $path->id() && $courseLog->hasCompleted()
+            )
+        );
+    }
 }

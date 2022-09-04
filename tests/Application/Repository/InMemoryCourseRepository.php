@@ -62,4 +62,14 @@ final class InMemoryCourseRepository implements CourseGateway
 
         return null;
     }
+
+    public function countCoursesByTraining(Training $training): int
+    {
+        return count(
+            array_filter(
+                $this->courses,
+                fn (Course $course) => (string) $course->training()->id() === (string) $training->id()
+            )
+        );
+    }
 }

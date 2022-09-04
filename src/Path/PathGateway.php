@@ -14,6 +14,8 @@ interface PathGateway extends Gateway
 {
     public function begin(Path $path): void;
 
+    public function complete(Path $path): void;
+
     public function hasAlreadyBegun(PlayerInterface $player, Training $training): bool;
 
     /**

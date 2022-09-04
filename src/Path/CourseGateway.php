@@ -12,4 +12,6 @@ use IncentiveFactory\Domain\Shared\Gateway;
 interface CourseGateway extends Gateway
 {
     public function getCourseBySlug(string $slug): ?Course;
+
+    public function countCoursesByTraining(Training $training): int;
 }

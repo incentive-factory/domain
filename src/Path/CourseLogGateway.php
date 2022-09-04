@@ -16,4 +16,6 @@ interface CourseLogGateway extends Gateway
     public function complete(CourseLog $courseLog): void;
 
     public function hasAlreadyBegan(Path $path, Course $course): bool;
+
+    public function countCoursesCompletedByPath(Path $path): int;
 }
