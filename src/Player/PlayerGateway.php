@@ -17,11 +17,11 @@ interface PlayerGateway extends Gateway
 
     public function hasRegistrationToken(string $registrationToken): bool;
 
-    public function findOneByEmail(string $email): ?Player;
+    public function getPlayerByEmail(string $email): ?Player;
 
-    public function findOneByRegistrationToken(string $registrationToken): ?Player;
+    public function getPlayerByRegistrationToken(string $registrationToken): ?Player;
 
-    public function findOneByForgottenPasswordToken(string $forgottenPasswordToken): ?Player;
+    public function getPlayerByForgottenPasswordToken(string $forgottenPasswordToken): ?Player;
 
     public function update(Player $player): void;
 }

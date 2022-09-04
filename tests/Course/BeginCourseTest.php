@@ -24,7 +24,7 @@ final class BeginCourseTest extends CommandTestCase
         $courseGateway = $this->container->get(CourseGateway::class);
 
         /** @var Course $course */
-        $course = $courseGateway->findOneBySlug('course-1');
+        $course = $courseGateway->getCourseBySlug('course-1');
 
         $player = InMemoryPlayerRepository::createPlayer(1, '01GBJK7XV3YXQ51EHN9G5DAMYN');
 
@@ -61,7 +61,7 @@ final class BeginCourseTest extends CommandTestCase
         $courseGateway = $this->container->get(CourseGateway::class);
 
         /** @var Course $course */
-        $course = $courseGateway->findOneBySlug('course-1');
+        $course = $courseGateway->getCourseBySlug('course-1');
 
         $player = InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY');
 

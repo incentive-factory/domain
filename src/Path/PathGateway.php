@@ -19,5 +19,5 @@ interface PathGateway extends Gateway
     /**
      * @return array<array-key, Path>
      */
-    public function findByPlayer(PlayerInterface $player): array;
+    public function getPathsByPlayer(PlayerInterface $player): array;
 }

@@ -25,14 +25,14 @@ final class RequestForgottenPasswordTest extends CommandTestCase
         $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
         $player->forgotPassword($uuidGenerator->generate());
         $playerGateway->update($player);
 
         $this->commandBus->execute(self::createForgottenPasswordRequest());
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
 
         self::assertNotNull($player->forgottenPasswordExpiredAt());
         self::assertNotNull($player->forgottenPasswordToken());

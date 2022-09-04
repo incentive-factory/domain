@@ -20,7 +20,7 @@ final class RequestForgottenPassword implements CommandHandler
 
     public function __invoke(ForgottenPasswordRequest $forgottenPasswordRequest): void
     {
-        $player = $this->playerGateway->findOneByEmail($forgottenPasswordRequest->email);
+        $player = $this->playerGateway->getPlayerByEmail($forgottenPasswordRequest->email);
 
         if (null === $player) {
             return;

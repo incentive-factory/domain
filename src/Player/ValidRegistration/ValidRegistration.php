@@ -17,7 +17,7 @@ final class ValidRegistration implements CommandHandler
     public function __invoke(ValidationOfRegistration $validationOfRegistration): void
     {
         /** @var Player $player */
-        $player = $this->playerGateway->findOneByRegistrationToken($validationOfRegistration->registrationToken);
+        $player = $this->playerGateway->getPlayerByRegistrationToken($validationOfRegistration->registrationToken);
         $player->validateRegistration();
         $this->playerGateway->update($player);
     }

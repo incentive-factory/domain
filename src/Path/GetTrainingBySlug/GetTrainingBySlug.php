@@ -16,6 +16,6 @@ final class GetTrainingBySlug implements QueryHandler
 
     public function __invoke(TrainingSlug $trainingSlug): ?Training
     {
-        return $this->trainingGateway->findOneBySlug($trainingSlug->slug);
+        return $this->trainingGateway->getTrainingBySlug($trainingSlug->slug);
     }
 }
