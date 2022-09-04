@@ -115,4 +115,9 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
 
         return null;
     }
+
+    public function getCourseLogById(string $id): ?CourseLog
+    {
+        return $this->courseLogs[$id] ?? null;
+    }
 }

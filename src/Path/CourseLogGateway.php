@@ -21,4 +21,6 @@ interface CourseLogGateway extends Gateway
     public function countCoursesCompletedByPath(Path $path): int;
 
     public function getCourseLogByPathAndCourse(Path $path, Course $course): ?CourseLog;
+
+    public function getCourseLogById(string $id): ?CourseLog;
 }

@@ -18,6 +18,8 @@ use IncentiveFactory\Domain\Path\CourseGateway;
 use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Path\GetCourseBySlug\CourseSlug;
 use IncentiveFactory\Domain\Path\GetCourseBySlug\GetCourseBySlug;
+use IncentiveFactory\Domain\Path\GetCourseLogById\CourseLogId;
+use IncentiveFactory\Domain\Path\GetCourseLogById\GetCourseLogById;
 use IncentiveFactory\Domain\Path\GetCourseLogByPathAndCourse\CourseLogPathAndCourse;
 use IncentiveFactory\Domain\Path\GetCourseLogByPathAndCourse\GetCourseLogByPathAndCourse;
 use IncentiveFactory\Domain\Path\GetCoursesByTraining\GetCoursesByTraining;
@@ -90,6 +92,12 @@ return function (Container $container): void {
                 $container->get(CourseLogGateway::class),
                 $container->get(CourseGateway::class),
                 $container->get(PathGateway::class),
+            )
+        )
+        ->set(
+            GetCourseLogById::class,
+            static fn (Container $container): GetCourseLogById => new GetCourseLogById(
+                $container->get(CourseLogGateway::class),
             )
         )
         ->set(
@@ -283,6 +291,7 @@ return function (Container $container): void {
                 CourseBegan::class => CheckIfCourseHasBegun::class,
                 TrainingCourses::class => GetCoursesByTraining::class,
                 CourseLogPathAndCourse::class => GetCourseLogByPathAndCourse::class,
+                CourseLogId::class => GetCourseLogById::class,
             ])
         )
         ->set(
