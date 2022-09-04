@@ -14,6 +14,8 @@ use IncentiveFactory\Domain\Path\BeginTraining\BeginningOfTraining;
 use IncentiveFactory\Domain\Path\BeginTraining\BeginTraining;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\CheckIfPathHasBegun;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\PathBegan;
+use IncentiveFactory\Domain\Path\GetPathById\GetPathById;
+use IncentiveFactory\Domain\Path\GetPathById\PathId;
 use IncentiveFactory\Domain\Path\GetPathsByPlayer\GetPathsByPlayer;
 use IncentiveFactory\Domain\Path\GetPathsByPlayer\PlayerPaths;
 use IncentiveFactory\Domain\Path\GetTrainingBySlug\GetTrainingBySlug;
@@ -62,6 +64,12 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 return function (Container $container): void {
     $container
+        ->set(
+            GetPathById::class,
+            static fn (Container $container): GetPathById => new GetPathById(
+                $container->get(PathGateway::class),
+            )
+        )
         ->set(
             CheckIfPathHasBegun::class,
             static fn (Container $container): CheckIfPathHasBegun => new CheckIfPathHasBegun(
@@ -235,6 +243,7 @@ return function (Container $container): void {
                 PlayerPaths::class => GetPathsByPlayer::class,
                 CourseSlug::class => GetCourseBySlug::class,
                 PathBegan::class => CheckIfPathHasBegun::class,
+                PathId::class => GetPathById::class,
             ])
         )
         ->set(

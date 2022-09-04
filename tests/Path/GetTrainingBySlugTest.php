@@ -14,7 +14,7 @@ use Symfony\Component\Messenger\Exception\ValidationFailedException;
 
 final class GetTrainingBySlugTest extends QueryTestCase
 {
-    public function testShouldReturnAPathByItsSlug(): void
+    public function testShouldReturnATrainingByItsSlug(): void
     {
         /** @var ?Training $training */
         $training = $this->queryBus->fetch(new TrainingSlug('training-1'));
@@ -40,9 +40,9 @@ final class GetTrainingBySlugTest extends QueryTestCase
     }
 
     /**
-     * @dataProvider providePathSlugs
+     * @dataProvider provideTrainingSlugs
      */
-    public function testShouldFailedDueToAInvalidPathSlug(TrainingSlug $trainingSlug): void
+    public function testShouldFailedDueToAInvalidTrainingSlug(TrainingSlug $trainingSlug): void
     {
         self::expectException(ValidationFailedException::class);
 
@@ -52,7 +52,7 @@ final class GetTrainingBySlugTest extends QueryTestCase
     /**
      * @return Generator<string, array<array-key, TrainingSlug>>
      */
-    public function providePathSlugs(): Generator
+    public function provideTrainingSlugs(): Generator
     {
         yield 'blank slug' => [new TrainingSlug('')];
     }
