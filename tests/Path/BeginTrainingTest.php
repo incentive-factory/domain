@@ -24,7 +24,7 @@ final class BeginTrainingTest extends CommandTestCase
         $trainingGateway = $this->container->get(TrainingGateway::class);
 
         /** @var Training $training */
-        $training = $trainingGateway->findOneBySlug('training-1');
+        $training = $trainingGateway->getTrainingBySlug('training-1');
 
         $player = InMemoryPlayerRepository::createPlayer(1, '01GBJK7XV3YXQ51EHN9G5DAMYN');
 
@@ -59,7 +59,7 @@ final class BeginTrainingTest extends CommandTestCase
         $trainingGateway = $this->container->get(TrainingGateway::class);
 
         /** @var Training $training */
-        $training = $trainingGateway->findOneBySlug('training-1');
+        $training = $trainingGateway->getTrainingBySlug('training-1');
 
         $player = InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY');
 

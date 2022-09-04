@@ -11,5 +11,5 @@ use IncentiveFactory\Domain\Shared\Gateway;
  */
 interface CourseGateway extends Gateway
 {
-    public function findOneBySlug(string $slug): ?Course;
+    public function getCourseBySlug(string $slug): ?Course;
 }

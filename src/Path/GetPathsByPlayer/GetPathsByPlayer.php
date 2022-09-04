@@ -19,6 +19,6 @@ final class GetPathsByPlayer implements QueryHandler
      */
     public function __invoke(PlayerPaths $playerPaths): array
     {
-        return $this->pathGateway->findByPlayer($playerPaths->player);
+        return $this->pathGateway->getPathsByPlayer($playerPaths->player);
     }
 }

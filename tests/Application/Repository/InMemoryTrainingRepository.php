@@ -46,12 +46,12 @@ final class InMemoryTrainingRepository implements TrainingGateway
         ];
     }
 
-    public function findAll(): array
+    public function getTrainings(): array
     {
         return array_values($this->trainings);
     }
 
-    public function findOneBySlug(string $slug): ?Training
+    public function getTrainingBySlug(string $slug): ?Training
     {
         foreach ($this->trainings as $training) {
             if ($training->slug() === $slug) {

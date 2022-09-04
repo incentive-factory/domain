@@ -16,6 +16,6 @@ final class GetCourseBySlug implements QueryHandler
 
     public function __invoke(CourseSlug $query): ?Course
     {
-        return $this->courseGateway->findOneBySlug($query->slug);
+        return $this->courseGateway->getCourseBySlug($query->slug);
     }
 }
