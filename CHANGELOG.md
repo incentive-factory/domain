@@ -4,7 +4,10 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
-## [2022-09-06] 0.1.6
+## [2022-09-04] 0.1.7
+* Renommer les méthodes des gateways [#76](https://github.com/incentive-factory/domain/issues/76)
+
+## [2022-09-04] 0.1.6
 * Pour les mise à jour, remplir les données par défaut (Profile) [#74](https://github.com/incentive-factory/domain/issues/74)
 
 ## [2022-09-03] 0.1.5
