@@ -12,6 +12,8 @@ use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\CheckIfPathHasBegun;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\PathBegan;
 use IncentiveFactory\Domain\Path\CompleteCourse\CompleteCourse;
 use IncentiveFactory\Domain\Path\CompleteCourse\CompletingOfCourse;
+use IncentiveFactory\Domain\Path\CompleteCourse\CourseCompleted;
+use IncentiveFactory\Domain\Path\CompletePath\CompletePath;
 use IncentiveFactory\Domain\Path\CourseGateway;
 use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Path\GetCourseBySlug\CourseSlug;
@@ -66,6 +68,14 @@ use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 return function (Container $container): void {
     $container
+        ->set(
+            CompletePath::class,
+            static fn (Container $container): CompletePath => new CompletePath(
+                $container->get(CourseLogGateway::class),
+                $container->get(CourseGateway::class),
+                $container->get(PathGateway::class),
+            )
+        )
         ->set(
             CheckIfCourseHasBegun::class,
             static fn (Container $container): CheckIfCourseHasBegun => new CheckIfCourseHasBegun(
@@ -240,7 +250,9 @@ return function (Container $container): void {
         )
         ->set(
             EventDispatcher::class,
-            static fn (Container $container): EventDispatcher => new TestEventDispatcher($container, [])
+            static fn (Container $container): EventDispatcher => new TestEventDispatcher($container, [
+                CourseCompleted::class => CompletePath::class,
+            ])
         )
         ->set(
             QueryBus::class,
