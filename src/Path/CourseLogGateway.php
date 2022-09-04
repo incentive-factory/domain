@@ -19,4 +19,6 @@ interface CourseLogGateway extends Gateway
     public function hasAlreadyBegan(PlayerInterface $player, Course $course): bool;
 
     public function countCoursesCompletedByPath(Path $path): int;
+
+    public function getCourseLogByPathAndCourse(Path $path, Course $course): ?CourseLog;
 }
