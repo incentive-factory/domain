@@ -19,7 +19,7 @@ final class Register implements CommandHandler
         private UlidGeneratorInterface $ulidGenerator,
         private UuidGeneratorInterface $uuidGenerator,
         private PlayerGateway $playerGateway,
-        private EventDispatcher $eventBus
+        private EventDispatcher $eventDispatcher
     ) {
     }
 
@@ -37,6 +37,6 @@ final class Register implements CommandHandler
 
         $this->playerGateway->register($player);
 
-        $this->eventBus->dispatch(new NewRegistration($player));
+        $this->eventDispatcher->dispatch(new NewRegistration($player));
     }
 }

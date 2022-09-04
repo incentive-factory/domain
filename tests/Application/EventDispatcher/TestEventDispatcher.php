@@ -23,8 +23,10 @@ final class TestEventDispatcher implements EventDispatcher
     {
     }
 
-    public function dispatch(Event $event): void
+    public function dispatch(object $event): void
     {
+        /* @var Event $event */
+
         $this->eventsDispatched[] = $event::class;
 
         if (isset($this->eventListeners[$event::class])) {

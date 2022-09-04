@@ -30,7 +30,7 @@ final class RegisterTest extends CommandTestCase
         self::assertSame(Gender::Female, $player->gender());
         self::assertNotNull($player->registrationToken());
         self::assertFalse($player->hasValidRegistration());
-        self::assertTrue($this->eventBus->hasDispatched(NewRegistration::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(NewRegistration::class));
     }
 
     /**

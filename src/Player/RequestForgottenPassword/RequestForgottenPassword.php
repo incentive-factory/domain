@@ -14,7 +14,7 @@ final class RequestForgottenPassword implements CommandHandler
     public function __construct(
         private UuidGeneratorInterface $uuidGenerator,
         private PlayerGateway $playerGateway,
-        private EventDispatcher $eventBus
+        private EventDispatcher $eventDispatcher
     ) {
     }
 
@@ -28,6 +28,6 @@ final class RequestForgottenPassword implements CommandHandler
 
         $player->forgotPassword($this->uuidGenerator->generate());
         $this->playerGateway->update($player);
-        $this->eventBus->dispatch(new ForgottenPasswordRequested($player));
+        $this->eventDispatcher->dispatch(new ForgottenPasswordRequested($player));
     }
 }

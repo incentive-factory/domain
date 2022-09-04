@@ -50,7 +50,7 @@ final class BeginTrainingTest extends CommandTestCase
         self::assertEquals($player, $path->player());
         self::assertEquals($training, $path->training());
         self::assertLessThan(new DateTimeImmutable(), $path->beganAt());
-        self::assertTrue($this->eventBus->hasDispatched(TrainingBegan::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(TrainingBegan::class));
     }
 
     public function testShouldRaiseAnExceptionDueToAPathAlreadyBegan(): void

@@ -63,10 +63,10 @@ final class CompletePathTest extends CommandTestCase
         $path = $paths[0];
 
         $this->beginAndCompleteCourse($path, 'course-1');
-        self::assertTrue($this->eventBus->hasDispatched(CourseCompleted::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(CourseCompleted::class));
 
         $this->beginAndCompleteCourse($path, 'course-2');
-        self::assertTrue($this->eventBus->hasDispatched(CourseCompleted::class));
+        self::assertTrue($this->eventDispatcher->hasDispatched(CourseCompleted::class));
 
         self::assertNotNull($path->completedAt());
         self::assertTrue($path->isCompleted());
