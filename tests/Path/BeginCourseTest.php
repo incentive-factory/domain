@@ -37,13 +37,13 @@ final class BeginCourseTest extends CommandTestCase
         /** @var InMemoryCourseLogRepository $courseLogGateway */
         $courseLogGateway = $this->container->get(CourseLogGateway::class);
 
-        self::assertTrue($courseLogGateway->hasAlreadyBegan($path, $course));
+        self::assertTrue($courseLogGateway->hasAlreadyBegan($path->player(), $course));
 
         /** @var array<array-key, CourseLog> $courseLogs */
         $courseLogs = array_values(
             array_filter(
                 $courseLogGateway->courseLogs,
-                static fn (CourseLog $courseLog) => $courseLog->path()->id()->equals($path->id()) && $courseLog->course()->id()->equals($course->id()),
+                static fn (CourseLog $courseLog) => $courseLog->path()->player()->id()->equals($path->player()->id()) && $courseLog->course()->id()->equals($course->id()),
             )
         );
 

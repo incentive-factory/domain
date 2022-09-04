@@ -22,7 +22,7 @@ final class BeginCourse implements CommandHandler
 
     public function __invoke(BeginningOfCourse $beginningOfCourse): void
     {
-        if ($this->courseLogGateway->hasAlreadyBegan($beginningOfCourse->path, $beginningOfCourse->course)) {
+        if ($this->courseLogGateway->hasAlreadyBegan($beginningOfCourse->path->player(), $beginningOfCourse->course)) {
             throw new CourseAlreadyBeganException('Course already began');
         }
 
