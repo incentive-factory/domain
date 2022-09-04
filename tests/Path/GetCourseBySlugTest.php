@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Tests\Course;
+namespace IncentiveFactory\Domain\Tests\Path;
 
 use DateTimeImmutable;
 use Generator;
-use IncentiveFactory\Domain\Course\Course;
-use IncentiveFactory\Domain\Course\GetCourseBySlug\CourseSlug;
-use IncentiveFactory\Domain\Course\Level;
+use IncentiveFactory\Domain\Path\Course;
+use IncentiveFactory\Domain\Path\GetCourseBySlug\CourseSlug;
+use IncentiveFactory\Domain\Path\Level;
 use IncentiveFactory\Domain\Tests\QueryTestCase;
 use Symfony\Component\Messenger\Exception\ValidationFailedException;
 

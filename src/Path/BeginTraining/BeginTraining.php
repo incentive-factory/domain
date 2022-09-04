@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use IncentiveFactory\Domain\Path\Path;
 use IncentiveFactory\Domain\Path\PathGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 
 final class BeginTraining implements CommandHandler
@@ -16,7 +16,7 @@ final class BeginTraining implements CommandHandler
     public function __construct(
         private PathGateway $pathGateway,
         private UlidGeneratorInterface $ulidGenerator,
-        private EventBus $eventBus
+        private EventDispatcher $eventBus
     ) {
     }
 

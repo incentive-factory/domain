@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Tests\Course;
+namespace IncentiveFactory\Domain\Tests\Path;
 
 use DateTimeImmutable;
-use IncentiveFactory\Domain\Course\CompleteCourse\CompletingOfCourse;
-use IncentiveFactory\Domain\Course\CompleteCourse\CourseAlreadyCompletedException;
-use IncentiveFactory\Domain\Course\CompleteCourse\CourseCompleted;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Path\CompleteCourse\CompletingOfCourse;
+use IncentiveFactory\Domain\Path\CompleteCourse\CourseAlreadyCompletedException;
+use IncentiveFactory\Domain\Path\CompleteCourse\CourseCompleted;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryCourseLogRepository;
 use IncentiveFactory\Domain\Tests\CommandTestCase;
 

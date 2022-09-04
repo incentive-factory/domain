@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Shared\Event;
+namespace IncentiveFactory\Domain\Shared\EventDispatcher;
 
 /**
  * @method void __invoke(Event $event)

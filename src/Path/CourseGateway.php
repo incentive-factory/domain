@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Course;
+namespace IncentiveFactory\Domain\Path;
 
 use IncentiveFactory\Domain\Shared\Gateway;
 

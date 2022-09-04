@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-use IncentiveFactory\Domain\Course\BeginCourse\BeginCourse;
-use IncentiveFactory\Domain\Course\BeginCourse\BeginningOfCourse;
-use IncentiveFactory\Domain\Course\CompleteCourse\CompleteCourse;
-use IncentiveFactory\Domain\Course\CompleteCourse\CompletingOfCourse;
-use IncentiveFactory\Domain\Course\CourseGateway;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
-use IncentiveFactory\Domain\Course\GetCourseBySlug\CourseSlug;
-use IncentiveFactory\Domain\Course\GetCourseBySlug\GetCourseBySlug;
+use IncentiveFactory\Domain\Path\BeginCourse\BeginCourse;
+use IncentiveFactory\Domain\Path\BeginCourse\BeginningOfCourse;
 use IncentiveFactory\Domain\Path\BeginTraining\BeginningOfTraining;
 use IncentiveFactory\Domain\Path\BeginTraining\BeginTraining;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\CheckIfPathHasBegun;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\PathBegan;
+use IncentiveFactory\Domain\Path\CompleteCourse\CompleteCourse;
+use IncentiveFactory\Domain\Path\CompleteCourse\CompletingOfCourse;
+use IncentiveFactory\Domain\Path\CourseGateway;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
+use IncentiveFactory\Domain\Path\GetCourseBySlug\CourseSlug;
+use IncentiveFactory\Domain\Path\GetCourseBySlug\GetCourseBySlug;
 use IncentiveFactory\Domain\Path\GetPathById\GetPathById;
 use IncentiveFactory\Domain\Path\GetPathById\PathId;
 use IncentiveFactory\Domain\Path\GetPathsByPlayer\GetPathsByPlayer;
@@ -44,14 +44,14 @@ use IncentiveFactory\Domain\Player\ValidRegistration\RegistrationTokenExistsVali
 use IncentiveFactory\Domain\Player\ValidRegistration\ValidationOfRegistration;
 use IncentiveFactory\Domain\Player\ValidRegistration\ValidRegistration;
 use IncentiveFactory\Domain\Shared\Command\CommandBus;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Shared\Query\QueryBus;
 use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
 use IncentiveFactory\Domain\Tests\Application\Container\Container;
 use IncentiveFactory\Domain\Tests\Application\CQRS\TestCommandBus;
-use IncentiveFactory\Domain\Tests\Application\CQRS\TestEventBus;
 use IncentiveFactory\Domain\Tests\Application\CQRS\TestQueryBus;
+use IncentiveFactory\Domain\Tests\Application\EventDispatcher\TestEventDispatcher;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryCourseLogRepository;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryCourseRepository;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPathRepository;
@@ -81,14 +81,14 @@ return function (Container $container): void {
             static fn (Container $container): BeginTraining => new BeginTraining(
                 $container->get(PathGateway::class),
                 $container->get(UlidGeneratorInterface::class),
-                $container->get(EventBus::class),
+                $container->get(EventDispatcher::class),
             )
         )
         ->set(
             CompleteCourse::class,
             static fn (Container $container): CompleteCourse => new CompleteCourse(
                 $container->get(CourseLogGateway::class),
-                $container->get(EventBus::class),
+                $container->get(EventDispatcher::class),
             )
         )
         ->set(
@@ -96,7 +96,7 @@ return function (Container $container): void {
             static fn (Container $container): BeginCourse => new BeginCourse(
                 $container->get(CourseLogGateway::class),
                 $container->get(UlidGeneratorInterface::class),
-                $container->get(EventBus::class),
+                $container->get(EventDispatcher::class),
             )
         )
         ->set(
@@ -136,7 +136,7 @@ return function (Container $container): void {
                 $container->get(UlidGeneratorInterface::class),
                 $container->get(UuidGeneratorInterface::class),
                 $container->get(PlayerGateway::class),
-                $container->get(EventBus::class)
+                $container->get(EventDispatcher::class)
             )
         )
         ->set(
@@ -144,7 +144,7 @@ return function (Container $container): void {
             static fn (Container $container): RequestForgottenPassword => new RequestForgottenPassword(
                 $container->get(UuidGeneratorInterface::class),
                 $container->get(PlayerGateway::class),
-                $container->get(EventBus::class)
+                $container->get(EventDispatcher::class)
             )
         )
         ->set(
@@ -231,8 +231,8 @@ return function (Container $container): void {
                 ->getPasswordHasher('common')
         )
         ->set(
-            EventBus::class,
-            static fn (Container $container): EventBus => new TestEventBus()
+            EventDispatcher::class,
+            static fn (Container $container): EventDispatcher => new TestEventDispatcher($container, [])
         )
         ->set(
             QueryBus::class,

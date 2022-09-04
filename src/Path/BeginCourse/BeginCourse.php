@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Course\BeginCourse;
+namespace IncentiveFactory\Domain\Path\BeginCourse;
 
 use DateTimeImmutable;
-use IncentiveFactory\Domain\Course\CourseLog;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Path\CourseLog;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 
 final class BeginCourse implements CommandHandler
@@ -16,19 +16,19 @@ final class BeginCourse implements CommandHandler
     public function __construct(
         private CourseLogGateway $courseLogGateway,
         private UlidGeneratorInterface $ulidGenerator,
-        private EventBus $eventBus
+        private EventDispatcher $eventBus
     ) {
     }
 
     public function __invoke(BeginningOfCourse $beginningOfCourse): void
     {
-        if ($this->courseLogGateway->hasAlreadyBegan($beginningOfCourse->player, $beginningOfCourse->course)) {
+        if ($this->courseLogGateway->hasAlreadyBegan($beginningOfCourse->path, $beginningOfCourse->course)) {
             throw new CourseAlreadyBeganException('Course already began');
         }
 
         $courseLog = CourseLog::create(
             $this->ulidGenerator->generate(),
-            $beginningOfCourse->player,
+            $beginningOfCourse->path,
             $beginningOfCourse->course,
             new DateTimeImmutable()
         );

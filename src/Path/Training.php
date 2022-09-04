@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace IncentiveFactory\Domain\Path;
 
 use DateTimeInterface;
-use IncentiveFactory\Domain\Shared\Entity\TrainingInterface;
 use Symfony\Component\Uid\Ulid;
 
-final class Training implements TrainingInterface
+final class Training
 {
     private Ulid $id;
 

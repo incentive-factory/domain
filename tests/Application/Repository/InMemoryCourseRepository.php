@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace IncentiveFactory\Domain\Tests\Application\Repository;
 
 use DateTimeImmutable;
-use IncentiveFactory\Domain\Course\Course;
-use IncentiveFactory\Domain\Course\CourseGateway;
-use IncentiveFactory\Domain\Course\Level;
-use IncentiveFactory\Domain\Shared\Entity\TrainingInterface;
+use IncentiveFactory\Domain\Path\Course;
+use IncentiveFactory\Domain\Path\CourseGateway;
+use IncentiveFactory\Domain\Path\Level;
+use IncentiveFactory\Domain\Path\Training;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryCourseRepository implements CourseGateway
@@ -23,7 +23,7 @@ final class InMemoryCourseRepository implements CourseGateway
         $this->init();
     }
 
-    public static function createCourse(int $index, string $ulid, TrainingInterface $training): Course
+    public static function createCourse(int $index, string $ulid, Training $training): Course
     {
         return Course::create(
             id: Ulid::fromString($ulid),
