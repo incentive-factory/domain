@@ -21,7 +21,7 @@ final class RegisterTest extends CommandTestCase
 
         /** @var PlayerGateway $playerGateway */
         $playerGateway = $this->container->get(PlayerGateway::class);
-        $player = $playerGateway->findOneByEmail('player@email.com');
+        $player = $playerGateway->getPlayerByEmail('player@email.com');
 
         self::assertInstanceOf(Player::class, $player);
         self::assertSame('player@email.com', $player->email());

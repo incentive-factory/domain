@@ -24,7 +24,7 @@ final class GetPlayerByForgottenPasswordTokenTest extends QueryTestCase
         $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
         $player->forgotPassword($uuidGenerator->generate());
         $playerGateway->update($player);
 
@@ -52,7 +52,7 @@ final class GetPlayerByForgottenPasswordTokenTest extends QueryTestCase
         $uuidGenerator = $this->container->get(UuidGeneratorInterface::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
         $player->forgotPassword($uuidGenerator->generate());
         $reflectionProperty = new ReflectionProperty($player, 'forgottenPasswordExpiredAt');
         $reflectionProperty->setValue($player, new DateTimeImmutable('1 day ago'));

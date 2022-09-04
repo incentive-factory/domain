@@ -62,10 +62,10 @@ final class InMemoryPlayerRepository implements PlayerGateway
 
     public function hasRegistrationToken(string $registrationToken): bool
     {
-        return null !== $this->findOneByRegistrationToken($registrationToken);
+        return null !== $this->getPlayerByRegistrationToken($registrationToken);
     }
 
-    public function findOneByRegistrationToken(string $registrationToken): ?Player
+    public function getPlayerByRegistrationToken(string $registrationToken): ?Player
     {
         foreach ($this->players as $player) {
             if ((string) $player->registrationToken() === $registrationToken) {
@@ -76,7 +76,7 @@ final class InMemoryPlayerRepository implements PlayerGateway
         return null;
     }
 
-    public function findOneByForgottenPasswordToken(string $forgottenPasswordToken): ?Player
+    public function getPlayerByForgottenPasswordToken(string $forgottenPasswordToken): ?Player
     {
         foreach ($this->players as $player) {
             if ((string) $player->forgottenPasswordToken() === $forgottenPasswordToken) {
@@ -87,7 +87,7 @@ final class InMemoryPlayerRepository implements PlayerGateway
         return null;
     }
 
-    public function findOneByEmail(string $email): ?Player
+    public function getPlayerByEmail(string $email): ?Player
     {
         foreach ($this->players as $player) {
             if ($player->email() === $email) {

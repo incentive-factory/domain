@@ -20,12 +20,12 @@ final class ResetPasswordTest extends CommandTestCase
         $playerGateway = $this->container->get(PlayerGateway::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
 
         $this->commandBus->execute(self::createNewPassword()($player));
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
 
         self::assertSame('NewPassword123!', $player->password());
         self::assertNull($player->forgottenPasswordToken());
@@ -41,7 +41,7 @@ final class ResetPasswordTest extends CommandTestCase
         $playerGateway = $this->container->get(PlayerGateway::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
 
         self::expectException(ValidationFailedException::class);
         $this->commandBus->execute($newPassword($player));

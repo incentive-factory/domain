@@ -19,6 +19,6 @@ final class GetTrainings implements QueryHandler
      */
     public function __invoke(ListOfTrainings $listOfPaths): array
     {
-        return $this->trainingGateway->findAll();
+        return $this->trainingGateway->getTrainings();
     }
 }

@@ -52,7 +52,7 @@ final class InMemoryCourseRepository implements CourseGateway
         ];
     }
 
-    public function findOneBySlug(string $slug): ?Course
+    public function getCourseBySlug(string $slug): ?Course
     {
         foreach ($this->courses as $course) {
             if ($course->slug() === $slug) {

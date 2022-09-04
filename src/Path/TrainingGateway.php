@@ -14,7 +14,7 @@ interface TrainingGateway extends Gateway
     /**
      * @return array<array-key, Training>
      */
-    public function findAll(): array;
+    public function getTrainings(): array;
 
-    public function findOneBySlug(string $slug): ?Training;
+    public function getTrainingBySlug(string $slug): ?Training;
 }

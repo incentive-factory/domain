@@ -57,7 +57,7 @@ final class InMemoryPathRepository implements PathGateway
         return false;
     }
 
-    public function findByPlayer(PlayerInterface $player): array
+    public function getPathsByPlayer(PlayerInterface $player): array
     {
         $paths = [];
         foreach ($this->paths as $path) {

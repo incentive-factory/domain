@@ -21,12 +21,12 @@ final class UpdateProfileTest extends CommandTestCase
         $playerGateway = $this->container->get(PlayerGateway::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
 
         $this->commandBus->execute(self::createProfile()($player));
 
         /** @var ?Player $player */
-        $player = $playerGateway->findOneByEmail('player@email.com');
+        $player = $playerGateway->getPlayerByEmail('player@email.com');
 
         self::assertInstanceOf(Player::class, $player);
         self::assertSame('player@email.com', $player->email());
@@ -44,7 +44,7 @@ final class UpdateProfileTest extends CommandTestCase
         $playerGateway = $this->container->get(PlayerGateway::class);
 
         /** @var Player $player */
-        $player = $playerGateway->findOneByEmail('player+1@email.com');
+        $player = $playerGateway->getPlayerByEmail('player+1@email.com');
 
         self::expectException(ValidationFailedException::class);
         $this->commandBus->execute($newProfile($player));
