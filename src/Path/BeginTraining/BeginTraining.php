@@ -22,7 +22,7 @@ final class BeginTraining implements CommandHandler
 
     public function __invoke(BeginningOfTraining $beginningOfPath): void
     {
-        if ($this->pathGateway->hasAlreadyBegan($beginningOfPath->player, $beginningOfPath->training)) {
+        if ($this->pathGateway->hasAlreadyBegun($beginningOfPath->player, $beginningOfPath->training)) {
             throw new TrainingAlreadyBeganException('Path already began');
         }
 
