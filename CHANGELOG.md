@@ -4,7 +4,7 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
-## [2022-09-04] 
+## [2022-09-04] 0.2.0
 * Vérifier si un joueur a déjà commencé un parcours [#79](https://github.com/incentive-factory/domain/issues/79)
 * Récupérer un parcours [#45](https://github.com/incentive-factory/domain/issues/45)
 * Gestion des événements [#80](https://github.com/incentive-factory/domain/issues/80)
