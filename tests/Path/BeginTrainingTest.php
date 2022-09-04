@@ -33,7 +33,7 @@ final class BeginTrainingTest extends CommandTestCase
         /** @var InMemoryPathRepository $pathGateway */
         $pathGateway = $this->container->get(PathGateway::class);
 
-        self::assertTrue($pathGateway->hasAlreadyBegan($player, $training));
+        self::assertTrue($pathGateway->hasAlreadyBegun($player, $training));
 
         /** @var array<array-key, Path> $paths */
         $paths = array_values(

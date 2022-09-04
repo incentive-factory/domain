@@ -4,33 +4,28 @@ declare(strict_types=1);
 
 namespace IncentiveFactory\Domain\Path;
 
+use DateTimeImmutable;
 use DateTimeInterface;
-use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
-final class Path
+final class CourseLog
 {
     private Ulid $id;
 
-    private PlayerInterface $player;
+    private Path $path;
 
-    private Training $training;
+    private Course $course;
 
     private DateTimeInterface $beganAt;
 
     private ?DateTimeInterface $completedAt = null;
 
-    public static function create(
-        Ulid $id,
-        PlayerInterface $player,
-        Training $training,
-        DateTimeInterface $beganAt,
-        ?DateTimeInterface $completedAt = null
-    ): self {
+    public static function create(Ulid $id, Path $path, Course $course, DateTimeInterface $beganAt, ?DateTimeInterface $completedAt = null): self
+    {
         $registration = new self();
         $registration->id = $id;
-        $registration->player = $player;
-        $registration->training = $training;
+        $registration->path = $path;
+        $registration->course = $course;
         $registration->beganAt = $beganAt;
         $registration->completedAt = $completedAt;
 
@@ -42,14 +37,14 @@ final class Path
         return $this->id;
     }
 
-    public function player(): PlayerInterface
+    public function path(): Path
     {
-        return $this->player;
+        return $this->path;
     }
 
-    public function training(): Training
+    public function course(): Course
     {
-        return $this->training;
+        return $this->course;
     }
 
     public function beganAt(): DateTimeInterface
@@ -62,13 +57,13 @@ final class Path
         return $this->completedAt;
     }
 
-    public function complete(): void
-    {
-        $this->completedAt = new \DateTimeImmutable();
-    }
-
-    public function isCompleted(): bool
+    public function hasCompleted(): bool
     {
         return null !== $this->completedAt;
+    }
+
+    public function complete(): void
+    {
+        $this->completedAt = new DateTimeImmutable();
     }
 }

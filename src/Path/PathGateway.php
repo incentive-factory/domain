@@ -14,10 +14,14 @@ interface PathGateway extends Gateway
 {
     public function begin(Path $path): void;
 
-    public function hasAlreadyBegan(PlayerInterface $player, Training $training): bool;
+    public function complete(Path $path): void;
+
+    public function hasAlreadyBegun(PlayerInterface $player, Training $training): bool;
 
     /**
      * @return array<array-key, Path>
      */
     public function getPathsByPlayer(PlayerInterface $player): array;
+
+    public function getPathById(string $id): ?Path;
 }

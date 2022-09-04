@@ -23,20 +23,28 @@ final class InMemoryPathRepository implements PathGateway
         $this->init();
     }
 
+    public static function createPath(string $id, PlayerInterface $player, Training $training): Path
+    {
+        return Path::create(
+            id: Ulid::fromString($id),
+            player: $player,
+            training: $training,
+            beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
+        );
+    }
+
     public function init(): void
     {
         $this->paths = [
-            '01GBXF8ATAE03HY5ZC3ES90122' => Path::create(
-                id: Ulid::fromString('01GBXF8ATAE03HY5ZC3ES90122'),
+            '01GBXF8ATAE03HY5ZC3ES90122' => self::createPath(
+                id: '01GBXF8ATAE03HY5ZC3ES90122',
                 player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
-                training: InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG'),
-                beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
+                training: InMemoryTrainingRepository::createTraining(1, '01GBWW5FJJ0G3YK3RJM6VWBZBG')
             ),
-            '01GBXF8EPC06PV81J70Z0ACKCC' => Path::create(
-                id: Ulid::fromString('01GBXF8EPC06PV81J70Z0ACKCC'),
+            '01GBXF8EPC06PV81J70Z0ACKCC' => self::createPath(
+                id: '01GBXF8EPC06PV81J70Z0ACKCC',
                 player: InMemoryPlayerRepository::createPlayer(1, '01GBFF6QBSBH7RRTK6N0770BSY'),
-                training: InMemoryTrainingRepository::createTraining(2, '01GBWW5JHNPEXD8S0J5HPT97S2'),
-                beganAt: new DateTimeImmutable('2021-01-01 00:00:00')
+                training: InMemoryTrainingRepository::createTraining(2, '01GBWW5JHNPEXD8S0J5HPT97S2')
             ),
         ];
     }
@@ -46,7 +54,12 @@ final class InMemoryPathRepository implements PathGateway
         $this->paths[(string) $path->id()] = $path;
     }
 
-    public function hasAlreadyBegan(PlayerInterface $player, Training $training): bool
+    public function complete(Path $path): void
+    {
+        $this->paths[(string) $path->id()] = $path;
+    }
+
+    public function hasAlreadyBegun(PlayerInterface $player, Training $training): bool
     {
         foreach ($this->paths as $path) {
             if ($path->player()->id()->equals($player->id()) && $path->training()->id()->equals($training->id())) {
@@ -67,5 +80,10 @@ final class InMemoryPathRepository implements PathGateway
         }
 
         return $paths;
+    }
+
+    public function getPathById(string $id): ?Path
+    {
+        return $this->paths[$id] ?? null;
     }
 }
