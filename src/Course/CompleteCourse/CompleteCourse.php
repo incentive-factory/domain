@@ -6,13 +6,13 @@ namespace IncentiveFactory\Domain\Course\CompleteCourse;
 
 use IncentiveFactory\Domain\Course\CourseLogGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 
 final class CompleteCourse implements CommandHandler
 {
     public function __construct(
         private CourseLogGateway $courseLogGateway,
-        private EventBus $eventBus
+        private EventDispatcher $eventBus
     ) {
     }
 

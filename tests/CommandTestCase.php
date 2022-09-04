@@ -6,16 +6,16 @@ namespace IncentiveFactory\Domain\Tests;
 
 use IncentiveFactory\Domain\Player\PlayerGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandBus;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Tests\Application\Container\Container;
-use IncentiveFactory\Domain\Tests\Application\CQRS\TestEventBus;
+use IncentiveFactory\Domain\Tests\Application\EventDispatcher\TestEventDispatcher;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPlayerRepository;
 
 abstract class CommandTestCase extends ContainerTestCase
 {
     protected CommandBus $commandBus;
 
-    protected TestEventBus $eventBus;
+    protected TestEventDispatcher $eventBus;
 
     protected Container $container;
 
@@ -23,7 +23,7 @@ abstract class CommandTestCase extends ContainerTestCase
     {
         $this->container = self::createContainer();
         $this->commandBus = $this->container->get(CommandBus::class);
-        $this->eventBus = $this->container->get(EventBus::class);
+        $this->eventBus = $this->container->get(EventDispatcher::class);
     }
 
     protected function tearDown(): void

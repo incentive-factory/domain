@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace IncentiveFactory\Domain\Course\CompleteCourse;
 
 use IncentiveFactory\Domain\Course\CourseLog;
-use IncentiveFactory\Domain\Shared\Event\Event;
+use IncentiveFactory\Domain\Shared\EventDispatcher\Event;
 
 final class CourseCompleted implements Event
 {

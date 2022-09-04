@@ -6,7 +6,7 @@ namespace IncentiveFactory\Domain\Player\RequestForgottenPassword;
 
 use IncentiveFactory\Domain\Player\PlayerGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Shared\Uid\UuidGeneratorInterface;
 
 final class RequestForgottenPassword implements CommandHandler
@@ -14,7 +14,7 @@ final class RequestForgottenPassword implements CommandHandler
     public function __construct(
         private UuidGeneratorInterface $uuidGenerator,
         private PlayerGateway $playerGateway,
-        private EventBus $eventBus
+        private EventDispatcher $eventBus
     ) {
     }
 

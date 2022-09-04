@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use IncentiveFactory\Domain\Course\CourseLog;
 use IncentiveFactory\Domain\Course\CourseLogGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
-use IncentiveFactory\Domain\Shared\Event\EventBus;
+use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;
 
 final class BeginCourse implements CommandHandler
@@ -16,7 +16,7 @@ final class BeginCourse implements CommandHandler
     public function __construct(
         private CourseLogGateway $courseLogGateway,
         private UlidGeneratorInterface $ulidGenerator,
-        private EventBus $eventBus
+        private EventDispatcher $eventBus
     ) {
     }
 
