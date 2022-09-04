@@ -16,7 +16,7 @@ final class BeginTraining implements CommandHandler
     public function __construct(
         private PathGateway $pathGateway,
         private UlidGeneratorInterface $ulidGenerator,
-        private EventDispatcher $eventBus
+        private EventDispatcher $eventDispatcher
     ) {
     }
 
@@ -35,6 +35,6 @@ final class BeginTraining implements CommandHandler
 
         $this->pathGateway->begin($path);
 
-        $this->eventBus->dispatch(new TrainingBegan($path));
+        $this->eventDispatcher->dispatch(new TrainingBegan($path));
     }
 }

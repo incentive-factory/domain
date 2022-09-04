@@ -16,7 +16,7 @@ final class BeginCourse implements CommandHandler
     public function __construct(
         private CourseLogGateway $courseLogGateway,
         private UlidGeneratorInterface $ulidGenerator,
-        private EventDispatcher $eventBus
+        private EventDispatcher $eventDispatcher
     ) {
     }
 
@@ -35,6 +35,6 @@ final class BeginCourse implements CommandHandler
 
         $this->courseLogGateway->begin($courseLog);
 
-        $this->eventBus->dispatch(new CourseBegan($courseLog));
+        $this->eventDispatcher->dispatch(new CourseBegan($courseLog));
     }
 }
