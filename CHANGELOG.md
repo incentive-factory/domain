@@ -4,6 +4,9 @@ Le `changelog` liste toutes les nouveautés intégrées à chaque `release`.
 
 Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommandations](https://keepachangelog.com/en/1.0.0/).
 
+## [2022-09-04] 0.2.2
+* Modifier CheckIfCourseHasBegan [#91](https://github.com/incentive-factory/domain/issues/91)
+
 ## [2022-09-04] 0.2.1
 * Correction de EventDispatcher
 
@@ -21,7 +24,7 @@ Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommanda
 * Renommer les méthodes des gateways [#76](https://github.com/incentive-factory/domain/issues/76)
 
 ## [2022-09-04] 0.1.6
-* Pour les mise à jour, remplir les données par défaut (Profile) [#74](https://github.com/incentive-factory/domain/issues/74)
+* Pour les mises à jour, remplir les données par défaut (Profile) [#74](https://github.com/incentive-factory/domain/issues/74)
 
 ## [2022-09-03] 0.1.5
 * Modifier la gestion des événements [#72](https://github.com/incentive-factory/domain/issues/72)

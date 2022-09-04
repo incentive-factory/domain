@@ -9,6 +9,7 @@ use IncentiveFactory\Domain\Path\Course;
 use IncentiveFactory\Domain\Path\CourseLog;
 use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Path\Path;
+use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryCourseLogRepository implements CourseLogGateway
@@ -83,10 +84,10 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
         $this->courseLogs[(string) $courseLog->id()] = $courseLog;
     }
 
-    public function hasAlreadyBegan(Path $path, Course $course): bool
+    public function hasAlreadyBegan(PlayerInterface $player, Course $course): bool
     {
         foreach ($this->courseLogs as $courseLog) {
-            if ($courseLog->path()->id()->equals($path->id()) && $courseLog->course()->id()->equals($course->id())) {
+            if ($courseLog->path()->player()->id()->equals($player->id()) && $courseLog->course()->id()->equals($course->id())) {
                 return true;
             }
         }

@@ -15,6 +15,6 @@ final class CheckIfCourseHasBegun implements QueryHandler
 
     public function __invoke(CourseBegan $query): bool
     {
-        return $this->courseLogGateway->hasAlreadyBegan($query->path, $query->course);
+        return $this->courseLogGateway->hasAlreadyBegan($query->player, $query->course);
     }
 }
