@@ -7,6 +7,10 @@ Ce projet respecte [Semantic Versioning](https://semver.org/) et les [recommanda
 ## [2022-09-04] 
 * Vérifier si un joueur a déjà commencé un parcours [#79](https://github.com/incentive-factory/domain/issues/79)
 * Récupérer un parcours [#45](https://github.com/incentive-factory/domain/issues/45)
+* Gestion des événements [#80](https://github.com/incentive-factory/domain/issues/80)
+* Refactoring de CourseLog [#85](https://github.com/incentive-factory/domain/issues/85)
+* Déplacer tout le contenu du domaine Course dans Path [#86](https://github.com/incentive-factory/domain/issues/86)
+* Vérifier si un cours a déjà été commencé [#84](https://github.com/incentive-factory/domain/issues/84)
 
 ## [2022-09-04] 0.1.7
 * Renommer les méthodes des gateways [#76](https://github.com/incentive-factory/domain/issues/76)
