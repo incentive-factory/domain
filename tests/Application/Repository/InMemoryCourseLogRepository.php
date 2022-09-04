@@ -104,4 +104,15 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
             )
         );
     }
+
+    public function getCourseLogByPathAndCourse(Path $path, Course $course): ?CourseLog
+    {
+        foreach ($this->courseLogs as $courseLog) {
+            if ($courseLog->path()->id()->equals($path->id()) && $courseLog->course()->id()->equals($course->id())) {
+                return $courseLog;
+            }
+        }
+
+        return null;
+    }
 }
