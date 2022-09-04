@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Course\BeginCourse;
+namespace IncentiveFactory\Domain\Path\BeginCourse;
 
 use DateTimeImmutable;
-use IncentiveFactory\Domain\Course\CourseLog;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Path\CourseLog;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 use IncentiveFactory\Domain\Shared\Uid\UlidGeneratorInterface;

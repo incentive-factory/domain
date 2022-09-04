@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-use IncentiveFactory\Domain\Course\BeginCourse\BeginCourse;
-use IncentiveFactory\Domain\Course\BeginCourse\BeginningOfCourse;
-use IncentiveFactory\Domain\Course\CompleteCourse\CompleteCourse;
-use IncentiveFactory\Domain\Course\CompleteCourse\CompletingOfCourse;
-use IncentiveFactory\Domain\Course\CourseGateway;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
-use IncentiveFactory\Domain\Course\GetCourseBySlug\CourseSlug;
-use IncentiveFactory\Domain\Course\GetCourseBySlug\GetCourseBySlug;
+use IncentiveFactory\Domain\Path\BeginCourse\BeginCourse;
+use IncentiveFactory\Domain\Path\BeginCourse\BeginningOfCourse;
 use IncentiveFactory\Domain\Path\BeginTraining\BeginningOfTraining;
 use IncentiveFactory\Domain\Path\BeginTraining\BeginTraining;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\CheckIfPathHasBegun;
 use IncentiveFactory\Domain\Path\CheckIfPathHasBegun\PathBegan;
+use IncentiveFactory\Domain\Path\CompleteCourse\CompleteCourse;
+use IncentiveFactory\Domain\Path\CompleteCourse\CompletingOfCourse;
+use IncentiveFactory\Domain\Path\CourseGateway;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
+use IncentiveFactory\Domain\Path\GetCourseBySlug\CourseSlug;
+use IncentiveFactory\Domain\Path\GetCourseBySlug\GetCourseBySlug;
 use IncentiveFactory\Domain\Path\GetPathById\GetPathById;
 use IncentiveFactory\Domain\Path\GetPathById\PathId;
 use IncentiveFactory\Domain\Path\GetPathsByPlayer\GetPathsByPlayer;

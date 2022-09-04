@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Course\CompleteCourse;
+namespace IncentiveFactory\Domain\Path\CompleteCourse;
 
-use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Shared\Command\CommandHandler;
 use IncentiveFactory\Domain\Shared\EventDispatcher\EventDispatcher;
 

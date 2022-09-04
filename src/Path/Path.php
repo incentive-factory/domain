@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace IncentiveFactory\Domain\Path;
 
 use DateTimeInterface;
-use IncentiveFactory\Domain\Shared\Entity\PathInterface;
 use IncentiveFactory\Domain\Shared\Entity\PlayerInterface;
 use Symfony\Component\Uid\Ulid;
 
-final class Path implements PathInterface
+final class Path
 {
     private Ulid $id;
 

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Course;
+namespace IncentiveFactory\Domain\Path;
 
 use DateTimeInterface;
-use IncentiveFactory\Domain\Shared\Entity\TrainingInterface;
 use Symfony\Component\Uid\Ulid;
 
 final class Course
@@ -33,7 +32,7 @@ final class Course
 
     private Level $level;
 
-    private TrainingInterface $training;
+    private Training $training;
 
     /**
      * @param array<array-key, string> $thread
@@ -49,7 +48,7 @@ final class Course
         string $video,
         array $thread,
         Level $level,
-        TrainingInterface $training
+        Training $training
     ): self {
         $course = new self();
         $course->id = $id;
@@ -120,7 +119,7 @@ final class Course
         return $this->level;
     }
 
-    public function training(): TrainingInterface
+    public function training(): Training
     {
         return $this->training;
     }

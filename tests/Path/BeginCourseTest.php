@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Tests\Course;
+namespace IncentiveFactory\Domain\Tests\Path;
 
 use DateTimeImmutable;
-use IncentiveFactory\Domain\Course\BeginCourse\BeginningOfCourse;
-use IncentiveFactory\Domain\Course\BeginCourse\CourseAlreadyBeganException;
-use IncentiveFactory\Domain\Course\BeginCourse\CourseBegan;
-use IncentiveFactory\Domain\Course\Course;
-use IncentiveFactory\Domain\Course\CourseGateway;
-use IncentiveFactory\Domain\Course\CourseLog;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
+use IncentiveFactory\Domain\Path\BeginCourse\BeginningOfCourse;
+use IncentiveFactory\Domain\Path\BeginCourse\CourseAlreadyBeganException;
+use IncentiveFactory\Domain\Path\BeginCourse\CourseBegan;
+use IncentiveFactory\Domain\Path\Course;
+use IncentiveFactory\Domain\Path\CourseGateway;
+use IncentiveFactory\Domain\Path\CourseLog;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
 use IncentiveFactory\Domain\Path\PathGateway;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryCourseLogRepository;
 use IncentiveFactory\Domain\Tests\Application\Repository\InMemoryPathRepository;

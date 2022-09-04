@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace IncentiveFactory\Domain\Tests\Application\Repository;
 
 use DateTimeImmutable;
-use IncentiveFactory\Domain\Course\Course;
-use IncentiveFactory\Domain\Course\CourseLog;
-use IncentiveFactory\Domain\Course\CourseLogGateway;
-use IncentiveFactory\Domain\Shared\Entity\PathInterface;
+use IncentiveFactory\Domain\Path\Course;
+use IncentiveFactory\Domain\Path\CourseLog;
+use IncentiveFactory\Domain\Path\CourseLogGateway;
+use IncentiveFactory\Domain\Path\Path;
 use Symfony\Component\Uid\Ulid;
 
 final class InMemoryCourseLogRepository implements CourseLogGateway
@@ -83,7 +83,7 @@ final class InMemoryCourseLogRepository implements CourseLogGateway
         $this->courseLogs[(string) $courseLog->id()] = $courseLog;
     }
 
-    public function hasAlreadyBegan(PathInterface $path, Course $course): bool
+    public function hasAlreadyBegan(Path $path, Course $course): bool
     {
         foreach ($this->courseLogs as $courseLog) {
             if ($courseLog->path()->id()->equals($path->id()) && $courseLog->course()->id()->equals($course->id())) {

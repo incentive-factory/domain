@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace IncentiveFactory\Domain\Course\BeginCourse;
+namespace IncentiveFactory\Domain\Path\BeginCourse;
 
-use IncentiveFactory\Domain\Course\CourseLog;
+use IncentiveFactory\Domain\Path\CourseLog;
 use IncentiveFactory\Domain\Shared\EventDispatcher\Event;
 
 final class CourseBegan implements Event
